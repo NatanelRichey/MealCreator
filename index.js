@@ -1,10 +1,6 @@
 // -------------------------------------------------------- IMPORTS AND DECLARATIONS -------------------------------------------------------
 
-import {} from 'dotenv/config'
-
-// if (process.env.NODE_ENV !== "production") {
-//     import {} from 'dotenv/config'
-// }
+// import {} from 'dotenv/config'
 
 import express, { urlencoded } from "express"
 const app = express()
