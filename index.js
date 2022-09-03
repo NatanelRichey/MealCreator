@@ -45,11 +45,15 @@ connect(dbUrl, {
 // ------------------------------------------------------------ SESSIONS & FLASH ------------------------------------------------------------
 
 import session from 'express-session'
+import { MongoClient, ServerApiVersion } from 'mongodb'
 import { default as connectMongoDBSession} from 'connect-mongodb-session';
 const MongoDBStore = connectMongoDBSession(session);
 
 const store = new MongoDBStore ({
     uri: dbUrl,
+    useNewUrlParser: true, 
+    useUnifiedTopology: true,
+    serverApi: ServerApiVersion.v1, 
     collection: 'sessions'
 })
 
