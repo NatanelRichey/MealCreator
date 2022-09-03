@@ -25,7 +25,7 @@ app.set('view engine', 'ejs');
 
 // --------------------------------------------------------- EXPRESS INITIALIZATIONS --------------------------------------------------------
 
-const dbUrl = process.env.DB_URL
+const dbUrl = process.env.DB_URL || "mongodb+srv://natanelrichey:jA78gKsDQWh4shU@cluster0.rxrufjj.mongodb.net/?retryWrites=true&w=majority"
 connect(dbUrl, { 
     useNewUrlParser: true,
     useUnifiedTopology: true,

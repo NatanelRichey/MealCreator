@@ -3,7 +3,7 @@ const router = express.Router();
 import { isLoggedIn } from "../middleware.js"
 import * as app from "../controllers/app.js"
 
-router.get('/', app.renderApp)
+router.get('/', app.renderHome)
 
 router.post('/:choice', isLoggedIn, app.processChoice)
 

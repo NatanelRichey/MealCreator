@@ -5,6 +5,11 @@ let choices = []
 let matchedMeals = []
 const choiceArr = [["Healthy","Regular"],["Breakfast","Lunch","Dinner"],["Dairy","Parve","Meaty"]]
 
+export const renderHome = async (req, res) => {
+    res.render('/login')
+
+}
+
 export const renderApp = async (req, res) => {
     res.render('app/first-page', { choiceArr })
     choices = []
