@@ -29,7 +29,7 @@ app.set('view engine', 'ejs');
 
 // --------------------------------------------------------- EXPRESS INITIALIZATIONS --------------------------------------------------------
 
-const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/FoodApp'
+const dbUrl = process.env.DB_URL
 connect(dbUrl, { 
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -45,7 +45,7 @@ connect(dbUrl, {
 // ------------------------------------------------------------ SESSIONS & FLASH ------------------------------------------------------------
 
 import session from 'express-session'
-import { MongoClient, ServerApiVersion } from 'mongodb'
+import { ServerApiVersion } from 'mongodb'
 import { default as connectMongoDBSession} from 'connect-mongodb-session';
 const MongoDBStore = connectMongoDBSession(session);
 
