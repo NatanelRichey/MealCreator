@@ -1,0 +1,25 @@
+<% if(success && success.length) {%>
+    <% if(curUrl === '/meals' || curUrl === '/list' || curUrl === '/pantry') { %>
+    <div class="alert alert-custom alert-dismissible fade show d-flex align-items-center" role="alert">
+    <% } else { %>
+    <div class="alert alert-custom-long alert-dismissible fade show d-flex align-items-center" role="alert">
+    <% } %>
+        <%= success %>
+        <% if(curUrl === '/meals' || curUrl === '/list' || curUrl === '/pantry') { %>
+        <button type="button" class="close-custom" data-dismiss="alert" aria-label="Close">
+        <% } else { %>
+        <button type="button" class="close-custom-long" data-dismiss="alert" aria-label="Close">
+        <% } %>
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+<% } %>
+
+<% if(error && error.length) {%>
+<div class="alert alert-error-flash-custom alert-dismissible fade show d-flex align-items-center" role="alert">
+    <%= error %>
+    <button type="button" class="close-custom" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<% } %>

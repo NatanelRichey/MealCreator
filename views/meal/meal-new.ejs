@@ -1,0 +1,58 @@
+<%- include("../partials/header.ejs") %>
+<title>Meal - New</title>
+<%- include("../partials/navbar.ejs") %>
+<!-------------------------------------------------- ENTER CONTENT HERE -------------------------------------------------->
+<section class="meals-form-cont">
+  <div class="overlay"></div>
+
+  <section class="container meals-menu-cont p-0 overflow-auto">
+
+      <form class="d-block" action="/meals/new/ingredients" method="post">
+        <div class="row d-flex justify-content-begin form-header-row">
+          <div class="col-md-5 d-flex justify-content-start align-items-center">
+            <input type="text" name="ingredients" class="meal-form-category ingredient-field" placeholder="Enter an Ingredient">
+          </div>
+          <div class="meal-form-button col-md-2 d-flex justify-content-start align-items-center">
+            <input type="submit" class="add-ingredient-button" value="Add Ingredient">
+          </div>
+        </div>
+      </form>
+
+      <div class="row d-flex justify-content-center ingredient-row"></div>
+      <div class="container row d-flex justify-content-space-between tag-row">
+        <% for (let section of choiceArr) { %> 
+          <div class="choose-tag col-md-12 d-flex align-items-center justify-content-begin">
+          <% for (let choice of section) { %> 
+            <form class="d-block" action="/meals/new/tags/<%=choice.toLowerCase()%>" method="post">
+              <button type="submit" class="btn btn-light meal-edit tag-list-check filter" id="<%=choice.toLowerCase()%>-tag"></button><span class="tag-text"><%=choice%></span>
+            </form>
+          <% } %>
+          </div>
+        <% } %>
+      </div>
+
+      <form class="d-block" action="/meals/new/name-img" method="post" enctype="multipart/form-data">
+        <div class="row d-flex justify-content-begin form-header-row">
+          <div class="col-md-5 d-flex justify-content-start align-items-center">
+            <input type="text" name="mealName" class="meal-form-category name-field" placeholder="Name">
+          </div>
+          <div class="choose-file-btn col-md-7 d-flex align-items-center justify-content-center">
+            <input name="imgSrc" id="imgSrc" type="file" class="file-form-button form-control" id="customFile" required>
+        </div>
+        <div class="row d-flex justify-content-center done-row">
+          <div class="form-cancel-btn col-md-4 d-flex justify-content-center align-items-center">
+            <button type="button" class="cancel-button">Cancel</button>
+          </div>
+          <div class="form-submit-btn col-md-3 d-flex justify-content-center align-items-center">
+            <input type="submit" class="done-button" value="Done">
+          </div>
+        </div>
+      </form>
+
+  </section>
+</section>
+<!--------------------------------------------------- CONTENT ENDS HERE -------------------------------------------------->
+<%- include("../partials/scripts.ejs") %>
+<script src="/js/meal-new.js"></script>
+<!-- <script type="module" src="../../models/site-vars.js"></script> -->
+<%- include("../partials/footer.ejs") %>

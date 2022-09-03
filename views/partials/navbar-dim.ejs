@@ -1,0 +1,36 @@
+</head>
+
+<body>
+    <div class="mask">   
+      <nav class="navbar navbar-expand-sm navbar-light bg-light" id="navbar">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <a id="logo-name-button" class="nav-link" href="/app">
+              <img src="/icons/meal-creator-logo.png" width="60" height="60" class="d-inline-block align-top" alt="">
+              <span id="brand">MealCreator</span>
+          </a>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav nav-fill w-100" id="nav-buttons">
+              <li class="nav-item d-flex justify-content-start">
+                <a class="nav-link" id="home-button" href="/app">Home</a>
+              </li>
+              <li class="nav-item d-flex justify-content-start">
+                <a class="nav-link pl-0 pr-0" id="pantry-button" href="/pantry">Pantry</a>
+              </li>
+              <li class="nav-item d-flex justify-content-start">
+                <a class="nav-link" id="list-button" href="/shopping-list">Shopping List</a>
+              </li>
+              <li class="nav-item d-flex justify-content-start">
+                  <a class="nav-link" id="meal-button" href="/meals">Meals</a>
+              </li>
+            </ul>
+            <% if(!currentUser) {%>
+              <li class="nav-item d-flex justify-content-start"><a class="nav-link-end" href="/login">Login</a></li>
+              <li class="nav-item d-flex justify-content-start"><a class="nav-link-end" href="/register">Register</a></li>           
+            <% } else {%>
+              <li class="nav-item d-flex justify-content-start"><a class="nav-link-end" href="/logout">Logout</a></li>
+            <% } %>
+          </div>
+      </nav>
+    </div>

@@ -1,0 +1,1212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Athiti:wght@200;400;700&family=Indie+Flower&family=Kalam:wght@300;400;700&family=Nothing+You+Could+Do&display=swap" rel="stylesheet">    
+    <link rel="stylesheet" media="screen and (max-width: 400px)" href="phone.css">
+    <link rel="stylesheet" media="screen and (max-width: 900px)" href="tablet.css">
+    <link rel="stylesheet" media="screen and (min-width: 901px)" href="desktop.css">
+    <title>Meal Creator</title>
+</head>
+
+<body>   
+    <nav class="navbar navbar-expand-sm navbar-light bg-light" id="navbar">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a id="logo-name-button" class="nav-link" href="home-page.html">
+            <img src="icons/meal-creator-logo.png" width="60" height="60" class="d-inline-block align-top" alt="">
+            <span id="brand">MealCreator</span>
+        </a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav nav-fill w-100" id="nav-buttons">
+            <li class="nav-item d-flex justify-content-center">
+              <a class="nav-link" id="home-button">Home</a>
+            </li>
+            <li class="nav-item d-flex justify-content-center">
+              <a class="nav-link pl-0 pr-0" id="pantry-button">Pantry</a>
+            </li>
+            <li class="nav-item d-flex justify-content-center">
+              <a class="nav-link" id="list-button">Shopping List</a>
+            </li>
+            <li class="nav-item d-flex justify-content-center">
+                <a class="nav-link" id="meal-button">Meals</a>
+            </li>
+          </ul>
+        </div>
+    </nav>
+
+    <section class="container home-page-cont">
+        <div class="row">
+          <div class="col-sm">
+            <button class="btn btn-default regular-selection-button" id = "regular-button">
+              <img src="page-images/regular.jpg" class="selection-images img-fluid" id = "left-img"/> 
+              <div>Regular</div>
+            </button>
+          </div>
+          <div class="col-sm">
+            <button class="btn btn-default selection-button" id = "healthy-button">
+              <img src="page-images/healthy.jpg" class="selection-images img-fluid" id = "right-img"/>
+              <div>Low-Carb</div>
+            </button>
+          </div>
+          </div>
+        </div>
+    </section>
+
+    <section class="container second-page-cont">
+        <div class="row">
+          <div class="col-sm-1 back-button d-flex align-items-center">
+            <div id="back-button-meal" class="btn back-button-img">&lt;</div>
+          </div>
+          <div class="col-sm">
+            <button class="btn btn-default selection-button" id = "brk-button">
+              <img src="page-images/breakfast.jpg" class="selection-images img-fluid" id = "left-img"/> 
+              <div>Breakfast</div>
+            </button>
+          </div>
+          <div class="col-sm">
+            <button class="btn btn-default selection-button" id = "lunch-button">
+              <img src="page-images/lunch.jpg" class="selection-images img-fluid" id = middle-img"/>
+              <div>Lunch</div>
+            </button>
+          </div>
+          <div class="col-sm">
+            <button class="btn btn-default selection-button" id = "dnr-button">
+              <img src="page-images/dinner.jpg" class="selection-images img-fluid" id = "right-img"/>
+              <div>Dinner</div>
+            </button>
+          </div>
+        </div>
+    </section>
+
+    <section class="container third-page-cont">
+        <div class="row">
+          <div class="col-sm-1 back-button d-flex align-items-center">
+            <div id="back-button-genre" class="btn back-button-img">&lt;</div>
+          </div>    
+          <div class="col-sm">
+            <button class="btn btn-default selection-button" id = "dairy-button">
+              <img src="page-images/dairy.jpg" class="selection-images img-fluid" id = "left-img"/> 
+              <div>Dairy</div>
+            </button>
+          </div>
+          <div class="col-sm">
+            <button class="btn btn-default selection-button" id = "prv-button">
+              <img src="page-images/parve.jpg" class="selection-images img-fluid" id = middle-img"/>
+              <div>Parve</div>
+            </button>
+          </div>
+          <div class="col-sm">
+            <button class="btn btn-default selection-button" id = "meat-button">
+              <img src="page-images/meaty.jpg" class="selection-images img-fluid" id = "right-img"/>
+              <div>Meaty</div>
+            </button>
+          </div>
+        </div>
+    </section>
+
+    <section class="container fourth-page-cont">
+      <div class="row matched-meal-row d-flex justify-content-begin"></div>
+    </section>
+
+    <section class="pantry-page-cont">
+        <div class="overlay"></div>
+        <section class="container pantry-menu-cont page p-0 overflow-auto">
+
+          <section class="vegetables-section pantry-category">
+            <div class="row category-row">
+                <div class="col-sm-4 d-flex justify-content-begin align-items-center p-0">
+                  <input type="search" placeholder="Add Item" class="search-category"> 
+                  <button class="btn btn-light add-button add-pantry-button d-flex justify-content-center align-items-center p-0"></button>          
+                </div>
+                <div class="col-sm-4 category-col d-flex justify-content-center align-items-center p-0">Vegetables<img src="icons/vegetables.png" class="category-icon"></div>
+            </div>
+
+            <div class="row list-item-bar m-0" title="vegetables-section pantry-category">
+                <div class="col-sm-1 d-flex justify-content-begin align-items-center p-0 check-col">
+                    <button class="btn btn-light tag-list-check"></button>  
+                </div>
+                <div class="col-sm-10 p-0 pantry-input-field">
+                    <input type="search" class="item-edit" value="Cucumber" placeholder="Cucumber">
+                </div>
+                <div class="col-sm-1 d-flex justify-content-end align-items-center p-0">
+                    <button class="btn btn-light tick-btn"></button> 
+                </div>
+                <div class="col-sm-1 d-flex justify-content-center align-items-center p-0">
+                    <button class="btn btn-light trash-btn"></button> 
+                </div>
+            </div>
+            <div class="row list-item-bar m-0">
+                <div class="col-sm-1 d-flex justify-content-begin align-items-center p-0 check-col">
+                    <button class="btn btn-light tag-list-check"></button>  
+                </div>
+                <div class="col-sm-9 p-0 pantry-input-field">
+                    <input class="item-edit" type="search" value="Tomato" placeholder="Tomato">
+                </div>
+                <div class="col-sm-1 d-flex justify-content-end align-items-center p-0">
+                    <button class="btn btn-light tick-btn"></button> 
+                </div>
+                <div class="col-sm-1 d-flex justify-content-center align-items-center p-0">
+                    <button class="btn btn-light trash-btn"></button> 
+                </div>
+            </div>
+          </section>
+
+          <section class="fruit-section pantry-category">
+            <div class="row category-row ">
+              <div class="col-sm-4 d-flex justify-content-begin align-items-center p-0">
+                <input type="search" placeholder="Add Item" class="search-category"> 
+                <button class="btn btn-light add-button add-pantry-button d-flex justify-content-center align-items-center p-0"></button>        
+              </div>
+              <div class="col-sm-4 category-col d-flex justify-content-center align-items-center p-0">Fruit<img src="icons/fruit.png" class="category-icon"></div>
+            </div>
+
+            <div class="row list-item-bar m-0" title="fruit-section pantry-category">
+                <div class="col-sm-1 d-flex justify-content-begin align-items-center p-0 check-col">
+                    <button class="btn btn-light tag-list-check"></button>  
+                </div>
+                <div class="col-sm-9 p-0 pantry-input-field">
+                    <input type="search" class="item-edit" value="Apple" placeholder="Apple"> 
+                </div>
+                <div class="col-sm-1 d-flex justify-content-end align-items-center p-0">
+                    <button class="btn btn-light tick-btn"></button> 
+                </div>
+                <div class="col-sm-1 d-flex justify-content-center align-items-center p-0">
+                    <button class="btn btn-light trash-btn"></button> 
+                </div>
+            </div>
+            <div class="row list-item-bar m-0">
+                <div class="col-sm-1 d-flex justify-content-begin align-items-center p-0 check-col">
+                    <button class="btn btn-light tag-list-check"></button>  
+                </div>
+                <div class="col-sm-9 p-0 pantry-input-field">
+                    <input class="item-edit" type="search" value="Banana" placeholder="Banana">
+                </div>
+                <div class="col-sm-1 d-flex justify-content-end align-items-center p-0">
+                    <button class="btn btn-light tick-btn"></button> 
+                </div>
+                <div class="col-sm-1 d-flex justify-content-center align-items-center p-0">
+                    <button class="btn btn-light trash-btn"></button> 
+                </div>
+            </div>
+          </section>
+
+          <section class="grains-pasta-section pantry-category">
+            <div class="row category-row">
+              <div class="col-sm-4 d-flex justify-content-begin align-items-center p-0">
+                <input type="search" placeholder="Add Item" class="search-category"> 
+                <button class="btn btn-light add-button add-pantry-button d-flex justify-content-center align-items-center p-0"></button>        
+              </div>
+              <div class="col-sm-4 category-col d-flex justify-content-center align-items-center p-0">Grains & Pasta<img src="icons/bread.png" class="category-icon"></div>
+            </div>
+
+            <div class="row list-item-bar m-0" title="grains-pasta-section pantry-category">
+                <div class="col-sm-1 d-flex justify-content-begin align-items-center p-0 check-col">
+                    <button class="btn btn-light tag-list-check"></button>  
+                </div>
+                <div class="col-sm-9 p-0 pantry-input-field">
+                    <input type="search" class="item-edit" value="Bread" placeholder="Bread">
+                </div>
+                <div class="col-sm-1 d-flex justify-content-end align-items-center p-0">
+                    <button class="btn btn-light tick-btn"></button> 
+                </div>
+                <div class="col-sm-1 d-flex justify-content-center align-items-center p-0">
+                    <button class="btn btn-light trash-btn"></button> 
+                </div>
+            </div>
+            <div class="row list-item-bar m-0">
+                <div class="col-sm-1 d-flex justify-content-begin align-items-center p-0 check-col">
+                    <button class="btn btn-light tag-list-check"></button>  
+                </div>
+                <div class="col-sm-9 p-0 pantry-input-field">
+                    <input class="item-edit" type="search" value="Spagetti" placeholder="Spagetti">
+                </div>
+                <div class="col-sm-1 d-flex justify-content-end align-items-center p-0">
+                    <button class="btn btn-light tick-btn"></button> 
+                </div>
+                <div class="col-sm-1 d-flex justify-content-center align-items-center p-0">
+                    <button class="btn btn-light trash-btn"></button> 
+                </div>
+            </div>
+          </section>
+
+          <section class="dairy-eggs-section pantry-category">
+            <div class="row category-row">
+              <div class="col-sm-4 d-flex justify-content-begin align-items-center p-0">
+                <input type="search" placeholder="Add Item" class="search-category"> 
+                <button class="btn btn-light add-button add-pantry-button d-flex justify-content-center align-items-center p-0"></button>         
+              </div>
+              <div class="col-sm-4 category-col d-flex justify-content-center align-items-center p-0">Dairy & Eggs<img src="icons/dairy-products.png" class="category-icon"></div>
+            </div>
+
+            <div class="row list-item-bar m-0" title="dairy-eggs-section pantry-category">
+                <div class="col-sm-1 d-flex justify-content-begin align-items-center p-0 check-col">
+                    <button class="btn btn-light tag-list-check"></button>  
+                </div>
+                <div class="col-sm-9 p-0 pantry-input-field">
+                    <input type="search" class="item-edit" value="Yellow Cheese" placeholder="Yellow Cheese">
+                </div>
+                <div class="col-sm-1 d-flex justify-content-end align-items-center p-0">
+                    <button class="btn btn-light tick-btn"></button> 
+                </div>
+                <div class="col-sm-1 d-flex justify-content-center align-items-center p-0">
+                    <button class="btn btn-light trash-btn"></button> 
+                </div>
+            </div>
+            <div class="row list-item-bar m-0">
+                <div class="col-sm-1 d-flex justify-content-begin align-items-center p-0 check-col">
+                    <button class="btn btn-light tag-list-check"></button>  
+                </div>
+                <div class="col-sm-9 p-0 pantry-input-field">
+                    <input class="item-edit" type="search" value="Eggs" placeholder="Eggs">
+                </div>
+                <div class="col-sm-1 d-flex justify-content-end align-items-center p-0">
+                    <button class="btn btn-light tick-btn"></button> 
+                </div>
+                <div class="col-sm-1 d-flex justify-content-center align-items-center p-0">
+                    <button class="btn btn-light trash-btn"></button> 
+                </div>
+            </div>
+          </section>
+
+          <section class="meat-poultry-section pantry-category">
+            <div class="row category-row">
+              <div class="col-sm-4 d-flex justify-content-begin align-items-center p-0">
+                <input type="search" placeholder="Add Item" class="search-category"> 
+                <button class="btn btn-light add-button add-pantry-button d-flex justify-content-center align-items-center p-0"></button>       
+              </div>
+              <div class="col-sm-4 category-col d-flex justify-content-center align-items-center p-0">Meat & Poultry<img src="icons/chicken.png" class="category-icon"></div>
+            </div>
+
+            <div class="row list-item-bar m-0" title="meat-poultry-section pantry-category">
+                <div class="col-sm-1 d-flex justify-content-begin align-items-center p-0 check-col">
+                    <button class="btn btn-light tag-list-check"></button>  
+                </div>
+                <div class="col-sm-9 p-0 pantry-input-field">
+                    <input type="search" class="item-edit" value="Minced Meat" placeholder="Minced Meat">
+                </div>
+                <div class="col-sm-1 d-flex justify-content-end align-items-center p-0">
+                    <button class="btn btn-light tick-btn"></button> 
+                </div>
+                <div class="col-sm-1 d-flex justify-content-center align-items-center p-0">
+                    <button class="btn btn-light trash-btn"></button> 
+                </div>
+            </div>
+            <div class="row list-item-bar m-0">
+                <div class="col-sm-1 d-flex justify-content-begin align-items-center p-0 check-col">
+                    <button class="btn btn-light tag-list-check"></button>  
+                </div>
+                <div class="col-sm-9 p-0 pantry-input-field">
+                    <input class="item-edit" type="search" value="Chicken Breast" placeholder="Chicken Breast">
+                </div>
+                <div class="col-sm-1 d-flex justify-content-end align-items-center p-0">
+                    <button class="btn btn-light tick-btn"></button> 
+                </div>
+                <div class="col-sm-1 d-flex justify-content-center align-items-center p-0">
+                    <button class="btn btn-light trash-btn"></button> 
+                </div>
+            </div>
+          </section>
+
+          <section class="fish-eggs-section pantry-category">
+            <div class="row category-row">
+              <div class="col-sm-4 d-flex justify-content-begin align-items-center p-0">
+                <input type="search" placeholder="Add Item" class="search-category"> 
+                <button class="btn btn-light add-button add-pantry-button d-flex justify-content-center align-items-center p-0"></button>           
+              </div>
+              <div class="col-sm-4 category-col d-flex justify-content-center align-items-center p-0">Fish & Eggs<img src="icons/fish.png" class="category-icon"></div>
+            </div>
+
+            <div class="row list-item-bar m-0" title="fish-eggs-section pantry-category">
+                <div class="col-sm-1 d-flex justify-content-begin align-items-center p-0 check-col">
+                    <button class="btn btn-light tag-list-check"></button>  
+                </div>
+                <div class="col-sm-9 p-0 pantry-input-field">
+                    <input type="search" class="item-edit" value="Fish" placeholder="Fish">
+                </div>
+                <div class="col-sm-1 d-flex justify-content-end align-items-center p-0">
+                    <button class="btn btn-light tick-btn"></button> 
+                </div>
+                <div class="col-sm-1 d-flex justify-content-center align-items-center p-0">
+                    <button class="btn btn-light trash-btn"></button> 
+                </div>
+            </div>
+            <div class="row list-item-bar m-0">
+                <div class="col-sm-1 d-flex justify-content-begin align-items-center p-0 check-col">
+                    <button class="btn btn-light tag-list-check"></button>  
+                </div>
+                <div class="col-sm-9 p-0 pantry-input-field">
+                    <input class="item-edit" type="search" value="Tuna" placeholder="Tuna">
+                </div>
+                <div class="col-sm-1 d-flex justify-content-end align-items-center p-0">
+                    <button class="btn btn-light tick-btn"></button> 
+                </div>
+                <div class="col-sm-1 d-flex justify-content-center align-items-center p-0">
+                    <button class="btn btn-light trash-btn"></button> 
+                </div>
+            </div>
+          </section>
+
+          <section class="fats-oils-section pantry-category">
+            <div class="row category-row">
+              <div class="col-sm-4 d-flex justify-content-begin align-items-center p-0">
+                <input type="search" placeholder="Add Item" class="search-category"> 
+                <button class="btn btn-light add-button add-pantry-button d-flex justify-content-center align-items-center p-0"></button>            
+              </div>
+              <div class="col-sm-4 category-col d-flex justify-content-center align-items-center p-0">Fats & Oils<img src="icons/olive-oil.png" class="category-icon"></div>
+            </div>
+
+            <div class="row list-item-bar m-0" title="fats-oils-section pantry-category">
+                <div class="col-sm-1 d-flex justify-content-begin align-items-center p-0 check-col">
+                    <button class="btn btn-light tag-list-check"></button>  
+                </div>
+                <div class="col-sm-9 p-0 pantry-input-field">
+                    <input type="search" class="item-edit" value="Olive Oil" placeholder="Olive Oil">
+                </div>
+                <div class="col-sm-1 d-flex justify-content-end align-items-center p-0">
+                    <button class="btn btn-light tick-btn"></button> 
+                </div>
+                <div class="col-sm-1 d-flex justify-content-center align-items-center p-0">
+                    <button class="btn btn-light trash-btn"></button> 
+                </div>
+            </div>
+            <div class="row list-item-bar m-0">
+                <div class="col-sm-1 d-flex justify-content-begin align-items-center p-0 check-col">
+                    <button class="btn btn-light tag-list-check"></button>  
+                </div>
+                <div class="col-sm-9 p-0 pantry-input-field">
+                    <input class="item-edit" type="search" value="Butter" placeholder="Butter">
+                </div>
+                <div class="col-sm-1 d-flex justify-content-end align-items-center p-0">
+                    <button class="btn btn-light tick-btn"></button> 
+                </div>
+                <div class="col-sm-1 d-flex justify-content-center align-items-center p-0">
+                    <button class="btn btn-light trash-btn"></button> 
+                </div>
+            </div>
+          </section>
+
+          <section class="condiments-section pantry-category">
+            <div class="row category-row">
+              <div class="col-sm-4 d-flex justify-content-begin align-items-center p-0">
+                <input type="search" placeholder="Add Item" class="search-category"> 
+                <button class="btn btn-light add-button add-pantry-button d-flex justify-content-center align-items-center p-0"></button>           
+              </div>
+              <div class="col-sm-4 category-col d-flex justify-content-center align-items-center p-0">Condiments<img src="icons/condiments.png" class="category-icon"></div>
+            </div>
+
+            <div class="row list-item-bar m-0" title="condiments-section pantry-category">
+                <div class="col-sm-1 d-flex justify-content-begin align-items-center p-0 check-col">
+                    <button class="btn btn-light tag-list-check"></button>  
+                </div>
+                <div class="col-sm-9 p-0 pantry-input-field">
+                    <input type="search" class="item-edit" value="Ketchup" placeholder="Ketchup">
+                </div>
+                <div class="col-sm-1 d-flex justify-content-end align-items-center p-0">
+                    <button class="btn btn-light tick-btn"></button> 
+                </div>
+                <div class="col-sm-1 d-flex justify-content-center align-items-center p-0">
+                    <button class="btn btn-light trash-btn"></button> 
+                </div>
+            </div>
+            <div class="row list-item-bar m-0">
+                <div class="col-sm-1 d-flex justify-content-begin align-items-center p-0 check-col">
+                    <button class="btn btn-light tag-list-check"></button>  
+                </div>
+                <div class="col-sm-9 p-0 pantry-input-field">
+                    <input class="item-edit" type="search" value="BBQ Sauce" placeholder="BBQ Sauce">
+                </div>
+                <div class="col-sm-1 d-flex justify-content-end align-items-center p-0">
+                    <button class="btn btn-light tick-btn"></button> 
+                </div>
+                <div class="col-sm-1 d-flex justify-content-center align-items-center p-0">
+                    <button class="btn btn-light trash-btn"></button> 
+                </div>
+            </div>
+          </section>
+
+          <section class="freezer-section pantry-category">
+            <div class="row category-row">
+              <div class="col-sm-4 d-flex justify-content-begin align-items-center p-0">
+                <input type="search" placeholder="Add Item" class="search-category"> 
+                <button class="btn btn-light add-button add-pantry-button d-flex justify-content-center align-items-center p-0"></button>            
+              </div>
+              <div class="col-sm-4 category-col d-flex justify-content-center align-items-center p-0">Freezer<img src="icons/freezer.png" class="category-icon"></div>
+            </div>
+
+            <div class="row list-item-bar m-0" title="freezer-section pantry-category">
+                <div class="col-sm-1 d-flex justify-content-begin align-items-center p-0 check-col">
+                    <button class="btn btn-light tag-list-check"></button>  
+                </div>
+                <div class="col-sm-9 p-0 pantry-input-field">
+                    <input type="search" class="item-edit" value="Beans" placeholder="Beans">
+                </div>
+                <div class="col-sm-1 d-flex justify-content-end align-items-center p-0">
+                    <button class="btn btn-light tick-btn"></button> 
+                </div>
+                <div class="col-sm-1 d-flex justify-content-center align-items-center p-0">
+                    <button class="btn btn-light trash-btn"></button> 
+                </div>
+            </div>
+            <div class="row list-item-bar m-0">
+                <div class="col-sm-1 d-flex justify-content-begin align-items-center p-0 check-col">
+                    <button class="btn btn-light tag-list-check"></button>  
+                </div>
+                <div class="col-sm-9 p-0 pantry-input-field">
+                    <input class="item-edit" type="search" value="Tival Sausages" placeholder="Tival Sausages">
+                </div>
+                <div class="col-sm-1 d-flex justify-content-end align-items-center p-0">
+                    <button class="btn btn-light tick-btn"></button> 
+                </div>
+                <div class="col-sm-1 d-flex justify-content-center align-items-center p-0">
+                    <button class="btn btn-light trash-btn"></button> 
+                </div>
+            </div>
+          </section>
+
+          <section class="misc-section pantry-category">
+            <div class="row category-row">
+              <div class="col-sm-4 d-flex justify-content-begin align-items-center p-0">
+                <input type="search" placeholder="Add Item" class="search-category"> 
+                <button class="btn btn-light add-button add-pantry-button d-flex justify-content-center align-items-center p-0"></button>           
+              </div>
+              <div class="col-sm-4 category-col d-flex justify-content-center align-items-center p-0">Miscellaneous<img src="icons/misc.png" class="category-icon"></div>
+            </div>
+
+            <div class="row list-item-bar m-0" title="misc-section pantry-category">
+                <div class="col-sm-1 d-flex justify-content-begin align-items-center p-0 check-col">
+                    <button class="btn btn-light tag-list-check"></button>  
+                </div>
+                <div class="col-sm-9 p-0 pantry-input-field">
+                    <input type="search" class="item-edit" value="Bamba" placeholder="Bamba">
+                </div>
+                <div class="col-sm-1 d-flex justify-content-end align-items-center p-0">
+                    <button class="btn btn-light tick-btn"></button> 
+                </div>
+                <div class="col-sm-1 d-flex justify-content-center align-items-center p-0">
+                    <button class="btn btn-light trash-btn"></button> 
+                </div>
+            </div>
+            <div class="row list-item-bar m-0">
+                <div class="col-sm-1 d-flex justify-content-begin align-items-center p-0 check-col">
+                    <button class="btn btn-light tag-list-check"></button>  
+                </div>
+                <div class="col-sm-9 p-0 pantry-input-field">
+                    <input class="item-edit" type="search" value="Peanut Butter" placeholder="Peanut Butter">
+                </div>
+                <div class="col-sm-1 d-flex justify-content-end align-items-center p-0">
+                    <button class="btn btn-light tick-btn"></button> 
+                </div>
+                <div class="col-sm-1 d-flex justify-content-center align-items-center p-0">
+                    <button class="btn btn-light trash-btn"></button> 
+                </div>
+            </div>
+          </section>
+
+          <section class="saved-items-section pantry-category">
+            <div class="row category-row">
+              <div class="col-sm-4 d-flex justify-content-begin align-items-center p-0">
+                <input type="search" placeholder="Add Item" class="search-category"> 
+                <button class="btn btn-light add-button add-pantry-button d-flex justify-content-center align-items-center p-0"></button>        
+              </div>
+              <div class="col-sm-4 category-col d-flex justify-content-center align-items-center p-0">Saved Items<img src="icons/trolley.png" class="category-icon"></div>
+            </div>
+          </section>
+
+        </section>
+        </div>
+    </section>
+
+    <section class="list-page-cont">
+      <div class="overlay"></div>
+      <section class="container pantry-menu-cont page p-0 overflow-auto">
+
+        <section class="vegetables-section list-category">
+          <div class="row category-row">
+              <div class="col-sm-4 d-flex justify-content-begin align-items-center p-0">
+                <input type="search" placeholder="Add Item" class="search-category"> 
+                <button class="btn btn-light add-button add-pantry-button d-flex justify-content-center align-items-center p-0"></button>          
+              </div>
+              <div class="col-sm-4 category-col d-flex justify-content-center align-items-center p-0">Vegetables<img src="icons/vegetables.png" class="category-icon"></div>
+          </div>
+
+          <div class="row list-item-bar m-0" title="vegetables-section pantry-category">
+              <div class="col-sm-1 d-flex justify-content-begin align-items-center p-0 check-col">
+                  <button class="btn btn-light tag-list-check"></button>  
+              </div>
+              <div class="col-sm-9 p-0">
+                  <input type="search" class="item-edit" value="Cucumber" placeholder="Cucumber">
+              </div>
+              <div class="col-sm-1 d-flex justify-content-end align-items-center p-0">
+                  <button class="btn btn-light tick-btn"></button> 
+              </div>
+              <div class="col-sm-1 d-flex justify-content-center align-items-center p-0">
+                  <button class="btn btn-light trash-btn"></button> 
+              </div>
+          </div>
+          <div class="row list-item-bar m-0">
+              <div class="col-sm-1 d-flex justify-content-begin align-items-center p-0 check-col">
+                  <button class="btn btn-light tag-list-check"></button>  
+              </div>
+              <div class="col-sm-9 p-0">
+                  <input class="item-edit" type="search" value="Tomato" placeholder="Tomato">
+              </div>
+              <div class="col-sm-1 d-flex justify-content-end align-items-center p-0">
+                  <button class="btn btn-light tick-btn"></button> 
+              </div>
+              <div class="col-sm-1 d-flex justify-content-center align-items-center p-0">
+                  <button class="btn btn-light trash-btn"></button> 
+              </div>
+          </div>
+        </section>
+
+        <section class="fruit-section list-category">
+          <div class="row category-row ">
+            <div class="col-sm-4 d-flex justify-content-begin align-items-center p-0">
+              <input type="search" placeholder="Add Item" class="search-category"> 
+              <button class="btn btn-light add-button add-pantry-button d-flex justify-content-center align-items-center p-0"></button>        
+            </div>
+            <div class="col-sm-4 category-col d-flex justify-content-center align-items-center p-0">Fruits<img src="icons/fruit.png" class="category-icon"></div>
+          </div>
+
+          <div class="row list-item-bar m-0" title="fruit-section pantry-category">
+              <div class="col-sm-1 d-flex justify-content-begin align-items-center p-0 check-col">
+                  <button class="btn btn-light tag-list-check"></button>  
+              </div>
+              <div class="col-sm-9 p-0">
+                  <input type="search" class="item-edit" value="Apple" placeholder="Apple"> 
+              </div>
+              <div class="col-sm-1 d-flex justify-content-end align-items-center p-0">
+                  <button class="btn btn-light tick-btn"></button> 
+              </div>
+              <div class="col-sm-1 d-flex justify-content-center align-items-center p-0">
+                  <button class="btn btn-light trash-btn"></button> 
+              </div>
+          </div>
+          <div class="row list-item-bar m-0">
+              <div class="col-sm-1 d-flex justify-content-begin align-items-center p-0 check-col">
+                  <button class="btn btn-light tag-list-check"></button>  
+              </div>
+              <div class="col-sm-9 p-0">
+                  <input class="item-edit" type="search" value="Banana" placeholder="Banana">
+              </div>
+              <div class="col-sm-1 d-flex justify-content-end align-items-center p-0">
+                  <button class="btn btn-light tick-btn"></button> 
+              </div>
+              <div class="col-sm-1 d-flex justify-content-center align-items-center p-0">
+                  <button class="btn btn-light trash-btn"></button> 
+              </div>
+          </div>
+        </section>
+
+        <section class="grains-pasta-section list-category">
+          <div class="row category-row">
+            <div class="col-sm-4 d-flex justify-content-begin align-items-center p-0">
+              <input type="search" placeholder="Add Item" class="search-category"> 
+              <button class="btn btn-light add-button add-pantry-button d-flex justify-content-center align-items-center p-0"></button>        
+            </div>
+            <div class="col-sm-4 category-col d-flex justify-content-center align-items-center p-0">Grains & Pasta<img src="icons/bread.png" class="category-icon"></div>
+          </div>
+
+          <div class="row list-item-bar m-0" title="grains-pasta-section pantry-category">
+              <div class="col-sm-1 d-flex justify-content-begin align-items-center p-0 check-col">
+                  <button class="btn btn-light tag-list-check"></button>  
+              </div>
+              <div class="col-sm-9 p-0">
+                  <input type="search" class="item-edit" value="Bread" placeholder="Bread">
+              </div>
+              <div class="col-sm-1 d-flex justify-content-end align-items-center p-0">
+                  <button class="btn btn-light tick-btn"></button> 
+              </div>
+              <div class="col-sm-1 d-flex justify-content-center align-items-center p-0">
+                  <button class="btn btn-light trash-btn"></button> 
+              </div>
+          </div>
+          <div class="row list-item-bar m-0">
+              <div class="col-sm-1 d-flex justify-content-begin align-items-center p-0 check-col">
+                  <button class="btn btn-light tag-list-check"></button>  
+              </div>
+              <div class="col-sm-9 p-0">
+                  <input class="item-edit" type="search" value="Spagetti" placeholder="Spagetti">
+              </div>
+              <div class="col-sm-1 d-flex justify-content-end align-items-center p-0">
+                  <button class="btn btn-light tick-btn"></button> 
+              </div>
+              <div class="col-sm-1 d-flex justify-content-center align-items-center p-0">
+                  <button class="btn btn-light trash-btn"></button> 
+              </div>
+          </div>
+        </section>
+
+        <section class="dairy-eggs-section list-category">
+          <div class="row category-row">
+            <div class="col-sm-4 d-flex justify-content-begin align-items-center p-0">
+              <input type="search" placeholder="Add Item" class="search-category"> 
+              <button class="btn btn-light add-button add-pantry-button d-flex justify-content-center align-items-center p-0"></button>         
+            </div>
+            <div class="col-sm-4 category-col d-flex justify-content-center align-items-center p-0">Dairy & Eggs<img src="icons/dairy-products.png" class="category-icon"></div>
+          </div>
+
+          <div class="row list-item-bar m-0" title="dairy-eggs-section pantry-category">
+              <div class="col-sm-1 d-flex justify-content-begin align-items-center p-0 check-col">
+                  <button class="btn btn-light tag-list-check"></button>  
+              </div>
+              <div class="col-sm-9 p-0">
+                  <input type="search" class="item-edit" value="Yellow Cheese" placeholder="Yellow Cheese">
+              </div>
+              <div class="col-sm-1 d-flex justify-content-end align-items-center p-0">
+                  <button class="btn btn-light tick-btn"></button> 
+              </div>
+              <div class="col-sm-1 d-flex justify-content-center align-items-center p-0">
+                  <button class="btn btn-light trash-btn"></button> 
+              </div>
+          </div>
+          <div class="row list-item-bar m-0">
+              <div class="col-sm-1 d-flex justify-content-begin align-items-center p-0 check-col">
+                  <button class="btn btn-light tag-list-check"></button>  
+              </div>
+              <div class="col-sm-9 p-0">
+                  <input class="item-edit" type="search" value="Eggs" placeholder="Eggs">
+              </div>
+              <div class="col-sm-1 d-flex justify-content-end align-items-center p-0">
+                  <button class="btn btn-light tick-btn"></button> 
+              </div>
+              <div class="col-sm-1 d-flex justify-content-center align-items-center p-0">
+                  <button class="btn btn-light trash-btn"></button> 
+              </div>
+          </div>
+        </section>
+
+        <section class="meat-poultry-section list-category">
+          <div class="row category-row">
+            <div class="col-sm-4 d-flex justify-content-begin align-items-center p-0">
+              <input type="search" placeholder="Add Item" class="search-category"> 
+              <button class="btn btn-light add-button add-pantry-button d-flex justify-content-center align-items-center p-0"></button>       
+            </div>
+            <div class="col-sm-4 category-col d-flex justify-content-center align-items-center p-0">Meat & Poultry<img src="icons/chicken.png" class="category-icon"></div>
+          </div>
+
+          <div class="row list-item-bar m-0" title="meat-poultry-section pantry-category">
+              <div class="col-sm-1 d-flex justify-content-begin align-items-center p-0 check-col">
+                  <button class="btn btn-light tag-list-check"></button>  
+              </div>
+              <div class="col-sm-9 p-0">
+                  <input type="search" class="item-edit" value="Minced Meat" placeholder="Minced Meat">
+              </div>
+              <div class="col-sm-1 d-flex justify-content-end align-items-center p-0">
+                  <button class="btn btn-light tick-btn"></button> 
+              </div>
+              <div class="col-sm-1 d-flex justify-content-center align-items-center p-0">
+                  <button class="btn btn-light trash-btn"></button> 
+              </div>
+          </div>
+          <div class="row list-item-bar m-0">
+              <div class="col-sm-1 d-flex justify-content-begin align-items-center p-0 check-col">
+                  <button class="btn btn-light tag-list-check"></button>  
+              </div>
+              <div class="col-sm-9 p-0">
+                  <input class="item-edit" type="search" value="Chicken Breast" placeholder="Chicken Breast">
+              </div>
+              <div class="col-sm-1 d-flex justify-content-end align-items-center p-0">
+                  <button class="btn btn-light tick-btn"></button> 
+              </div>
+              <div class="col-sm-1 d-flex justify-content-center align-items-center p-0">
+                  <button class="btn btn-light trash-btn"></button> 
+              </div>
+          </div>
+        </section>
+
+        <section class="fish-eggs-section list-category">
+          <div class="row category-row">
+            <div class="col-sm-4 d-flex justify-content-begin align-items-center p-0">
+              <input type="search" placeholder="Add Item" class="search-category"> 
+              <button class="btn btn-light add-button add-pantry-button d-flex justify-content-center align-items-center p-0"></button>           
+            </div>
+            <div class="col-sm-4 category-col d-flex justify-content-center align-items-center p-0">Fish & Eggs<img src="icons/fish.png" class="category-icon"></div>
+          </div>
+
+          <div class="row list-item-bar m-0" title="fish-eggs-section pantry-category">
+              <div class="col-sm-1 d-flex justify-content-begin align-items-center p-0 check-col">
+                  <button class="btn btn-light tag-list-check"></button>  
+              </div>
+              <div class="col-sm-9 p-0">
+                  <input type="search" class="item-edit" value="Fish" placeholder="Fish">
+              </div>
+              <div class="col-sm-1 d-flex justify-content-end align-items-center p-0">
+                  <button class="btn btn-light tick-btn"></button> 
+              </div>
+              <div class="col-sm-1 d-flex justify-content-center align-items-center p-0">
+                  <button class="btn btn-light trash-btn"></button> 
+              </div>
+          </div>
+          <div class="row list-item-bar m-0">
+              <div class="col-sm-1 d-flex justify-content-begin align-items-center p-0 check-col">
+                  <button class="btn btn-light tag-list-check"></button>  
+              </div>
+              <div class="col-sm-9 p-0">
+                  <input class="item-edit" type="search" value="Tuna" placeholder="Tuna">
+              </div>
+              <div class="col-sm-1 d-flex justify-content-end align-items-center p-0">
+                  <button class="btn btn-light tick-btn"></button> 
+              </div>
+              <div class="col-sm-1 d-flex justify-content-center align-items-center p-0">
+                  <button class="btn btn-light trash-btn"></button> 
+              </div>
+          </div>
+        </section>
+
+        <section class="fats-oils-section list-category">
+          <div class="row category-row">
+            <div class="col-sm-4 d-flex justify-content-begin align-items-center p-0">
+              <input type="search" placeholder="Add Item" class="search-category"> 
+              <button class="btn btn-light add-button add-pantry-button d-flex justify-content-center align-items-center p-0"></button>            
+            </div>
+            <div class="col-sm-4 category-col d-flex justify-content-center align-items-center p-0">Fats & Oils<img src="icons/olive-oil.png" class="category-icon"></div>
+          </div>
+
+          <div class="row list-item-bar m-0" title="fats-oils-section pantry-category">
+              <div class="col-sm-1 d-flex justify-content-begin align-items-center p-0 check-col">
+                  <button class="btn btn-light tag-list-check"></button>  
+              </div>
+              <div class="col-sm-9 p-0">
+                  <input type="search" class="item-edit" value="Olive Oil" placeholder="Olive Oil">
+              </div>
+              <div class="col-sm-1 d-flex justify-content-end align-items-center p-0">
+                  <button class="btn btn-light tick-btn"></button> 
+              </div>
+              <div class="col-sm-1 d-flex justify-content-center align-items-center p-0">
+                  <button class="btn btn-light trash-btn"></button> 
+              </div>
+          </div>
+          <div class="row list-item-bar m-0">
+              <div class="col-sm-1 d-flex justify-content-begin align-items-center p-0 check-col">
+                  <button class="btn btn-light tag-list-check"></button>  
+              </div>
+              <div class="col-sm-9 p-0">
+                  <input class="item-edit" type="search" value="Butter" placeholder="Butter">
+              </div>
+              <div class="col-sm-1 d-flex justify-content-end align-items-center p-0">
+                  <button class="btn btn-light tick-btn"></button> 
+              </div>
+              <div class="col-sm-1 d-flex justify-content-center align-items-center p-0">
+                  <button class="btn btn-light trash-btn"></button> 
+              </div>
+          </div>
+        </section>
+
+        <section class="condiments-section list-category">
+          <div class="row category-row">
+            <div class="col-sm-4 d-flex justify-content-begin align-items-center p-0">
+              <input type="search" placeholder="Add Item" class="search-category"> 
+              <button class="btn btn-light add-button add-pantry-button d-flex justify-content-center align-items-center p-0"></button>           
+            </div>
+            <div class="col-sm-4 category-col d-flex justify-content-center align-items-center p-0">Condiments<img src="icons/condiments.png" class="category-icon"></div>
+          </div>
+
+          <div class="row list-item-bar m-0" title="condiments-section pantry-category">
+              <div class="col-sm-1 d-flex justify-content-begin align-items-center p-0 check-col">
+                  <button class="btn btn-light tag-list-check"></button>  
+              </div>
+              <div class="col-sm-9 p-0">
+                  <input type="search" class="item-edit" value="Ketchup" placeholder="Ketchup">
+              </div>
+              <div class="col-sm-1 d-flex justify-content-end align-items-center p-0">
+                  <button class="btn btn-light tick-btn"></button> 
+              </div>
+              <div class="col-sm-1 d-flex justify-content-center align-items-center p-0">
+                  <button class="btn btn-light trash-btn"></button> 
+              </div>
+          </div>
+          <div class="row list-item-bar m-0">
+              <div class="col-sm-1 d-flex justify-content-begin align-items-center p-0 check-col">
+                  <button class="btn btn-light tag-list-check"></button>  
+              </div>
+              <div class="col-sm-9 p-0">
+                  <input class="item-edit" type="search" value="BBQ Sauce" placeholder="BBQ Sauce">
+              </div>
+              <div class="col-sm-1 d-flex justify-content-end align-items-center p-0">
+                  <button class="btn btn-light tick-btn"></button> 
+              </div>
+              <div class="col-sm-1 d-flex justify-content-center align-items-center p-0">
+                  <button class="btn btn-light trash-btn"></button> 
+              </div>
+          </div>
+        </section>
+
+        <section class="freezer-section list-category">
+          <div class="row category-row">
+            <div class="col-sm-4 d-flex justify-content-begin align-items-center p-0">
+              <input type="search" placeholder="Add Item" class="search-category"> 
+              <button class="btn btn-light add-button add-pantry-button d-flex justify-content-center align-items-center p-0"></button>            
+            </div>
+            <div class="col-sm-4 category-col d-flex justify-content-center align-items-center p-0">Freezer<img src="icons/freezer.png" class="category-icon"></div>
+          </div>
+
+          <div class="row list-item-bar m-0" title="freezer-section pantry-category">
+              <div class="col-sm-1 d-flex justify-content-begin align-items-center p-0 check-col">
+                  <button class="btn btn-light tag-list-check"></button>  
+              </div>
+              <div class="col-sm-9 p-0">
+                  <input type="search" class="item-edit" value="Beans" placeholder="Beans">
+              </div>
+              <div class="col-sm-1 d-flex justify-content-end align-items-center p-0">
+                  <button class="btn btn-light tick-btn"></button> 
+              </div>
+              <div class="col-sm-1 d-flex justify-content-center align-items-center p-0">
+                  <button class="btn btn-light trash-btn"></button> 
+              </div>
+          </div>
+          <div class="row list-item-bar m-0">
+              <div class="col-sm-1 d-flex justify-content-begin align-items-center p-0 check-col">
+                  <button class="btn btn-light tag-list-check"></button>  
+              </div>
+              <div class="col-sm-9 p-0">
+                  <input class="item-edit" type="search" value="Tival Sausages" placeholder="Tival Sausages">
+              </div>
+              <div class="col-sm-1 d-flex justify-content-end align-items-center p-0">
+                  <button class="btn btn-light tick-btn"></button> 
+              </div>
+              <div class="col-sm-1 d-flex justify-content-center align-items-center p-0">
+                  <button class="btn btn-light trash-btn"></button> 
+              </div>
+          </div>
+        </section>
+
+        <section class="misc-section list-category">
+          <div class="row category-row">
+            <div class="col-sm-4 d-flex justify-content-begin align-items-center p-0">
+              <input type="search" placeholder="Add Item" class="search-category"> 
+              <button class="btn btn-light add-button add-pantry-button d-flex justify-content-center align-items-center p-0"></button>           
+            </div>
+            <div class="col-sm-4 category-col d-flex justify-content-center align-items-center p-0">Miscellaneous<img src="icons/misc.png" class="category-icon"></div>
+          </div>
+
+          <div class="row list-item-bar m-0" title="misc-section pantry-category">
+              <div class="col-sm-1 d-flex justify-content-begin align-items-center p-0 check-col">
+                  <button class="btn btn-light tag-list-check"></button>  
+              </div>
+              <div class="col-sm-9 p-0">
+                  <input type="search" class="item-edit" value="Bamba" placeholder="Bamba">
+              </div>
+              <div class="col-sm-1 d-flex justify-content-end align-items-center p-0">
+                  <button class="btn btn-light tick-btn"></button> 
+              </div>
+              <div class="col-sm-1 d-flex justify-content-center align-items-center p-0">
+                  <button class="btn btn-light trash-btn"></button> 
+              </div>
+          </div>
+          <div class="row list-item-bar m-0">
+              <div class="col-sm-1 d-flex justify-content-begin align-items-center p-0 check-col">
+                  <button class="btn btn-light tag-list-check"></button>  
+              </div>
+              <div class="col-sm-9 p-0">
+                  <input class="item-edit" type="search" value="Peanut Butter" placeholder="Peanut Butter">
+              </div>
+              <div class="col-sm-1 d-flex justify-content-end align-items-center p-0">
+                  <button class="btn btn-light tick-btn"></button> 
+              </div>
+              <div class="col-sm-1 d-flex justify-content-center align-items-center p-0">
+                  <button class="btn btn-light trash-btn"></button> 
+              </div>
+          </div>
+        </section>
+
+        <section class="saved-items-section list-category">
+          <div class="row category-row">
+            <div class="col-sm-4 d-flex justify-content-begin align-items-center p-0">
+              <input type="search" placeholder="Add Item" class="search-category"> 
+              <button class="btn btn-light add-button add-pantry-button d-flex justify-content-center align-items-center p-0"></button>        
+            </div>
+            <div class="col-sm-4 category-col d-flex justify-content-center align-items-center p-0">Saved Items<img src="icons/trolley.png" class="category-icon"></div>
+          </div>
+        </section>
+
+      </section>
+    </section>
+
+    <section class="meals-page-cont">
+      <div class="overlay"></div>
+      <section class="container meals-menu-cont p-0 overflow-auto">
+          <div class="row meals-category-row">
+              <div class="col-sm-8 d-flex justify-content-start align-items-center p-0">
+                <input type="search" placeholder="Enter a Meal" class="meal-search-category" id="meal-search-bar">  
+                <button class="btn btn-light search-btn"></button>   
+              </div>
+              <div class="col-sm-3 category-col d-flex justify-content-end align-items-center p-0 add-meals-text">
+                <button class="btn btn-light add-meal-button d-flex justify-content-begin align-items-center p-0"><span class="add-meal-txt">Add Meal</span></button>
+                <div class="add-meal-btn"></div> 
+              </div>
+          </div>
+
+          <div class="row meal-list-item m-0 pizza">
+              <div class="col-sm-2 d-flex justify-content-start align-items-center p-0 meal-img-col">
+                  <img class="meal-img" src="meal-images/pizza.jpg">
+              </div>
+              <div class="col-sm-9 p-0 meal-search-col">
+                  <input type="search" class="meal-item-edit" value="Pizza" placeholder="Pizza">
+              </div>
+              <div class="col-sm-1 d-flex justify-content-end align-items-center p-0">
+                  <button class="btn btn-light tick-btn"></button> 
+              </div>
+              <div class="col-sm-1 d-flex justify-content-center align-items-center p-0">
+                  <button class="btn btn-light trash-btn"></button> 
+              </div>
+          </div>
+
+          <div class="row meal-list-item m-0 burritos">
+            <div class="col-sm-2 d-flex justify-content-start align-items-center p-0 meal-img-col">
+                <img class="meal-img" src="meal-images/burrito.jpg">
+            </div>
+            <div class="col-sm-9 p-0 meal-search-col">
+                <input type="search" class="meal-item-edit" value="Burritos" placeholder="Burritos">
+            </div>
+            <div class="col-sm-1 d-flex justify-content-end align-items-center p-0">
+                <button class="btn btn-light tick-btn"></button> 
+            </div>
+            <div class="col-sm-1 d-flex justify-content-center align-items-center p-0">
+                <button class="btn btn-light trash-btn"></button> 
+            </div>
+          </div>
+
+          <div class="row meal-list-item m-0 fried egg">
+            <div class="col-sm-2 d-flex justify-content-start align-items-center p-0 meal-img-col">
+                <img class="meal-img" src="meal-images/fried-egg.jpg">
+            </div>
+            <div class="col-sm-9 p-0 meal-search-col">
+                <input type="search" class="meal-item-edit" value="Fried Egg" placeholder="Fried Egg">
+            </div>
+            <div class="col-sm-1 d-flex justify-content-end align-items-center p-0">
+                <button class="btn btn-light tick-btn"></button> 
+            </div>
+            <div class="col-sm-1 d-flex justify-content-center align-items-center p-0">
+                <button class="btn btn-light trash-btn"></button> 
+            </div>
+          </div>
+
+          <div class="row meal-list-item m-0 vanilla cake">
+            <div class="col-sm-2 d-flex justify-content-start align-items-center p-0 meal-img-col">
+                <img class="meal-img" src="meal-images/vanilla-cake.jpg">
+            </div>
+            <div class="col-sm-9 p-0 meal-search-col">
+                <input type="search" class="meal-item-edit" value="Vanilla Cake" placeholder="Vanilla Cake">
+            </div>
+            <div class="col-sm-1 d-flex justify-content-end align-items-center p-0">
+                <button class="btn btn-light tick-btn"></button> 
+            </div>
+            <div class="col-sm-1 d-flex justify-content-center align-items-center p-0">
+                <button class="btn btn-light trash-btn"></button> 
+            </div>
+          </div>
+
+          <div class="row meal-list-item m-0 green curry">
+            <div class="col-sm-2 d-flex justify-content-start align-items-center p-0 meal-img-col">
+                <img class="meal-img" src="meal-images/green-curry.jpg">
+            </div>
+            <div class="col-sm-9 p-0 meal-search-col">
+                <input type="search" class="meal-item-edit" value="Green Curry" placeholder="Green Curry">
+            </div>
+            <div class="col-sm-1 d-flex justify-content-end align-items-center p-0">
+                <button class="btn btn-light tick-btn"></button> 
+            </div>
+            <div class="col-sm-1 d-flex justify-content-center align-items-center p-0">
+                <button class="btn btn-light trash-btn"></button> 
+            </div>
+          </div>
+
+          <div class="row meal-list-item m-0 sfinge">
+            <div class="col-sm-2 d-flex justify-content-start align-items-center p-0 meal-img-col">
+                <img class="meal-img" src="meal-images/sfinge.webp">
+            </div>
+            <div class="col-sm-9 p-0 meal-search-col">
+                <input type="search" class="meal-item-edit" value="Sfinge" placeholder="Sfinge">
+            </div>
+            <div class="col-sm-1 d-flex justify-content-end align-items-center p-0">
+                <button class="btn btn-light tick-btn"></button> 
+            </div>
+            <div class="col-sm-1 d-flex justify-content-center align-items-center p-0">
+                <button class="btn btn-light trash-btn"></button> 
+            </div>
+          </div>
+
+          <div class="row meal-list-item m-0 pasta">
+            <div class="col-sm-2 d-flex justify-content-start align-items-center p-0 meal-img-col">
+                <img class="meal-img" src="meal-images/pasta.jpg">
+            </div>
+            <div class="col-sm-9 p-0 meal-search-col">
+                <input type="search" class="meal-item-edit" value="Pasta" placeholder="Pasta">
+            </div>
+            <div class="col-sm-1 d-flex justify-content-end align-items-center p-0">
+                <button class="btn btn-light tick-btn"></button> 
+            </div>
+            <div class="col-sm-1 d-flex justify-content-center align-items-center p-0">
+                <button class="btn btn-light trash-btn"></button> 
+            </div>
+          </div>
+
+          <div class="row meal-list-item m-0 tuna burgers">
+            <div class="col-sm-2 d-flex justify-content-start align-items-center p-0 meal-img-col">
+                <img class="meal-img" src="meal-images/tuna-burger.webp">
+            </div>
+            <div class="col-sm-9 p-0 meal-search-col">
+                <input type="search" class="meal-item-edit" value="Tuna Burgers" placeholder="Tuna Burgers">
+            </div>
+            <div class="col-sm-1 d-flex justify-content-end align-items-center p-0">
+                <button class="btn btn-light tick-btn"></button> 
+            </div>
+            <div class="col-sm-1 d-flex justify-content-center align-items-center p-0">
+                <button class="btn btn-light trash-btn"></button> 
+            </div>
+          </div>
+
+          <div class="row meal-list-item m-0 falafel">
+            <div class="col-sm-2 d-flex justify-content-start align-items-center p-0 meal-img-col">
+                <img class="meal-img" src="meal-images/falafel.jpg">
+            </div>
+            <div class="col-sm-9 p-0 meal-search-col">
+                <input type="search" class="meal-item-edit" value="Falafel" placeholder="Falafel">
+            </div>
+            <div class="col-sm-1 d-flex justify-content-end align-items-center p-0">
+                <button class="btn btn-light tick-btn"></button> 
+            </div>
+            <div class="col-sm-1 d-flex justify-content-center align-items-center p-0">
+                <button class="btn btn-light trash-btn"></button> 
+            </div>
+          </div>
+
+          <div class="row meal-list-item m-0 shnitzel">
+            <div class="col-sm-2 d-flex justify-content-start align-items-center p-0 meal-img-col">
+                <img class="meal-img" src="meal-images/shnitzel.jpg">
+            </div>
+            <div class="col-sm-9 p-0 meal-search-col">
+                <input type="search" class="meal-item-edit" value="Shnitzel" placeholder="Shnitzel">
+            </div>
+            <div class="col-sm-1 d-flex justify-content-end align-items-center p-0">
+                <button class="btn btn-light tick-btn"></button> 
+            </div>
+            <div class="col-sm-1 d-flex justify-content-center align-items-center p-0">
+                <button class="btn btn-light trash-btn"></button> 
+            </div>
+          </div>
+
+      </section>
+    </section>
+
+    <section class="meals-form-cont">
+      <div class="overlay"></div>
+
+      <section class="container meals-menu-cont p-0 overflow-auto">
+        <div class="row d-flex justify-content-center form-header-row">
+          <div class="col-md-5 d-flex justify-content-start align-items-center">
+            <input class="meal-form-category name-field" placeholder="Name">
+          </div>
+
+          <div class="col-md-5 d-flex justify-content-start align-items-center">
+            <input class="meal-form-category ingredient-field" placeholder="Enter an Ingredient">
+          </div>
+
+          <div class="meal-form-button col-md-2 d-flex justify-content-start align-items-center">
+            <button class="add-ingredient-button">Add Ingredient</button>
+          </div>
+        </div>
+
+        <div class="row d-flex justify-content-center ingredient-row"></div>
+
+        <div class="container row d-flex justify-content-space-between tag-row">
+          <div class="choose-tag col-md-12 d-flex align-items-center justify-content-begin">
+            <button class="btn btn-light meal tag-list-check filter" id="regular-tag"></button><span class="tag-text">Regular</span>
+            <button class="btn btn-light meal tag-list-check filter" id="healthy-tag"></button><span class="tag-text">Healthy</span>
+          </div>
+          <div class="choose-tag col-md-12 d-flex align-items-center justify-content-begin">
+            <button class="btn btn-light meal tag-list-check filter" id="breakfast-tag"></button><span class="tag-text">Breakfast</span>
+            <button class="btn btn-light meal tag-list-check filter" id="lunch-tag"></button><span class="tag-text">Lunch</span>
+            <button class="btn btn-light meal tag-list-check filter" id="dinner-tag"></button><span class="tag-text">Dinner</span>
+          </div>
+          <div class="choose-tag col-md-12 d-flex align-items-center justify-content-begin">
+            <button class="btn btn-light meal tag-list-check filter" id="dairy-tag"></button><span class="tag-text">Dairy</span>
+            <button class="btn btn-light meal tag-list-check filter" id="parve-tag"></button><span class="tag-text">Parve</span>
+            <button class="btn btn-light meal tag-list-check filter" id="meaty-tag"></button><span class="tag-text">Meaty</span>
+          </div>
+        </div>
+        <div class="row d-flex justify-content-center done-row">
+          <div class="choose-file-btn col-md-6 d-flex align-items-center justify-content-center">
+            <input type="file" class="file-form-button form-control" id="customFile">
+          </div>
+          <div class="form-cancel-btn col-md-3 d-flex align-items-center justify-content-end">
+            <button class="cancel-button add-ingredient-button">Cancel</button>
+          </div>
+          <div class="form-submit-btn col-md-3 d-flex align-items-center justify-content-end">
+            <button class="done-button add-ingredient-button">Add Meal</button>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <section class="meals-edit-cont">
+      <div class="overlay"></div>
+
+      <section class="container meals-menu-cont p-0 overflow-auto">
+        <div class="row d-flex justify-content-center form-header-row">
+          <div class="col-md-5 d-flex justify-content-start align-items-center">
+            <input class="meal-form-category edit name-field" placeholder="Name">
+          </div>
+
+          <div class="col-md-5 d-flex justify-content-start align-items-center">
+            <input class="meal-form-category ingredient-field" placeholder="Enter an Ingredient">
+          </div>
+
+          <div class="meal-form-button col-md-2 d-flex justify-content-start align-items-center">
+            <button class="add-ingredient-button">Add Ingredient</button>
+          </div>
+        </div>
+
+        <div class="row d-flex justify-content-center edit-ingredient-row"></div>
+
+        <div class="container row d-flex justify-content-space-between tag-row">
+          <div class="choose-tag col-md-12 d-flex align-items-center justify-content-begin">
+            <button class="btn btn-light meal-edit tag-list-check filter" id="regular-tag"></button><span class="tag-text">Regular</span>
+            <button class="btn btn-light meal-edit tag-list-check filter" id="healthy-tag"></button><span class="tag-text">Healthy</span>
+          </div>
+          <div class="choose-tag col-md-12 d-flex align-items-center justify-content-begin">
+            <button class="btn btn-light meal-edit tag-list-check filter" id="breakfast-tag"></button><span class="tag-text">Breakfast</span>
+            <button class="btn btn-light meal-edit tag-list-check filter" id="lunch-tag"></button><span class="tag-text">Lunch</span>
+            <button class="btn btn-light meal-edit tag-list-check filter" id="dinner-tag"></button><span class="tag-text">Dinner</span>
+          </div>
+          <div class="choose-tag col-md-12 d-flex align-items-center justify-content-begin">
+            <button class="btn btn-light meal-edit tag-list-check filter" id="dairy-tag"></button><span class="tag-text">Dairy</span>
+            <button class="btn btn-light meal-edit tag-list-check filter" id="parve-tag"></button><span class="tag-text">Parve</span>
+            <button class="btn btn-light meal-edit tag-list-check filter" id="meaty-tag"></button><span class="tag-text">Meaty</span>
+          </div>
+        </div>
+        <div class="row d-flex justify-content-center done-row">
+          <div class="choose-file-btn col-md-6 d-flex align-items-center justify-content-center">
+            <input type="file" class="file-form-button edit form-control" id="customFile">
+          </div>
+          <div class="form-cancel-btn col-md-3 d-flex align-items-center justify-content-end">
+            <button class="cancel-button edit add-ingredient-button">Cancel</button>
+          </div>
+          <div class="edit-submit-btn col-md-3 d-flex align-items-center justify-content-end">
+            <button class="done-button edit add-ingredient-button">Edit Meal</button>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!---JS-SCRIPTS------------------------------------------------------------------------------------------------------------------------->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="home-page.js"></script>
+</body>
+</html>

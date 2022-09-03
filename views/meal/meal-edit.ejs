@@ -1,0 +1,69 @@
+<%- include("../partials/header.ejs") %>
+<title>Meal - Edit</title>
+<%- include("../partials/navbar.ejs") %>
+<!-------------------------------------------------- ENTER CONTENT HERE -------------------------------------------------->
+<section class="meals-edit-cont">
+    <div class="overlay"></div>
+
+    <section class="container meals-menu-cont p-0 overflow-auto">
+
+      <form class="d-block" action="/meals/edit/ingredients" method="post">
+        <div class="row d-flex justify-content-begin form-header-row">
+          <div class="col-md-5 d-flex justify-content-start align-items-center">
+            <input type="text" name="ingredients" class="meal-form-category ingredient-field" placeholder="Enter an Ingredient">
+          </div>
+          <div class="meal-form-button col-md-2 d-flex justify-content-start align-items-center">
+            <input type="submit" class="add-ingredient-button" value="Add Ingredient">
+          </div>
+        </div>
+      </form>
+
+      <div class="row d-flex justify-content-center edit-ingredient-row">
+        <% for (ingredient of item.ingredients) { console.log("ingredient:", item.ingredients) %> 
+          <form class="d-block ingredient-form" action="/meals/edit/ingredients/<%=ingredient.toLowerCase()%>/?_method=DELETE" method="post">
+            <div class = "tag d-flex align-items-center"><%=ingredient%><input type="image" class="cancel-tag" src="/icons/cancel.png"></div>
+          </form>
+        <% } %> 
+      </div>
+
+      <div class="container row d-flex justify-content-space-between tag-row">
+        <% for (let section of choiceArr) { %> 
+          <div class="choose-tag col-md-12 d-flex align-items-center justify-content-begin">
+          <% for (let choice of section) { %> 
+            <form class="d-block" action="/meals/edit/tags/<%=choice.toLowerCase()%>" method="post">
+              <% if (item.tags.includes(choice.toLowerCase())) { %> 
+                <button type="submit" class="btn btn-light meal-edit tag-list-check" id="<%=choice.toLowerCase()%>-tag"></button><span class="tag-text"><%=choice%></span>
+              <% } else { %> 
+                <button type="submit" class="btn btn-light meal-edit tag-list-check filter" id="<%=choice.toLowerCase()%>-tag"></button><span class="tag-text"><%=choice%></span>              
+              <% } %> 
+              </form>
+          <% } %>
+          </div>
+        <% } %>
+      </div>
+
+      <form class="d-block" action="/meals/edit/name-img/<%=name%>?_method=PATCH" method="post" enctype="multipart/form-data">
+        <div class="row d-flex justify-content-begin form-header-row">
+          <div class="col-md-5 d-flex justify-content-start align-items-center">
+            <input type="text" name="mealName" class="meal-form-category edit name-field" placeholder="<%=name%>" value="<%=name%>">
+          </div>
+          <div class="choose-file-btn col-md-7 d-flex align-items-center justify-content-center">
+            <input name="imgSrc" type="file" class="file-form-button form-control" id="customFile">
+          </div>
+        </div>
+        <div class="row d-flex justify-content-center done-row">
+          <div class="form-cancel-btn col-md-4 d-flex justify-content-center align-items-center">
+            <button type="button" class="cancel-button edit">Cancel</button>
+          </div>
+          <div class="form-submit-btn col-md-3 d-flex justify-content-center align-items-center">
+            <input type="submit" class="done-button" value="Edit">
+          </div>
+        </div>
+      </form>
+
+    </section>
+  </section>
+<!--------------------------------------------------- CONTENT ENDS HERE -------------------------------------------------->
+<%- include("../partials/scripts.ejs") %>
+<script src="/js/meal-edit.js"></script>
+<%- include("../partials/footer.ejs") %>

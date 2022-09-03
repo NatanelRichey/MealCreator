@@ -1,0 +1,51 @@
+<%- include("../partials/header.ejs") %>
+<title>Meals</title>
+<%- include("../partials/navbar.ejs") %>
+<!-------------------------------------------------- ENTER CONTENT HERE ------------cont------------------------------------->
+<section class="meals-page-cont">
+    <div class="overlay"></div>
+    <section class="container meals-menu-cont p-0 overflow-auto">
+        <div class="row meals-category-row">
+            <div class="col-sm-8 d-flex justify-content-start align-items-center p-0">
+              <input type="search" placeholder="Enter a Meal" class="meal-search-category" id="meal-search-bar">  
+              <button class="btn btn-light search-btn"></button>   
+            </div>
+            <div class="col-sm-3 category-col d-flex justify-content-end align-items-center p-0 add-meals-text">
+              <button class="btn btn-light add-meal-button d-flex justify-content-begin align-items-center p-0"><span class="add-meal-txt">Add Meal</span></button>
+              <div class="add-meal-btn"></div> 
+            </div>
+        </div>
+        <div class="flash-container"> <%- include('../partials/flash') %> </div>
+        <% for (meal of meals) { %>
+            <div class="row meal-list-item m-0 <%=meal.mealName.toLowerCase()%>">
+                <div class="col-sm-10 d-flex justify-content-begin align-items-center p-0">
+                    <form class="d-flex" action="/meals/edit/all/<%=meal.mealName%>" method="post">
+                        <div class="col-sm-2 d-flex justify-content-start align-items-center p-0 meal-img-col">
+                            <input type="image" class="meal-img" src="<%=meal.imgSrc.toLowerCase()%>" value="">
+                        </div>
+                    </form>
+                    <form class="d-flex" action="/meals/<%=meal._id%>?_method=PATCH" method="post">
+                        <button type="submit" disabled style="display: none" aria-hidden="true"></button>
+                        <div class="col-sm-11 p-0 meal-search-col">
+                            <input type="text" name="mealName" class="meal-item-edit" value="<%=meal.mealName %>" placeholder="<%= meal.mealName %>">
+                        </div>
+                        <div class="col-sm-1 d-flex justify-content-end align-items-center p-0">
+                            <input value="" type="submit" class="btn btn-light enter-btn">
+                        </div>
+                    </form>
+                </div>
+                <div class="col-sm-1 d-flex justify-content-end align-items-center p-0">
+                    <form class="d-flex form-container" action="/meals/<%=meal._id%>?_method=DELETE" method="post">
+                        <div class="col-sm-1 d-flex justify-content-start align-items-center p-0">
+                            <input value="" type="submit" class="btn btn-light trash-btn">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        <% } %>
+    </section>
+  </section>
+<!--------------------------------------------------- CONTENT ENDS HERE -------------------------------------------------->
+<%- include("../partials/scripts.ejs") %>
+<script src="/js/meals.js"></script>
+<%- include("../partials/footer.ejs") %>

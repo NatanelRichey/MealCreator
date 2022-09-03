@@ -1,0 +1,38 @@
+<%- include("../partials/header.ejs") %>
+<title>Meal Creator</title>
+<%- include("../partials/navbar.ejs") %>
+<!-------------------------------------------------- ENTER CONTENT HERE -------------------------------------------------->
+<section class="container second-page-cont">
+  <div class="card-group mt-5 mx-4">
+    <div class="card shadow pt-1 px-1 mx-2">
+      <form class="three-choice-form" action="/app/Breakfast" method="post">
+        <button type="submit" class="choice-btn">
+          <img type="submit" style="min-width: 300px; min-height: 455px; object-fit: cover;" src="https://images.unsplash.com/photo-1525351484163-7529414344d8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80"
+              alt="" class="card-img-top" />
+          <div class="card-body">Breakfast</div>
+        </button>
+      </form>
+    </div>
+    <div class="card shadow pt-1 px-1 mx-2">
+      <form class="three-choice-form" action="/app/Lunch" method="post">
+        <button type="submit" class="choice-btn">
+          <img type="submit" style="min-width: 300px; min-height: 455px; object-fit: cover;" src="https://images.unsplash.com/photo-1505576633757-0ac1084af824?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435&q=80"
+              alt="" class="card-img-top" />
+          <div class="card-body">Lunch</div>
+        </button>
+      </form>
+    </div>
+    <div class="card shadow pt-1 px-1 mx-2">
+      <form class="three-choice-form" action="/app/Dinner" method="post">
+        <button type="submit" class="choice-btn">
+          <img type="submit" style="min-width: 300px; min-height: 455px; object-fit: cover;" src="https://images.unsplash.com/photo-1515516969-d4008cc6241a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80"
+              alt="" class="card-img-top" />
+          <div class="card-body">Dinner</div>
+        </button>
+      </form>
+    </div>
+</section>
+<!--------------------------------------------------- CONTENT ENDS HERE -------------------------------------------------->
+<%- include("../partials/scripts.ejs") %>
+<script src="/js/second-page.js"></script>
+<%- include("../partials/footer.ejs") %>

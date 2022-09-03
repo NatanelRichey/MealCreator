@@ -1,0 +1,30 @@
+Backend
+login signup logout
+
+Optional...
+    -picture load on edit
+    - form submit with enter
+
+JS
+- ingredients:
+    - front end add/remove/placeholder-reset immediately (cant change because of backend effects)
+Optional...
+    - pop-up when move-to-list is pressed, "saved to cart"
+
+CSS 
+
+Later...
+    Design :
+    fix iphone use:
+        - logo out of bounds
+        - hamburger change 
+        - menu should go up after selected page
+        - pantry, list, meals !!!
+        - add/edit meal form
+
+    Design Changes:
+        - tabs?
+        - add to pantry on different line
+        - back button
+        - rounded buttons
+        - lighter overlay
