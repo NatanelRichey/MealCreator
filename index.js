@@ -1,6 +1,6 @@
 // -------------------------------------------------------- IMPORTS AND DECLARATIONS -------------------------------------------------------
 
-// import {} from 'dotenv/config'
+import {} from 'dotenv/config'
 
 import express, { urlencoded } from "express"
 const app = express()
@@ -89,11 +89,11 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-let curUser = ""
+// let curUser = ""
 
 app.use((req, res, next) => {
     res.locals.currentUser = req.user || ""
-    curUser = req.user;
+    // curUser = req.user;
     res.locals.success = req.flash('success');
     res.locals.error = req.flash('error');
     res.locals.curUrl = req.url;
