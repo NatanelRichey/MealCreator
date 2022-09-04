@@ -1,6 +1,6 @@
 // -------------------------------------------------------- IMPORTS AND DECLARATIONS -------------------------------------------------------
 
-// import {} from 'dotenv/config
+// import {} from 'dotenv/config'
 
 import express, { urlencoded } from "express"
 const app = express()
@@ -25,7 +25,7 @@ app.set('view engine', 'ejs');
 
 // --------------------------------------------------------- EXPRESS INITIALIZATIONS --------------------------------------------------------
 
-const dbUrl = process.env.DB_URL || "mongodb+srv://natanelrichey:jA78gKsDQWh4shU@cluster0.rxrufjj.mongodb.net/?retryWrites=true&w=majority"
+const dbUrl = process.env.DB_URL
 connect(dbUrl, { 
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -57,7 +57,7 @@ store.on("error", function (e) {
     console.log("SESSION STORE ERROR")
 })
 
-const secret = process.env.SECRET || 'thisshouldbeabettersecret!'
+const secret = process.env.secret
 
 const sessionConfig = {
     store,
@@ -113,6 +113,7 @@ app.use('/pantry', pantryRoutes)
 app.use('/shopping-list', listRoutes)
 app.use('/meals', mealsRoutes)
 app.use('/', usersRoutes)
+app.use('/', async (req, res) => { res.render('/login')})
 
 app.all('*', (req, res, next) => {
     next(new ExpressError('Page Not Found', 404))

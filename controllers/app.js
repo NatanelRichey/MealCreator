@@ -7,7 +7,6 @@ const choiceArr = [["Healthy","Regular"],["Breakfast","Lunch","Dinner"],["Dairy"
 
 export const renderHome = async (req, res) => {
     res.render('/login')
-
 }
 
 export const renderApp = async (req, res) => {

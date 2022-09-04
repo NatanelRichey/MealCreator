@@ -1,17 +1,21 @@
 Backend
-login signup logout
+- env variable not working for credentials
+- pull images from cloudinary
+- push/delete images to/from cloudinary
 
 Optional...
     -picture load on edit
     - form submit with enter
 
 JS
+- home page needs to be login
 - ingredients:
     - front end add/remove/placeholder-reset immediately (cant change because of backend effects)
 Optional...
     - pop-up when move-to-list is pressed, "saved to cart"
 
 CSS 
+- website doesnt scale well on tablet!!
 
 Later...
     Design :
