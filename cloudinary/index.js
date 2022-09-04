@@ -1,4 +1,4 @@
-import cloudinary from 'cloudinary'
+import {v2 as cloudinary} from 'cloudinary'
 import { CloudinaryStorage } from 'multer-storage-cloudinary'
 
 cloudinary.config({ 
@@ -10,9 +10,7 @@ cloudinary.config({
 export const storage = new CloudinaryStorage({
     cloudinary,
     params: {
-        folder: () => 'meal-images',
+        folder: 'meal-images',
         allowedFormats: ['jpeg', 'png', 'jpg', 'webp']
     }
 });
-
-export default cloudinary

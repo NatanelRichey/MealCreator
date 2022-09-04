@@ -1,7 +1,6 @@
 import { mealSchema, pantrySchema, shoppingListSchema } from './schemas.js'
 
 export const validateMeal = (req, res, next) => {
-    console.log("Test");
     const { error } = mealSchema.validate(req.body);
     if (error) {
         req.flash('error', `Enter meal name`);

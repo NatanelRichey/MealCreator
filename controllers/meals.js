@@ -1,4 +1,5 @@
 import Meals from "../models/meal.js"
+import {v2 as cloudinary} from 'cloudinary'
 
 const choiceArr = [["Healthy","Regular"],["Breakfast","Lunch","Dinner"],["Dairy","Parve","Meaty"]]
 let toggleChoiceArr = {"Healthy":false,"Regular":false,"Breakfast":false,"Lunch":false,"Dinner":false,"Dairy":false,"Parve":false,"Meaty":false}
@@ -33,11 +34,10 @@ export const addTagToForm = async (req, res) => {
     else {tags = arrayRemove(tags, choice)}
 }
 
-export const addMeal =  async (req, res) => { 
+export const addMeal =  async (req, res) => {
     req.body.ingredients = ingredients
     req.body.tags = tags
-    req.body.imgSrc.url = req.files.path
-    req.body.imgSrc.filename = req.files.filename
+    req.body.imgSrc = req.file.path
     req.body.owner = res.locals.currentUser.username
     const meal = new Meals(req.body);
     Meals.insertMany(meal);
@@ -46,11 +46,6 @@ export const addMeal =  async (req, res) => {
     tags = []
     ingredients = []
 }
-
-// export const addMeal =  async (req, res) => { 
-//     console.log(req.body, req.files)
-//     res.redirect('/meals')
-// }
 
 export const editMealName = async (req, res) => {
     const { id } = req.params;
@@ -80,14 +75,16 @@ export const renderEditMealForm = async (req, res) => {
     const item = await Meals.findOne({mealName:name, owner:curUsername});
     ingredients = item.ingredients
     tags = item.tags
-    res.render('meal/meal-edit.ejs', { name, item, choiceArr })
+    res.render('meal/meal-edit.ejs', { name, curUsername, item, choiceArr })
 }
 
 export const editMeal = async (req, res) => {
+    const curUsername = res.locals.currentUser.username
     req.body.ingredients = ingredients
     req.body.tags = tags
-    req.body.imgSrc = `/meal-images/${req.body.imgSrc}`
-    await Meals.updateOne({mealName: req.params.name}, req.body, { runValidators: true, new: true });
+    req.body.imgSrc = req.file.path
+    const oldMeal = await Meals.findOneAndUpdate({mealName: req.params.name, owner:curUsername}, req.body, { runValidators: true});
+    await cloudinary.uploader.destroy(getPublicId(oldMeal.imgSrc));
     req.flash('success', `${req.body.mealName} has changed!`);
     res.redirect('/meals')
     tags = []
@@ -96,11 +93,23 @@ export const editMeal = async (req, res) => {
 
 export const deleteMeal =  async (req, res) => {
     const { id } = req.params;
-    await Meals.findByIdAndDelete(id);
+    const oldMeal = await Meals.findByIdAndDelete(id);
+    await cloudinary.uploader.destroy(getPublicId(oldMeal.imgSrc));
     req.flash('success', `Meal deleted`);
     res.redirect('/meals')
 }
 
 function arrayRemove (arr, value) { 
     return arr.filter(function (ele) { return ele != value })
+}
+
+function getPublicId(imgSrc) {
+    console.log("imgSrc", imgSrc)
+    let truncImgSrc = imgSrc.split('/').splice(-2,2)
+    console.log("truncImgSrc", truncImgSrc)
+    let end = truncImgSrc[1].split('.')
+    console.log("end", end)
+    let publicId = truncImgSrc[0] + '/' + end[0]
+    console.log("pub:", publicId)
+    return publicId
 }

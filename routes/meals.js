@@ -19,7 +19,7 @@ router.delete('/new/ingredients/:ingredient', isLoggedIn, catchAsync (meals.remo
 
 router.post("/new/tags/:choice", isLoggedIn, meals.addTagToForm)
 
-router.post('/new/name-img', isLoggedIn, validateMeal, catchAsync(meals.addMeal))
+router.post('/new/name-img', isLoggedIn, upload.single("imgSrc"), validateMeal, catchAsync(meals.addMeal))
 
 router.post('/edit/ingredients', isLoggedIn, meals.editIngredients)
 
@@ -29,7 +29,7 @@ router.post("/edit/tags/:choice", isLoggedIn, meals.editTags)
 
 router.post('/edit/all/:name', isLoggedIn, catchAsync(meals.renderEditMealForm))
 
-router.patch('/edit/name-img/:name', isLoggedIn, validateMeal, catchAsync(meals.editMeal))
+router.patch('/edit/name-img/:name', isLoggedIn, upload.single("imgSrc"), validateMeal, catchAsync(meals.editMeal))
 
 router.route('/:id')
     .patch(isLoggedIn, catchAsync(meals.editMealName))

@@ -1,12 +1,13 @@
 import Pantry from "../models/pantry.js"
 import ShoppingList from "../models/shopping-list.js"
 
-const shoppingCategories = ["Vegetables", "Fruits", "Grains & Pasta", "Dairy", "Fish & Eggs", "Fats & Oils", "Condiments", "Freezer", "Miscellaneous"]
+const shoppingCategories = ["Vegetables", "Fruits", "Grains Pasta", "Dairy", "Fish Eggs", "Fats Oils", "Condiments", "Freezer", "Miscellaneous"]
+const twoWordCats = {"Grains Pasta":"Grains & Pasta", "Fish Eggs":"Fish & Eggs", "Fats Oils":"Fats & Oils"}
 
 export const renderList = async (req, res) => {
     const curUsername = res.locals.currentUser.username
     const items = await ShoppingList.find({owner:curUsername})
-    res.render('list', { items, shoppingCategories })
+    res.render('list', { items, shoppingCategories, twoWordCats })
 }
 
 export const moveToPantry =  async (req, res) => {

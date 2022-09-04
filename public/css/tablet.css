@@ -154,7 +154,7 @@ nav#navbar.navbar.navbar-expand-lg.navbar-light.bg-light {
 }
 
 .navbar-light .navbar-toggler-icon {
-    background-image: url(/icons/hamburger.png)
+    background-image: url("https://res.cloudinary.com/meal-creator/image/upload/v1662276053/icons/hamburger.png")
 }
 
 .navbar-light .navbar-nav .nav-link {
@@ -260,21 +260,21 @@ nav#navbar.navbar.navbar-expand-lg.navbar-light.bg-light {
 .pantry-page-cont {
     max-height: 702px;
     position: relative; bottom: 30px;
-    background: url(/page-images/pantry.jpg) no-repeat center center fixed;
+    background: url("https://res.cloudinary.com/meal-creator/image/upload/v1662276036/page-images/pantry.jpg") no-repeat center center fixed;
     background-size: cover;
 }
 
 .list-page-cont {
     max-height: 702px;
     position: relative; bottom: 30px;
-    background: url(/page-images/shopping-list.jpg) no-repeat center center fixed;
+    background: url("https://res.cloudinary.com/meal-creator/image/upload/v1662276045/page-images/shopping-list.jpg") no-repeat center center fixed;
     background-size: cover;
 }
 
 .meals-page-cont {
     max-height: 702px;
     position: relative; bottom: 30px;
-    background: url(/page-images/meals.jpg) no-repeat center center fixed;
+    background: url("https://res.cloudinary.com/meal-creator/image/upload/v1662276037/page-images/meals.jpg") no-repeat center center fixed;
     background-size: cover;
 }
 
@@ -289,14 +289,14 @@ nav#navbar.navbar.navbar-expand-lg.navbar-light.bg-light {
 .meals-form-cont {
     max-height: 740px;
     position: relative; bottom: 30px;
-    background: url(/page-images/meals.jpg) no-repeat center center fixed;
+    background: url("https://res.cloudinary.com/meal-creator/image/upload/v1662276037/page-images/meals.jpg") no-repeat center center fixed;
     background-size: cover;
 }
 
 .meals-edit-cont {
     max-height: 740px;
     position: relative; bottom: 30px;
-    background: url(/page-images/meals.jpg) no-repeat center center fixed;
+    background: url("https://res.cloudinary.com/meal-creator/image/upload/v1662276037/page-images/meals.jpg") no-repeat center center fixed;
     background-size: cover;
 }
 
@@ -416,7 +416,7 @@ height: fit-content;
 .add-pantry-button {
     width: 30px;
     height: 30px;
-    background: url(/icons/add-pantry.png);
+    background: url("https://res.cloudinary.com/meal-creator/image/upload/v1662276052/icons/add-pantry.png");
 }
 
 .add-pantry-button:focus {
@@ -427,7 +427,7 @@ height: fit-content;
 .add-list-button {
     width: 30px;
     height: 30px;
-    background: url(/icons/add-cart.png);   
+    background: url("https://res.cloudinary.com/meal-creator/image/upload/v1662276052/icons/add-cart.png");   
     background-color: transparent;
     border: none;
     min-width: 30px;
@@ -459,7 +459,7 @@ height: fit-content;
     width: 30px;
     height: 30px;
     border: none;
-    background: url(/icons/add-meal.png);
+    background: url("https://res.cloudinary.com/meal-creator/image/upload/v1662276052/icons/add-meal.png");
     background-size: cover;
     position: absolute; left: 970px;
 }
@@ -531,7 +531,7 @@ height: fit-content;
     width: 30px;
     height: 30px;
     border: none;
-    background: url(/icons/search.png);
+    background: url("https://res.cloudinary.com/meal-creator/image/upload/v1662276054/icons/search.png");
     background-size: cover;
     position: absolute; left: 470px;
 }
@@ -575,7 +575,7 @@ height: fit-content;
     height: 30px;
     border: none;
     padding: 15px !important;
-    background: url(/icons/saved%20items.png);
+    background: url("https://res.cloudinary.com/meal-creator/image/upload/v1662276054/icons/saved%20items.png");
     background-size: cover;
 
 }
@@ -585,7 +585,7 @@ height: fit-content;
     height: 30px;
     padding: 15px !important;
     border: none;
-    background: url(/icons/trash.png);
+    background: url("https://res.cloudinary.com/meal-creator/image/upload/v1662276054/icons/trash.png");
     background-size: cover;
     display: none;
 }
@@ -598,7 +598,7 @@ height: fit-content;
     width: 30px;
     height: 30px;
     border: none;
-    background: url(/icons/enter.png);
+    background: url("https://res.cloudinary.com/meal-creator/image/upload/v1662276054/icons/enter.png");
     background-size: cover;
     display: none;
     position: relative;
@@ -647,7 +647,7 @@ height: fit-content;
     background-color: transparent;
     border: 1px solid rgba(0, 0, 0, 0.371);
     border: none;
-    background: url(/icons/check.png);
+    background: url("https://res.cloudinary.com/meal-creator/image/upload/v1662276054/icons/check.png");
     background-size: cover;
 }
 
@@ -660,7 +660,7 @@ height: fit-content;
     background-color: transparent;
     border: 1px solid rgba(0, 0, 0, 0.371);
     border: none;
-    background: url(/icons/uncheck.png);
+    background: url("https://res.cloudinary.com/meal-creator/image/upload/v1662276054/icons/uncheck.png");
     background-size: cover;
 }
 
@@ -842,42 +842,42 @@ height: fit-content;
 }
 
 #regular-tag {
-    background: url(/icons/regular.png);
+    background: url("https://res.cloudinary.com/meal-creator/image/upload/v1662276054/icons/regular.png");
     background-size: cover;   
 }
 
 #healthy-tag {
-    background: url(/icons/healthy.png);
+    background: url("https://res.cloudinary.com/meal-creator/image/upload/v1662276052/icons/healthy.png");
     background-size: cover; 
 }
 
 #breakfast-tag {
-    background: url(/icons/breakfast.png);
+    background: url("https://res.cloudinary.com/meal-creator/image/upload/v1662276052/icons/breakfast.png");
     background-size: cover;
 }
 
 #lunch-tag {
-    background: url(/icons/lunch.png);
+    background: url("https://res.cloudinary.com/meal-creator/image/upload/v1662276052/icons/lunch.png");
     background-size: cover;
 }
 
 #dinner-tag {
-    background: url(/icons/dinner.png);
+    background: url("https://res.cloudinary.com/meal-creator/image/upload/v1662276052/icons/dinner.png");
     background-size: cover;
 }
 
 #dairy-tag {
-    background: url(/icons/milk.png);
+    background: url("https://res.cloudinary.com/meal-creator/image/upload/v1662276052/icons/milk.png");
     background-size: cover; 
 }
 
 #parve-tag {
-    background: url(/icons/parve.png);
+    background: url("https://res.cloudinary.com/meal-creator/image/upload/v1662276052/icons/parve.png");
     background-size: cover; 
 }
 
 #meaty-tag {
-    background: url(/icons/meat.png);
+    background: url("https://res.cloudinary.com/meal-creator/image/upload/v1662276052/icons/meat.png");
     background-size: cover; 
 }
 

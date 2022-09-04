@@ -92,7 +92,7 @@ passport.deserializeUser(User.deserializeUser());
 let curUser = ""
 
 app.use((req, res, next) => {
-    res.locals.currentUser = req.user;
+    res.locals.currentUser = req.user || ""
     curUser = req.user;
     res.locals.success = req.flash('success');
     res.locals.error = req.flash('error');
@@ -113,7 +113,10 @@ app.use('/pantry', pantryRoutes)
 app.use('/shopping-list', listRoutes)
 app.use('/meals', mealsRoutes)
 app.use('/', usersRoutes)
-app.use('/', async (req, res) => { res.render('/login')})
+
+app.get('/', (req, res) => {
+    res.render('users/login')
+});
 
 app.all('*', (req, res, next) => {
     next(new ExpressError('Page Not Found', 404))
@@ -131,7 +134,7 @@ app.listen(port, () => {
     console.log(`APP IS LISTENING ON PORT ${port}!`)
 })
 
-export default curUser
+// export default curUser
 
 // -------------------- -------------------------------------- GLOBAL VARIABLES -------------------------------------------------------------
 

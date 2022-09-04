@@ -4,7 +4,8 @@ export const mealSchema = Joi.object({
     mealName: Joi.string().required(),
     ingredients: [Joi.string()],
     tags: [Joi.string()],
-    // imgSrc: String
+    imgSrc: Joi.string(),
+    owner: Joi.string(),
 })
 
 export const pantrySchema = Joi.object({

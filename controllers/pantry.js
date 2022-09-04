@@ -1,7 +1,8 @@
 import Pantry from "../models/pantry.js"
 import ShoppingList from "../models/shopping-list.js"
 
-const categories = ["Vegetables", "Fruits", "Grains & Pasta", "Dairy", "Fish & Eggs", "Fats & Oils", "Condiments", "Freezer", "Miscellaneous", "Saved Items"]
+const categories = ["Vegetables", "Fruits", "Grains Pasta", "Dairy", "Fish Eggs", "Fats Oils", "Condiments", "Freezer", "Miscellaneous", "Saved Items"]
+const twoWordCats = {"Grains Pasta":"Grains & Pasta", "Fish Eggs":"Fish & Eggs", "Fats Oils":"Fats & Oils"}
 
 export const moveToSavedItems =  async (req, res) => {
     const name = req.params.name
@@ -14,7 +15,8 @@ export const moveToSavedItems =  async (req, res) => {
 export const renderPantry =  async (req, res) => {
     const curUsername = res.locals.currentUser.username
     const items = await Pantry.find({owner:curUsername})
-    res.render('pantry', { items, categories })
+
+    res.render('pantry', { items, categories, twoWordCats })
 }
 
 export const addItemToPantry =  async (req, res) => {

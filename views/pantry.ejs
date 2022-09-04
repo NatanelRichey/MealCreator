@@ -16,7 +16,7 @@
                             <button type="submit" id="new-item-pantry-btn" class="btn btn-light add-button add-pantry-button d-flex justify-content-center align-items-center p-0"></button>
                         </form>        
                     </div>
-                    <div class="col-sm-4 category-col d-flex justify-content-center align-items-center p-0"><%= cat %><img src="icons/<%= cat.toLowerCase() %>.png" class="category-icon"></div>
+                    <div class="col-sm-4 category-col d-flex justify-content-center align-items-center p-0"><%= cat in twoWordCats ? twoWordCats[cat] : cat %><img src="https://res.cloudinary.com/meal-creator/image/upload/v1662276054/icons/<%=cat.toLowerCase()%>.png" class="category-icon"></div>
                 </div>
 
                 <% for (let item of items) { %>
