@@ -1,4 +1,6 @@
 Fix Now
+- page gets squashed when typing
+- add meal margin top
 - bootstrap js not working
 
 Backend
