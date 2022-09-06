@@ -159,8 +159,10 @@ function changeButtons (e, action) {
     let node = undefined
     if (e.nodeType === 1) node = e; 
     else node = e.target
+    console.log("NODE...", node)
     let editBtn = node.parentElement.nextElementSibling.firstElementChild
-    let deleteBtn = node.parentElement.parentElement.parentElement.nextElementSibling.firstElementChild.firstElementChild.firstElementChild
+    console.log("EDIT BTN...", editBtn)
+    let deleteBtn = node.parentElement.parentElement.nextElementSibling.firstElementChild.firstElementChild
     if (action === "hide") {
         editBtn.style.display = "none"; 
         deleteBtn.style.display = "none"; 

@@ -41,6 +41,5 @@ export const deleteFromList = async (req, res) => {
 export const updateItemName = async (req, res) => {
     const { id } = req.params;
     await ShoppingList.findByIdAndUpdate(id, req.body, { runValidators: true, new: true });
-    req.flash('error', 'Please enter item name');
     res.redirect('/shopping-list')
 }

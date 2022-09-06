@@ -17,7 +17,7 @@ router.post('/new/ingredients', isLoggedIn, meals.addIngredientToForm)
 
 router.delete('/new/ingredients/:ingredient', isLoggedIn, catchAsync (meals.removeIngredientFromForm))
 
-router.post("/new/tags/:choice", isLoggedIn, meals.addTagToForm)
+router.post("/new/tags/:choice", isLoggedIn, meals.toggleTags)
 
 router.post('/new/name-img', isLoggedIn, upload.single("imgSrc"), validateMeal, catchAsync(meals.addMeal))
 
@@ -25,7 +25,7 @@ router.post('/edit/ingredients', isLoggedIn, meals.editIngredients)
 
 router.delete('/edit/ingredients/:ingredient', isLoggedIn, catchAsync(meals.deleteIngredients))
 
-router.post("/edit/tags/:choice", isLoggedIn, meals.editTags)
+router.post("/edit/tags/:choice", isLoggedIn, meals.toggleTags)
 
 router.post('/edit/all/:name', isLoggedIn, catchAsync(meals.renderEditMealForm))
 

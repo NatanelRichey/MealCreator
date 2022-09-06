@@ -6,32 +6,31 @@
     <div class="overlay"></div>
 
     <section class="container meals-menu-cont p-0 overflow-auto">
+      
 
-      <form class="d-block" action="/meals/edit/ingredients" method="post">
-        <div class="row d-flex justify-content-begin form-header-row">
-          <div class="col-md-5 d-flex justify-content-start align-items-center">
+      <form class="d-inline-block meal-edit-form" action="/meals/edit/ingredients" method="post">
+          <div class="d-flex justify-content-md-start justify-content-center align-items-center">
             <input type="text" name="ingredients" class="meal-form-category ingredient-field" placeholder="Enter an Ingredient">
           </div>
-          <div class="meal-form-button col-md-2 d-flex justify-content-start align-items-center">
+          <div class="meal-form-button d-flex justify-content-md-start justify-content-center align-items-center">
             <input type="submit" class="add-ingredient-button" value="Add Ingredient">
           </div>
-        </div>
       </form>
 
-      <div class="row d-flex justify-content-center edit-ingredient-row">
-        <% for (ingredient of item.ingredients) { console.log("ingredient:", item.ingredients) %> 
+      <div class="row d-flex justify-content-md-start justify-content-center edit-ingredient-row mt-4">
+        <% for (ingredient of item.ingredients) { %>
           <form class="d-block ingredient-form" action="/meals/edit/ingredients/<%=ingredient.toLowerCase()%>/?_method=DELETE" method="post">
-            <div class = "tag d-flex align-items-center"><%=ingredient%><input type="image" class="cancel-tag" src="/icons/cancel.png"></div>
+            <div class = "tag d-flex align-items-center"><%=ingredient%><input type="image" class="cancel-tag" src="https://res.cloudinary.com/meal-creator/image/upload/v1662276052/icons/cancel.png"></div>
           </form>
         <% } %> 
       </div>
 
-      <div class="container row d-flex justify-content-space-between tag-row">
+      <div class="mt-3">
         <% for (let section of choiceArr) { %> 
-          <div class="choose-tag col-md-12 d-flex align-items-center justify-content-begin">
+          <div class="choose-tag d-flex align-items-center justify-content-md-start justify-content-center">
           <% for (let choice of section) { %> 
-            <form class="d-block" action="/meals/edit/tags/<%=choice.toLowerCase()%>" method="post">
-              <% if (item.tags.includes(choice.toLowerCase())) { %> 
+            <form class="d-flex tag-tbn" action="/meals/edit/tags/<%=choice%>" method="post">
+              <% if (item.tags.includes(choice)) { %> 
                 <button type="submit" class="btn btn-light meal-edit tag-list-check" id="<%=choice.toLowerCase()%>-tag"></button><span class="tag-text"><%=choice%></span>
               <% } else { %> 
                 <button type="submit" class="btn btn-light meal-edit tag-list-check filter" id="<%=choice.toLowerCase()%>-tag"></button><span class="tag-text"><%=choice%></span>              
@@ -43,21 +42,19 @@
       </div>
 
       <form class="d-block" action="/meals/edit/name-img/<%=name%>?_method=PATCH" method="post" enctype="multipart/form-data">
-        <div class="row d-flex justify-content-begin form-header-row">
-          <div class="col-md-5 d-flex justify-content-start align-items-center">
-            <input type="text" name="mealName" class="meal-form-category edit name-field" placeholder="<%=name%>" value="<%=name%>">
-          </div>
-          <div class="choose-file-btn col-md-7 d-flex align-items-center justify-content-center">
-            <input name="imgSrc" type="file" class="file-form-button form-control" id="customFile">
-          </div>
+        <div class="d-flex justify-content-md-start justify-content-center align-items-center">
+          <input type="text" name="mealName" class="meal-form-category edit name-field" placeholder="<%=name%>" value="<%=name%>">
         </div>
-        <div class="row d-flex justify-content-center done-row">
-          <div class="form-cancel-btn col-md-4 d-flex justify-content-center align-items-center">
-            <button type="button" class="cancel-button edit">Cancel</button>
-          </div>
-          <div class="form-submit-btn col-md-3 d-flex justify-content-center align-items-center">
+        <div class="choose-file-btn d-flex align-items-center justify-content-md-start justify-content-center">
+          <input name="imgSrc" type="file" class="file-form-button form-control" id="imgSrc">
+        </div>
+        <div class="d-flex justify-content-center done-row">
+          <span class="form-cancel-btn d-flex justify-content-start align-items-center">
+            <button type="button" class="cancel-button">Cancel</button>
+          </spam>
+          <span class="form-submit-btn d-flex justify-content-end align-items-center">
             <input type="submit" class="done-button" value="Edit">
-          </div>
+          </span>
         </div>
       </form>
 

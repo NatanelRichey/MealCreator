@@ -1,8 +1,8 @@
 // -------------------------------------------------------- IMPORTS AND DECLARATIONS -------------------------------------------------------
 
-// import {} from 'dotenv/config'
+import {} from 'dotenv/config'
 
-import express, { urlencoded } from "express"
+import express from "express"
 const app = express()
 
 import pkg  from 'mongoose';
@@ -22,6 +22,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.set('view engine', 'ejs');
+
+app.use(express.static(path.join(__dirname, "node_modules/bootstrap/dist/")));
 
 // --------------------------------------------------------- EXPRESS INITIALIZATIONS --------------------------------------------------------
 
@@ -89,11 +91,11 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-// let curUser = ""
+let curUser = ""
 
 app.use((req, res, next) => {
     res.locals.currentUser = req.user || ""
-    // curUser = req.user;
+    curUser = req.user;
     res.locals.success = req.flash('success');
     res.locals.error = req.flash('error');
     res.locals.curUrl = req.url;
@@ -134,7 +136,7 @@ app.listen(port, () => {
     console.log(`APP IS LISTENING ON PORT ${port}!`)
 })
 
-// export default curUser
+export default curUser
 
 // -------------------- -------------------------------------- GLOBAL VARIABLES -------------------------------------------------------------
 

@@ -1,33 +1,23 @@
+Fix Now
+- bootstrap js not working
+
 Backend
-- env variable not working for credentials
-- login resume from last viewed page
+- env variable not working for credentials ???
 
 Optional...
-    -picture load on edit
+    - change flash on meal form to show on form and not redirect
     - form submit with enter
 
 JS
 - ingredients:
-    - front end add/remove/placeholder-reset immediately (cant change because of backend effects)
+    - front end remove/placeholder-reset immediately (cant change because of backend effects)
 Optional...
-    - pop-up when move-to-list is pressed, "saved to cart"
+
 
 CSS 
 - meal thumbnails
-- website doesnt scale well on tablet!!
 
 Later...
-    Design :
-    fix iphone use:
-        - logo out of bounds
-        - hamburger change 
-        - menu should go up after selected page
-        - pantry, list, meals !!!
-        - add/edit meal form
-
     Design Changes:
         - tabs?
-        - add to pantry on different line
-        - back button
-        - rounded buttons
         - lighter overlay

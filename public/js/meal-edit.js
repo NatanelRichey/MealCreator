@@ -20,7 +20,7 @@ mealEditContainer.addEventListener('click', function (e) {
     }
     if (e.target.nodeName === "INPU" && e.target.className === "cancel-tag") e.target.parentElement.remove()
 
-    if (e.target.nodeName === "BUTTON" && e.target.className === "cancel-button edit add-ingredient-button") {
+    if (e.target.nodeName === "BUTTON" && e.target.className === "cancel-button") {
         location.href = "/meals"
     }
 
@@ -74,14 +74,12 @@ mealEditContainer.addEventListener('click', function (e) {
                                     <div class="col-sm-1 d-flex justify-content-center align-items-center p-0">
                                         <button class="btn btn-light trash-btn"></button> 
                                     </div>`
-        // resetForm("edit")
         if (curName !== mealName.value) delete meals[curName.toLowerCase()]
         console.log(meals)
     }
 
     if (e.target.nodeName === "BUTTON" && e.target.className === "cancel-button edit") {
         location.href = "/meals"
-        // resetForm("edit")
     }
 })
 
@@ -110,7 +108,7 @@ function editMealInList(target) {
 
 function addIngredient(target) {
     let ingredientField = target.parentElement.previousElementSibling.firstElementChild
-    let ingredientRow = target.parentElement.parentElement.parentElement.nextElementSibling
+    let ingredientRow = target.parentElement.parentElement.nextElementSibling
     let newForm = document.createElement("form")
     newForm.setAttribute("class", "d-block ingredient-form") 
     newForm.setAttribute("action", `/meals/edit/ingredients/${ingredientField.value}?_method=DELETE`) 
@@ -118,7 +116,7 @@ function addIngredient(target) {
     let newTag = document.createElement("div")
     newTag.setAttribute("class", "tag d-flex align-items-center") 
     newTag.innerText = `${ingredientField.value}`
-    newTag.innerHTML += `<input type="image" class="cancel-tag" src="/icons/cancel.png" value="">`
+    newTag.innerHTML += `<input type="image" class="cancel-tag" src="https://res.cloudinary.com/meal-creator/image/upload/v1662276052/icons/cancel.png" value="">`
     newForm.appendChild(newTag)
     ingredientRow.appendChild(newForm)
 }
@@ -128,12 +126,6 @@ function editIngredient (ingredient) {
     let newTag = document.createElement("div")
     newTag.setAttribute("class", "tag col-md-4 d-flex align-items-center")
     newTag.innerText = `${ingredient}`
-    newTag.innerHTML += `<img type="image" class="cancel-tag" src="icons/cancel.png">`
+    newTag.innerHTML += `<img type="image" class="cancel-tag" src="https://res.cloudinary.com/meal-creator/image/upload/v1662276052/icons/cancel.png">`
     ingredientRow.appendChild(newTag)
 }
-
-// function resetForm(name) {
-//     if (name === "edit") {
-//         mealEditContainer.innerHTML = curEditInnerHtml
-//     } else if (name === "form") mealFormContainer.innerHTML = curFormInnerHtml
-// }

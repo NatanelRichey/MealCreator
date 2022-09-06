@@ -132,9 +132,10 @@ function changeButtonsMeal (e, action) {
     let node = undefined
     if (e.nodeType === 1) node = e; 
     else node = e.target
+    console.log("NODE...", node)
     let editBtn = node.parentElement.nextElementSibling
-    let deleteBtn = node.parentElement.parentElement.parentElement.nextElementSibling.firstElementChild.firstElementChild
-    console.log("node: ", node, "edit: ", editBtn, "del: ", deleteBtn)
+    let deleteBtn = node.parentElement.parentElement.nextElementSibling.firstElementChild
+    console.log("DEL BTN...", deleteBtn)
     if (action === "hide") {
         editBtn.firstElementChild.style.display = "none"; 
         deleteBtn.firstElementChild.style.display = "none"; 

@@ -13,10 +13,10 @@ router.post('/move/:name', isLoggedIn, catchAsync(pantry.moveToSavedItems))
  
 router.post('/move-back/:name', isLoggedIn, catchAsync(pantry.moveFromSavedItems))
 
-router.post('/move-to-cart/:name', isLoggedIn, catchAsync())
+router.post('/move-to-cart/:name', isLoggedIn, catchAsync(pantry.moveToCart))
 
 router.route('/:id')
-    .patch(isLoggedIn, validatePantry, catchAsync())
-    .delete(isLoggedIn, catchAsync())
+    .patch(isLoggedIn, validatePantry, catchAsync(pantry.editPantryItemName))
+    .delete(isLoggedIn, catchAsync(pantry.deleteItem))
 
 export default router;

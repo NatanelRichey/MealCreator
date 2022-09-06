@@ -1,7 +1,5 @@
-/* http://meyerweb.com/eric/tools/css/reset/ 
-   v2.0 | 20110126
-   License: none (public domain)
-*/
+/* ---------------------------------------------------------------- CSS RESET ---------------------------------------------------------------- */
+
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -18,7 +16,7 @@ time, mark, audio, video {
 	margin: 0;
 	padding: 0;
 	border: 0;
-	font-size: 100%;
+	font-size: 16px;
 	font: inherit;
 	vertical-align: baseline;
     max-width: 100%;
@@ -52,11 +50,12 @@ input[type="search"]::-webkit-search-cancel-button,
 input[type="search"]::-webkit-search-results-button,
 input[type="search"]::-webkit-search-results-decoration { display: none; }
 
+/* ------------------------------------------------------------ GLOBAL CSS STYLES ------------------------------------------------------------ */
 body {
     font-family: 'Athiti', sans-serif;
     background-color: rgba(128, 128, 128, 0.207);
-    max-height: 800px;
-    max-width: 1280px;
+    height: 100vh;
+    width: 100vw;
 }
 
 form {
@@ -64,36 +63,118 @@ form {
     align-items: center;
 }
 
-.user-input-fields {
-    max-width: 300px;
-    margin-bottom: 10px;
+/* ----------------------------------------------------------------- NAVBAR ------------------------------------------------------------------ */
+.mask {
+    filter: blur(10px)
 }
 
+/* #navbar {
+    height: 10vh; 
+    align-items: flex-start;
+    width:100vw
+} */
+
+#logo-name-button {
+    font-family: 'Nothing You Could Do', cursive;
+    position: relative; left: 10px;
+}
+
+#brand {
+    color: black;
+    position: relative; top: 17px; right: 8px;
+    font-size: 1rem;
+}
+
+.navbar-toggler {
+    padding: 0.1rem 0.3rem;
+    margin-bottom: 0.3rem; margin-left: 1rem;
+    color: #6dc82a;
+    border: 0;
+}
+
+.navbar-toggler-icon {
+    background-image: url("https://res.cloudinary.com/meal-creator/image/upload/v1662359078/icons/hamburger.png");
+    position: relative; right: 10px;
+}
+
+.navbar-toggler:focus {
+    box-shadow: none;
+}
+
+.nav-link {
+    font-family: 'Athiti';
+    color: black;
+    font-size: 1.2em;
+    min-width: 150px;
+    transition: background-color .3s ease-out;
+    margin-left: 5px; margin-right: 5px;
+    border-radius: 5%;
+}
+
+.nav-link.hover:hover {
+    background-color: #6cc82a3c;
+    transition: background-color .3s ease-in; 
+}
+
+.nav-link.logout-hover:hover {
+    background-color: rgba(128, 128, 128, 0.471);
+    transition: background-color .3s ease-in; 
+}
+
+/* .nav-item {
+    max-width: fit-content;
+    margin-left: 30px; margin-right: 30px;
+} */
+
+/* ---------------------------------------------------------- LOGIN & REGISTRATION ----------------------------------------------------------- */
+.card-header {
+    text-align: center;
+    height: fit-content;
+    font-size: 30px;
+    background-color: white;
+}
+
+.card.login-reg {
+    width: 90vw !important;
+    height: 70vh !important;   
+}
+
+.validated-form {
+    max-width: inherit;
+}
+
+.user-input-fields {
+    max-width: 30vw;
+    margin-bottom: 20px;
+}
+
+.card-img-top {
+    min-width: 100% !important;
+    min-height: 30vh !important;
+    object-fit: cover;
+}
 
 .user-input-labels {
     font-size: 20px;
 }
 
-.user-btn-login, .user-btn-reg, .reg-form-user-btn-reg, .reg-form-user-btn-login {
-    width: 120px;
+.user-btn-login, .reg-form-user-btn-reg {
+    width: 100px;
     height: 43px;
-    margin-left: 15px;
     background-color:#49a705;
     font-size: 23px;
     display: flex; align-items: center; justify-content: center;
-    position: relative; top: 8px;
+    margin-top: 5px; margin-right: 10px;
 }
 
-.user-btn-reg {
+.user-btn-reg, .reg-form-user-btn-login  {
     background-color:rgb(111, 111, 111);
-    margin-left: 45px;
+    width: fit-content;
+    height: 50px;
+    font-size: 23px;
 }
 
-.reg-form-user-btn-login {
-    background-color:rgb(111, 111, 111);
-}
-
-.reg-form-user-btn-reg {
+.user-btn-reg:active, .reg-form-user-btn-login:active  {
     background-color:#49a705;
 }
 
@@ -102,315 +183,131 @@ form {
     text-decoration: none;
 }
 
-.mask {
-    filter: blur(10px)
+/* ------------------------------------------------------------- APP CHOICE CARDS ------------------------------------------------------------ */
+.two-choice-card {  /* adjusts size of image within card */
+    height: 45vh;
+    width: 100vw;
+    object-fit: cover;
 }
 
-.two-choice-form {
-    width: fit-content
-}
-
-.three-choice-form {
-    width: fit-content;
-}
-
-.fourth-page-cont {
-    position: relative; top: 40px;
-}
-
-
-.card-header {
-    text-align: center;
-    height: fit-content;
-    font-size: 30px;
-    background-color: white;
-}
-
-.card-img-top {
-    max-height: 450px;
-}
-
-a#logo-name-button.nav-link {
-    font-family: 'Nothing You Could Do', cursive;
-    position: relative; bottom: 4px; left: 15px;
-}
-
-nav#navbar.navbar.navbar-expand-lg.navbar-light.bg-light {
-    height: 50px;
-    align-items: flex-start;
-}
-
-#brand {
-    color: black;
-    position: relative; top: 15px; right: 10px;
-    font-size: 20px;
-}
-
-.navbar-toggler {
-    padding: 0.1rem 0.3rem;
-    margin-bottom: 0.3rem;
-    color: #6dc82a;
-    border: 0;
-}
-
-.navbar-light .navbar-toggler-icon {
-    background-image: url("https://res.cloudinary.com/meal-creator/image/upload/v1662276053/icons/hamburger.png")
-}
-
-.navbar-light .navbar-nav .nav-link {
-    font-family: 'Athiti';
-    color: black;
-    font-size: 25px;
-    width: auto;
-}
-
-.nav-item {
-    max-width: fit-content;
-    margin-left: 30px; margin-right: 30px;
-}
-
-.navbar-light .navbar-nav .nav-link .selected {
-    background-color: #6aff001f;
-    max-width: fit-content;
-}
-
-.selected {
-    /* border: 1px solid #6cc82a28; */
-    background-color: #6cc82a28;
-}
-
-.nav-link-end {
-    margin-right: 10px;
-    font-size: 22px;
-    color: black;
-    text-decoration: none;
-}
-
-.container.second-page-cont, .container.third-page-cont {
-    margin-left: 0;
-    margin-right: 0;
-    max-width: 1260px;
+.card-group { /* adjusts spacing around cards */
+    margin: 5vh;
 }
 
 .choice-btn {
-    width: 600px;
-    font-size: 40px;
+    font-size: 2.5rem;
     font-family: 'Kalam', cursive;
     opacity: 1;
     transition-duration: 0.1s;
     transition-property: opacity;
     border: none;
     background-color: white;
-
 }
 
-/* .btn.btn-default.regular-selection-button {
-    margin-left: 32px;
-} */
-
-.btn.btn-default.selection-button.fade, .btn.btn-default.regular-selection-button.fade {
-    opacity: 0;
-}
-
-.btn.btn-default.selection-button-meal {
-    font-size: 15px;
-    font-family: 'Kalam', cursive;
-    opacity: 1;
-}
-
-.btn.focus, .btn:focus {
-    outline: 0;
-    box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.25);
-}
-
-.back-button {
-    padding: 0;
-}
-
-.home-page-cont .selection-images, .second-page-cont .selection-images, .selection-cont .selection-images, .third-page-cont .selection-images {
-    height: 600px;
-    width: 600px;
+.three-choice-card {
+    height: 47vh;
+    width: 100vw;
     object-fit: cover;
-    border-radius: 10%;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
-.fourth-page-cont .selection-images {
-    height: 180px;
-    width: 180px;
-    object-fit: cover;
-    border-radius: 5%;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-}
-
-.back-button-img {
-    font-family: "Kalam";
-    font-size: 150px;
-    color: rgba(0, 0, 0, 0.438);
-}
-
-.back-button-img:hover {
-    color: #6dc82a
-}
-
-.btn-check:active.btn, .btn-check:checked.btn, .btn.active, .btn.show, .btn:active {
-    border: 0;
-}
-
-.pantry-page-cont {
-    max-height: 702px;
-    position: relative; bottom: 30px;
-    background: url("https://res.cloudinary.com/meal-creator/image/upload/v1662276036/page-images/pantry.jpg") no-repeat center center fixed;
-    background-size: cover;
-}
-
-.list-page-cont {
-    max-height: 702px;
-    position: relative; bottom: 30px;
-    background: url("https://res.cloudinary.com/meal-creator/image/upload/v1662276045/page-images/shopping-list.jpg") no-repeat center center fixed;
-    background-size: cover;
-}
-
-.meals-page-cont {
-    max-height: 702px;
-    position: relative; bottom: 30px;
-    background: url("https://res.cloudinary.com/meal-creator/image/upload/v1662276037/page-images/meals.jpg") no-repeat center center fixed;
-    background-size: cover;
-}
-
-.form-container {
-    max-width: fit-content;
-}
-
-.meal-item-edit {
-    width: 700px
-}
-
-.meals-form-cont {
-    max-height: 740px;
-    position: relative; bottom: 30px;
-    background: url("https://res.cloudinary.com/meal-creator/image/upload/v1662276037/page-images/meals.jpg") no-repeat center center fixed;
-    background-size: cover;
-}
-
-.meals-edit-cont {
-    max-height: 740px;
-    position: relative; bottom: 30px;
-    background: url("https://res.cloudinary.com/meal-creator/image/upload/v1662276037/page-images/meals.jpg") no-repeat center center fixed;
-    background-size: cover;
-}
-
-.meals-category-row {
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-
+/* ----------------------------------------------------- PANTRY/LIST/MEALS OVERLAY ---------------------------------------------------------- */
 .overlay {
-    position: relative; top: 20px;
-    margin-top: 30px;
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 1100px;
-    height: 650px;
+    position: relative; top: 2vh;
+    height: 85vh;
+    width: 90vw;
+    margin-top: 4vh;
+    margin-left: auto; margin-right: auto; /*centers overlay*/
     background-color: rgba(255, 255, 255, 0.856);
     border-radius: 1%;
 }
 
 .pantry-menu-cont, .list-menu-cont, .meals-menu-cont {
-    color: black;
-    position: relative;
-    bottom: 640px;
-    margin-top: 30px;
+    height: 80vh;
+    width: 85vw;
+    margin-top: 4vh;
+    position: relative; bottom: 84vh; /* moves container up to display over overlay */
     border-bottom: 1px solid black;
-    height: 600px;
-    width: 1050px;
+}
+.pantry-page-cont {
+    height: 90vh;
+    position: relative; bottom: 2vh;
+    background: url("https://res.cloudinary.com/meal-creator/image/upload/v1662276036/page-images/pantry.jpg") no-repeat center center fixed;
+    background-size: cover;
 }
 
-.flash-container {
-    margin-top: 20px;
-    max-width: 1200px;
+.list-page-cont {
+    height: 90vh;
+    position: relative; bottom: 2vh;
+    background: url("https://res.cloudinary.com/meal-creator/image/upload/v1662276045/page-images/shopping-list.jpg") no-repeat center center fixed;
+    background-size: cover;
 }
 
-.alert-heading {
-    font-size: 40px;
-}
-.alert-custom, .alert-custom-long {
-    font-size: 20px;
-    height: 55px;
-    width: 1030px;
-    background-color:#6aff001f;
-    color:rgba(0, 0, 0, 0.779);
-  }
-
-  .alert-custom-long {
-    width: 1300px;
-  }
-
-.close-custom, .close-custom-long {
-position: absolute; left: 990px;
-background-color: #ffffff00;
-border: none;
-font-size: 40px;
-height: fit-content;
+.meals-page-cont {
+    height: 90vh;
+    position: relative; bottom: 2vh;
+    background: url("https://res.cloudinary.com/meal-creator/image/upload/v1662276037/page-images/meals.jpg") no-repeat center center fixed;
+    background-size: cover;
 }
 
-.close-custom-long {
-    position: absolute; left: 1230px;
-}
-
-.alert-error-flash-custom {
-    font-size: 20px;
-    height: 55px;
-    width: 1030px;
-    background-color:#ff00002f;
-    color:rgba(0, 0, 0, 0.779);
-}
-
-.alert-error-custom {
-    font-size: 30px;
-    height: fit-content;
-    text-align: center;
-    width: auto;
-    margin-top: 40px;
-    background-color:#ff000056;
-    color:rgba(0, 0, 0, 0.779);
-}
-
-
+/* --------------------------------------------------------- PANTRY/LIST MENU --------------------------------------------------------------- */
 .list-menu-cont {
     font-family: "Indie Flower";
 }
 
+/* ------------------------ CATEGORY ROW ------------------------ */
 .category-row {
-    height: 65px;
+    height: 6vh;
     text-align: center;
     border-top: 1px solid black;
     border-bottom: 1px solid black;
 }
 
 .category-col   {
-    font-size: 35px;
-    margin: 0 45px 0 5px;
+    font-size: 30px;
+    /* margin: 0 45px 0 5px; */
 }
 
-.category-icon {
-    position: relative; left: 15px;
-    height: 30px;
-    width: 30px;
+.list-item-bar {
+    height: 6vh;;
+    /* margin-top: 2vh; */
+    width: 84vw;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.297);
+    border-top: 1px solid rgba(0, 0, 0, 0.297);
 }
 
-.add-ingredient-button {
-    font-size: 23px !important;
-    padding-left: 8px; padding-right: 8px;
+.search-category {
+    /* position: relative; left: 20px; */
+    background-color: transparent;
+    border: none;
+    /* padding-left: 10px; */
+    width: 15vw;
+    height: 40px;
+    font-size: 20px; 
+}
+
+.search-category:focus {
+    outline: none;
+    caret-color: rgba(0, 0, 0, 0.274);
 }
 
 .category-row .add-button {
+    width: 30px; height: 30px;
+    margin-right: 2vw;
     background-color: transparent;
     border: none;
-    min-width: 30px;
-    min-height: 30px;
     background-size: cover;
-    position: relative; left: 25px;
+    /* position: relative; left: 25px; */
+}
+
+.category-row .add-button:focus {
+	outline:none;
+	box-shadow: none;
+}
+
+.category-icon {
+    margin-left: 15px;
+    height: 30px;
+    width: 30px;
 }
 
 .add-pantry-button {
@@ -441,208 +338,15 @@ height: fit-content;
 	box-shadow: none;
 }
 
-.add-meal-txt {
-    text-align: center;
-    font-size: 25px;
-    padding-left: 10px;
-}
-
-.add-meal-button {
-    width: 170px;
-    height: 40px;
-    border-radius: 0%;
-    background-color: rgba(128, 128, 128, 0.471);
-    position: relative; left: 60px;
-}
-
-.add-meal-btn {
-    width: 30px;
-    height: 30px;
-    border: none;
-    background: url("https://res.cloudinary.com/meal-creator/image/upload/v1662276052/icons/add-meal.png");
-    background-size: cover;
-    position: absolute; left: 970px;
-}
-
-.add-meal-button:focus, .add-meal-btn:focus {
-    background-color: #6cc82a47;
-    outline:none;
-	box-shadow: none;
-}
-
-.search-btn:focus {
-    outline: none;
-	box-shadow: none;
-}
-
-.category-row .add-button:focus {
-	outline:none;
-	box-shadow: none;
-}
-
-.search-category {
-    position: relative; left: 20px;
-    background-color: transparent;
-    border: none;
-    padding-left: 10px;
-    max-width: 200px;
-    height: 40px;
-    font-size: 25px; 
-}
-
-.search-category:focus {
-    outline: none;
-    caret-color: rgba(0, 0, 0, 0.274);
-}
-
-.meal-search-category:focus {
-    outline: none;
-    caret-color: rgba(0, 0, 0, 0.274);
-    box-shadow: 0 0 0 .25rem rgba(8, 166, 71, 0.25) !important;
-}
-
-.meal-search-category {
-    position: relative; left: 20px;
-    background-color: white;
-    border: 1px solid white;
-    border-left: 15px solid white;
-    width: 500px;
-    height: 40px;
-    font-size: 25px; 
-}
-
-.meal-img {
-    margin-left: 8px;
-    width: 90px;
-    height: 90px;
-    object-fit: cover;
-    border-radius: 10%;
-}
-
-.meal-img-col {
-    max-width: 100px;
-}
-
-.meal-search-col {
-    max-width: 700px;
-}
-
-.search-btn {
-    width: 30px;
-    height: 30px;
-    border: none;
-    background: url("https://res.cloudinary.com/meal-creator/image/upload/v1662276054/icons/search.png");
-    background-size: cover;
-    position: absolute; left: 470px;
-}
-
-.search-list-category {
-    position: relative; left: 28px;
-}
-
-.list-item-bar {
-    height: 55px;
-    margin-top: 5px;
-    width: 1060px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.297);
-}
-
-.meal-list-item.bar-1 {
-    position: relative; top: 10px; left: 20px;
-    height: 105px;
-    margin-top: 5px;
-    width: 985px;
-    background-color:rgba(0, 0, 0, 0.13);
-    transition: background-color 1s ease-out;
-}
-
-.meal-list-item.bar-2 {
-    position: relative; top: 10px; left: 20px;
-    height: 105px;
-    margin-top: 5px;
-    max-width: 985px;
-    background-color:#6aff001f;
-    transition: background-color 1s ease-out;
-}
-
-#bg-color-change {
-    transition: background-color 1s ease-in;
-    background-color: #fbf8f8;
-}
-
-.cart-btn {
-    width: 30px;
-    height: 30px;
-    border: none;
-    padding: 15px !important;
-    background: url("https://res.cloudinary.com/meal-creator/image/upload/v1662276054/icons/saved%20items.png");
-    background-size: cover;
-
-}
-
-.trash-btn, .trash-btn-saved {
-    width: 30px;
-    height: 30px;
-    padding: 15px !important;
-    border: none;
-    background: url("https://res.cloudinary.com/meal-creator/image/upload/v1662276054/icons/trash.png");
-    background-size: cover;
-    display: none;
-}
-
-.trash-btn-saved {
-    position: absolute; left: 895px;
-}
-
-.enter-btn, .enter-btn-saved, .enter-btn-list {
-    width: 30px;
-    height: 30px;
-    border: none;
-    background: url("https://res.cloudinary.com/meal-creator/image/upload/v1662276054/icons/enter.png");
-    background-size: cover;
-    display: none;
-    position: relative;
-}
-
-.enter-btn-saved {
-    position: absolute; left: 830px;
-}
-
-.enter-btn-list {
-    position: absolute; left: 880px;
-}
-
-.item-edit {
-    height: 50px;
-    width: 900px;
-    padding-left: 10px;
-    background-color: transparent;
-    color: black;
-    border: none;
-    font-size: 25px;
-}
-
-.meal-item-edit {
-    height: 100px;
-    min-width: 600px;
-    background-color: transparent;
-    color: black;
-    border: none;
-    font-size: 25px;
-    position: relative; left: 10px;
-    outline: 0;
-    box-shadow: none;
-}
-
-.item-edit:focus {
-    outline: 0;
+/* --------------------------- ITEM ROW --------------------------- */
+.form-container {
+    width: fit-content;
+    height: inherit;
+    padding: 0px;
 }
 
 .list-check {
-    height: 25px;
-    width: 25px;
-    position: relative;
-    left: 10px;
+    height: 25px; width: 25px;
     border-radius: 2%;
     background-color: transparent;
     border: 1px solid rgba(0, 0, 0, 0.371);
@@ -654,8 +358,6 @@ height: fit-content;
 .list-uncheck {
     height: 25px;
     width: 25px;
-    position: relative;
-    left: 10px;
     border-radius: 2%;
     background-color: transparent;
     border: 1px solid rgba(0, 0, 0, 0.371);
@@ -664,31 +366,188 @@ height: fit-content;
     background-size: cover;
 }
 
-.list-check:active {
-    box-shadow: none;
+.item-edit {
+    height: inherit;
+    width: 70vw;
+    max-width: 600px;
+    padding-left: 1.5vw;
+    background-color: transparent;
+    color: black;
+    border: none;
+    font-size: 20px;
+    
 }
 
-.ingredient-form {
-    max-width: fit-content
+#saved-item-edit {
+    width: 60vw;
+    max-width: 700px;
 }
 
-.check-col {
-    max-width: 50px;
+.add-ingredient-button {
+    font-size: 23px !important;
+    padding-left: 8px; padding-right: 8px;
 }
 
-.meal-form-category {
+.search-btn:focus {
+    outline: none;
+	box-shadow: none;
+}
+
+/* ------------------------------------------------------------------- MEAL MENU ------------------------------------------------------------- */
+
+.meal-search-category {
+    width: 50vw; height: 40px;
+    max-width: 500px; 
+    min-width: 280px;
     position: relative; left: 20px;
     background-color: white;
     border: 1px solid white;
     border-left: 15px solid white;
-    width: 350px;
+    font-size: 25px; 
+    margin-bottom: 20px;
+}
+
+.meal-search-category:focus {
+    outline: none;
+    caret-color: rgba(0, 0, 0, 0.274);
+    box-shadow: 0 0 0 .25rem rgba(8, 166, 71, 0.25) !important;
+}
+
+.search-btn {
+    width: 30px;
+    height: 30px;
+    border: none;
+    background: url("https://res.cloudinary.com/meal-creator/image/upload/v1662276054/icons/search.png");
+    background-size: cover;
+    position: relative; right: 20px; bottom: 10px;
+}
+
+.add-meal-txt {
+    text-align: center;
+    font-size: 25px;
+    padding-left: 10px;
+}
+
+.add-meal-button {
+    width: 170px;
     height: 40px;
+    border-radius: 0%;
+    background-color: rgba(128, 128, 128, 0.471);
+    margin-left: 20px;
+}
+
+.add-meal-btn {
+    width: 30px;
+    height: 30px;
+    border: none;
+    background: url("https://res.cloudinary.com/meal-creator/image/upload/v1662276052/icons/add-meal.png");
+    background-size: cover;
+    position: relative; right: 40px;
+}
+
+.add-meal-button:focus, .add-meal-btn:focus {
+    background-color: #6cc82a47;
+    outline:none;
+	box-shadow: none;
+}
+
+.meal-img {
+    margin-left: 8px;
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 10%;
+}
+
+/* .meal-img-col {
+    max-width: 100px;
+}
+
+.meal-search-col {
+    max-width: 700px;
+} */
+
+.search-list-category {
+    position: relative; left: 28px;
+}
+
+.meal-form {
+    height: inherit; width: fit-content;
+    padding: 0px;
+}
+
+.meal-list-item.bar-1 {
+    height: 15vh;
+    margin-top: 5px;
+    /* width: 90vw; */
+    background-color:rgba(0, 0, 0, 0.13);
+    transition: background-color 1s ease-out;
+}
+
+.meal-list-item.bar-2 {
+    height: 15vh;
+    margin-top: 5px;
+    /* width: 90vw; */
+    background-color:#6aff001f;
+    transition: background-color 1s ease-out;
+}
+
+.meal-item-edit {
+    height: inherit;
+    width: 60vw;
+    max-width: 450px;
+    background-color: transparent;
+    color: black;
+    border: none;
+    font-size: 25px;
+    margin-left: 10px;
+    /* position: relative; left: 10px; */
+    outline: 0;
+    box-shadow: none;
+}
+
+#bg-color-change {
+    transition: background-color 1s ease-in;
+    background-color: #fbf8f8;
+}
+
+/* ----------------------------------------------------------------- NEW MEAL MENU ----------------------------------------------------------- */
+.meal-new-form {
+    width: 80vw;
+}
+
+.meal-edit-form {
+    width: 80vw;
+}
+
+.meal-form-category {
+    min-width: 350px; height: 40px;
+    margin-bottom: 20px;
+    background-color: white;
+    border: 1px solid white;
+    border-left: 15px solid white;
     font-size: 25px; 
 }
 
 .meal-form-category:focus {
     box-shadow: none;
     outline: none;
+}
+
+.ingredient-field {
+    width: 350px; height: 40px;
+    margin-left: 20px;
+    padding-left: 5px;
+    margin-top: 10px;
+}
+
+.ingredient-form {
+    max-width: fit-content;
+    margin-top: 5px;
+}
+
+.ingredient-field:focus, .name-field:visited {
+    outline: 1px solid grey;
 }
 
 .add-ingredient-button {
@@ -700,6 +559,7 @@ height: fit-content;
     text-align: center;
     font-size: 20px;
     padding-left: 10px;
+    margin-left: 19px;
 }
 
 .add-ingredient-button:active {
@@ -708,102 +568,13 @@ height: fit-content;
 	box-shadow: none;
 }
 
-.form-header-row {
-    height: 80px;
-    min-width: 1050px;
-}
-
-.ingredient-row .tag, .edit-ingredient-row .tag {
-    font-size: 23px !important;
-    border-radius: 10%;
-    border: 1px solid white;
-    background-color: #6cc82a47;
-    padding-left: 8px; padding-right: 8px;
-    width: fit-content;
-    text-align: left;
-    height: 45px;
-}
-
-.tag.col-md-4.d-flex.align-items-center {
-    font-size: 20px;
-    border-radius: 10%;
-    border: 1px solid white;
-    background-color: #6cc82a47;
-    margin: 5px;
-    max-width: fit-content;
-    text-align: left;
-    height: 45px;
-}
-
-.ingredient-row {
-    margin-top: 15px;
-}
-
-.cancel-tag {
-    margin-left: 8px;
-    width: 30px;
-    height: 30px;
-    object-fit: cover;
-}
-
-.done-row {
-    margin-top: 35px;
-    min-width: 1045px;
-}
-
-.done-button, .cancel-button {
-    min-width: 110px;
-    height: 45px;
-    border-radius: 0%;
-    border: 1px solid white;
-    background-color: #6cc82a47;
-    text-align: center;
-    font-size: 22px;
-    padding-left: 6px;
-}
-
-.form-control {
-    display: block;
-    width: 500px;
-    padding: 0.375rem 0.75rem;
-    font-size: 20px;
-    font-weight: 400;
-    line-height: 1.5;
-    color: #212529;
-    background-color: #fff;
-    background-clip: padding-box;
-    border: 1px solid #ced4da;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    border-radius: 0.375rem;
-    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-    position: relative; left: 10px;
-}
-
-.file-form-button.form-control:focus, .file-form-button.form-control:visited {
-    border-color: #6cc82a75 !important;
-    box-shadow: 0 0 0 .25rem rgba(8, 166, 71, 0.25) !important;
-}
-
-.choose-file-btn {
-    max-width: 600px;
-}
-
-.meal-form-category.name-field:focus, .meal-form-category.ingredient-field:focus {
-    box-shadow: 0 0 0 .25rem rgba(8, 166, 71, 0.25) !important; 
-}
-
-.ingredient-field:focus, .name-field:visited {
-    outline: 1px solid grey;
-}
-
-.matched-meal-txt {
-    font-size: 25px;
-}
-
 .choose-tag {
     font-size: 25px;
+    width: 80vw;
+}
+
+.tag-text {
+    margin-left: 10px;
 }
 
 .meal.tag-list-check, .meal-edit.tag-list-check  {
@@ -832,13 +603,257 @@ height: fit-content;
     box-shadow: none;
 }
 
-.tag-text {
-    margin-left: 10px;
-}
-
 .tag-row {
     margin-top: 20px;
     min-width: 1050px;
+}
+
+.name-field {
+    margin-top: 20px;
+    margin-left: 20px;
+    padding-left: 5px;
+}
+
+.done-row {
+    margin-top: 35px;
+    width: 80vw;
+}
+
+.done-button, .cancel-button {
+    min-width: 110px;
+    height: 45px;
+    border-radius: 0%;
+    border: 1px solid white;
+    background-color: #6cc82a47;
+    text-align: center;
+    font-size: 22px;
+    margin-left: 10vw;
+    margin-right: 10vw;
+}
+
+
+
+/* ------------------------------------------------------------------ FLASH ALERTS ----------------------------------------------------------- */
+.flash-container {
+    margin-top: 20px;
+    width: 1200px;
+}
+
+.alert-heading {
+    font-size: 40px;
+}
+
+.alert-custom, .alert-custom-long {
+    font-size: 20px;
+    height: 55px;
+    width: 100vw;
+    background-color:#6aff001f;
+    color:rgba(0, 0, 0, 0.779);
+}
+
+.close-custom, .close-custom-long {
+position: absolute; left: 80vw;
+background-color: #ffffff00;
+border: none;
+font-size: 40px;
+height: fit-content;
+}
+
+.close-custom-long {
+    position: absolute; left: 1230px;
+}
+
+.alert-error-flash-custom {
+    font-size: 20px;
+    height: 55px;
+    width: 100vw;
+    background-color:#ff00002f;
+    color:rgba(0, 0, 0, 0.779);
+}
+
+.alert-error-custom {
+    font-size: 30px;
+    height: fit-content;
+    text-align: center;
+    width: auto;
+    margin-top: 40px;
+    background-color:#ff000056;
+    color:rgba(0, 0, 0, 0.779);
+}
+
+/* .btn.btn-default.regular-selection-button {
+    margin-left: 32px;
+} */
+
+.btn.btn-default.selection-button.fade, .btn.btn-default.regular-selection-button.fade {
+    opacity: 0;
+}
+
+.btn.btn-default.selection-button-meal {
+    font-size: 15px;
+    font-family: 'Kalam', cursive;
+    opacity: 1;
+}
+
+.btn.focus, .btn:focus {
+    outline: 0;
+    box-shadow: none;
+}
+
+
+.btn-check:active.btn, .btn-check:checked.btn, .btn.active, .btn.show, .btn:active {
+    border: 0;
+}
+
+.meals-form-cont {
+    max-height: 740px;
+    position: relative; bottom: 30px;
+    background: url("https://res.cloudinary.com/meal-creator/image/upload/v1662276037/page-images/meals.jpg") no-repeat center center fixed;
+    background-size: cover;
+}
+
+.meals-edit-cont {
+    max-height: 740px;
+    position: relative; bottom: 30px;
+    background: url("https://res.cloudinary.com/meal-creator/image/upload/v1662276037/page-images/meals.jpg") no-repeat center center fixed;
+    background-size: cover;
+}
+
+
+.cart-btn {
+    width: 30px;
+    height: 30px;
+    border: none;
+    padding: 15px !important;
+    background: url("https://res.cloudinary.com/meal-creator/image/upload/v1662276054/icons/saved%20items.png");
+    background-size: cover;
+    margin-left: 30px;
+}
+
+.trash-btn, .trash-btn-saved, .trash-btn-meal {
+    width: 30px;
+    height: 30px;
+    padding: 15px !important;
+    margin-left: 5px;
+    border: none;
+    background: url("https://res.cloudinary.com/meal-creator/image/upload/v1662276054/icons/trash.png");
+    background-size: cover;
+    display: none;
+}
+
+.trash-btn-meal {
+    margin-left: 40px;
+}
+
+.enter-btn, .enter-btn-saved, .enter-btn-list {
+    width: 30px;
+    height: 30px;
+    border: none;
+    background: url("https://res.cloudinary.com/meal-creator/image/upload/v1662276054/icons/enter.png");
+    background-size: cover;
+    display: none;
+    position: relative;
+}
+
+.item-edit:focus {
+    outline: 0;
+}
+
+.list-check:active {
+    box-shadow: none;
+}
+
+.check-col {
+    max-width: 50px;
+    margin-left: 5px;
+}
+
+.form-header-row {
+    height: 80px;
+    min-width: 1050px;
+}
+
+.ingredient-row .tag, .edit-ingredient-row .tag {
+    font-size: 23px !important;
+    border-radius: 10%;
+    border: 1px solid white;
+    background-color: #6cc82a47;
+    padding-left: 8px; padding-right: 8px;
+    width: fit-content;
+    text-align: left;
+    height: 45px;
+}
+
+.edit-ingredient-row {
+    margin-left: 10px;
+}
+
+.tag.col-md-4.d-flex.align-items-center {
+    font-size: 20px;
+    border-radius: 10%;
+    border: 1px solid white;
+    background-color: #6cc82a47;
+    margin: 5px;
+    max-width: fit-content;
+    text-align: left;
+    height: 45px;
+}
+
+.ingredient-row {
+    margin-top: 15px;
+    margin-left: 10px;
+}
+
+.cancel-tag {
+    margin-left: 8px;
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+}
+
+.form-control {
+    display: block;
+    width: 500px;
+    padding: 0.375rem 0.75rem;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 0.375rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    position: relative; left: 10px;
+}
+
+.file-form-button.form-control:focus, .file-form-button.form-control:visited {
+    border-color: #6cc82a75 !important;
+    box-shadow: 0 0 0 .25rem rgba(8, 166, 71, 0.25) !important;
+}
+
+
+.file-form-button {
+    margin-left: 10px;
+}
+
+.choose-file-btn {
+    max-width: 600px;
+}
+
+.meal-form-category.name-field:focus, .meal-form-category.ingredient-field:focus {
+    box-shadow: 0 0 0 .25rem rgba(8, 166, 71, 0.25) !important; 
+}
+
+.ingredient-field:focus, .name-field:visited {
+    outline: 1px solid grey;
+}
+
+.matched-meal-txt {
+    font-size: 25px;
 }
 
 #regular-tag {
@@ -881,8 +896,299 @@ height: fit-content;
     background-size: cover; 
 }
 
-@media screen and (max-width: 400px) {
-    .body {
-        display: none;
+/* ------------------------------------------------------------ SMALLER SCREEN CSS ----------------------------------------------------------- */
+@media screen and (max-width: 767px) {
+    .card-header {
+        font-size: 20px;
+    }
+
+    .two-choice-card {
+        height: 34vh;
+        width: 100vw;
+    }
+
+    .three-choice-card {
+        height: 19vh;
+        width: 100vw;
+    }
+
+    .card-group {
+        margin: 2vh;
+    }
+
+    .nav-link {
+        font-family: 'Athiti';
+        color: black;
+        width: 80vw !important;
+        border-radius: 0%;
+    } 
+/* 
+    #navbar {
+        height: 10vm !important;
+    } */
+
+    .choice-btn {
+        font-size: 1.5rem;
+    }
+
+    .card {
+        margin-bottom: 10px !important;
+    }
+
+    .card-body {
+        padding: 2%;
+    }
+
+    .category-row {
+        height: 5.5vh;
+        text-align: center;
+        border-top: 1px solid black;
+        border-bottom: 1px solid black;
+    }
+
+    .category-col   {
+        font-size: 25px;
+        height: 5.5vh;
+    }
+
+    .list-item-bar {
+        height: 5.5vh;
+        width: 84vw;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.297);
+        border-top: 1px solid rgba(0, 0, 0, 0.297);
+    }
+
+    .item-edit {
+        width: 50vw;
+    }
+
+    #saved-item-edit {
+        width: 35vw;
+    }
+
+    .search-category {
+        background-color: transparent;
+        border: none;
+        /* padding-left: 15px; */
+        width: 130px;
+        height: 40px;
+        font-size: 20px; 
+    }
+
+    .add-pantry-button {
+        width: 25px !important;
+        height: 25px !important;
+        background: url("https://res.cloudinary.com/meal-creator/image/upload/v1662276052/icons/add-pantry.png");
+    }
+
+    .cart-btn {
+        width: 25px !important;
+        height: 25px !important;
+        border: none;
+        padding: 0px !important;
+        background: url("https://res.cloudinary.com/meal-creator/image/upload/v1662276054/icons/saved%20items.png");
+        background-size: cover;
+    }
+
+    .meal-search-category {
+        font-size: 20px; 
+    }
+
+    .add-meal-button {
+        width: 130px;
+    }
+
+    .add-meal-txt {
+        font-size: 20px;
+    }
+
+    .add-meal-btn {
+        width: 25px; height: 25px;
+        right: 35px;
+    }
+
+    .meal-list-item.bar-1 {
+        height: 10vh;
+        margin-top: 5px;
+        width: 90vw;
+        background-color:rgba(0, 0, 0, 0.13);
+        transition: background-color 1s ease-out;
+    }
+    
+    .meal-list-item.bar-2 {
+        height: 10vh;
+        margin-top: 5px;
+        width: 90vw;
+        background-color:#6aff001f;
+        transition: background-color 1s ease-out;
+    }
+
+    .ingredient-field, .add-ingredient-button, .name-field, .form-control {
+        font-size: 18px !important;
+    }
+
+    .meal-item-edit {
+        font-size: 20px;
+        width: 35vw;
+    }
+
+    .meal-img {
+        width: 60px; height: 60px;
+    }
+
+    .tag-text {
+        margin-left: 10px;
+        font-size: 15px;
+    }
+
+    .meal.tag-list-check, .meal-edit.tag-list-check  {
+        height: 25px;
+        width: 25px;
+    }
+
+    .trash-btn-meal, .trash-btn, .trash-btn-saved {
+        margin-left: 30px;
+        width: 25px !important; height: 25px !important;
+        padding: 12.5px !important;
+    }
+
+    .enter-btn, .enter-btn-list, .enter-btn-saved {
+        width: 25px !important; height: 25px !important;
+        padding: 12.5px !important;
+    }
+
+    .done-button, .cancel-button {
+        margin-left: 5vw;
+        margin-right: 5vw;
+        font-size: 20px;
+    }
+
+    .card.login-reg {
+        height: 30%;
+        margin-bottom: 3vh;
+    }
+
+    .card-body.login-reg {
+        padding-top: 25px;
+    }
+
+    .user-input-fields {
+        font-size: 18px;
+    }
+
+    .user-btn-login, .reg-form-user-btn-reg {
+        width: 70px;
+        height: 30px;
+        background-color:#49a705;
+        font-size: 18px;
+        display: flex; align-items: center; justify-content: center;
+        margin-top: 5px; margin-left: 15px;
+    }
+    
+    .user-btn-reg, .reg-form-user-btn-login  {
+        background-color:rgb(111, 111, 111);
+        width: fit-content;
+        height: fit-content;
+        margin-left: 13px;
+        margin-right: 20px;
+        margin-top: 10px;
+        font-size: 18px;
+    }
+
+    .user-input-fields {
+        width: 90px;
+        height: 30px;
+        font-size: 15px !important;
+        margin-right: 20px;
+    }
+
+    .user-input-labels {
+        font-size: 16.5px;
+    }
+
+    .alert-custom, .alert-custom-long {
+        font-size: 18px;
+        height: 45px;
+    }
+
+    .alert-error-flash-custom {
+        font-size: 18px;
+        height: 45px;
+    }
+    
+    .close-custom, .close-custom-long {
+    position: absolute; left: 75vw;
+    background-color: #ffffff00;
+    border: none;
+    font-size: 35px;
+    height: fit-content;
+    }
+}
+
+@media screen and (min-width: 790px) {
+    .nav-item {
+        font-family: 'Athiti';
+        color: black;
+        font-size: 1em;
+        width: 100px !important;
+    } 
+}
+
+
+@media screen and (min-width: 1000px) {
+    .nav-item {
+        font-family: 'Athiti';
+        color: black;
+        font-size: 1.4em;
+        width: fit-content !important;
+    } 
+
+    /* #navbar {
+        height: 5vm !important;
+    } */
+
+    .category-row {
+        height: 7.5vh;
+        width: 84vw;
+        text-align: center;
+        border-top: 1px solid black;
+    }
+
+    .list-item-bar {
+        height: 7.5vh;
+        /* margin-top: 2vh; */
+        width: 84vw;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.297);
+    }
+
+    .category-col   {
+        font-size: 35px;
+        /* margin: 0 45px 0 5px; */
+    }
+
+    .search-category {
+        /* position: relative; left: 20px; */
+        background-color: transparent;
+        border: none;
+        /* padding-left: 10px; */
+        width: 15vw;
+        height: 40px;
+        font-size: 25px; 
+    }
+
+    .item-edit {
+        height: inherit;
+        width: 70vw;
+        max-width: 1200px;
+        /* padding-left: 2vw; */
+        background-color: transparent;
+        color: black;
+        border: none;
+        font-size: 25px;
+    }
+
+    .meal-item-edit {
+        width: 60vw;
+        max-width: 1064px;
     }
 }
