@@ -59,7 +59,7 @@ store.on("error", function (e) {
     console.log("SESSION STORE ERROR")
 })
 
-const secret = process.env.secret
+const secret = process.env.secret || "fEdfg23@fgRTh6^%$ttdfVC234"
 
 const sessionConfig = {
     store,
