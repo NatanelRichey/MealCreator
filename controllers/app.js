@@ -7,6 +7,8 @@ const choiceArr = [["Healthy","Regular"],["Breakfast","Lunch","Dinner"],["Dairy"
 
 export const renderHome = async (req, res) => {
     res.render('/login')
+    matchedMeals = []
+    choices = []
 }
 
 export const renderApp = async (req, res) => {
@@ -56,7 +58,7 @@ async function findMatchedMeal (choices, curUser) {
             if (ingredients.includes(ingredient.toLowerCase().slice(0,-1))) ingMatch = true
         }
         if (healthMatch && mealMatch && genreMatch && ingMatch) {
-            for (let i = 0; i < 10; i++) { matchedMeals.push(meal)}
+            matchedMeals.push(meal)
         }
         healthMatch = false; mealMatch = false; genreMatch = false; ingMatch = true; 
     }

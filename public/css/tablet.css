@@ -73,16 +73,16 @@ form {
     align-items: flex-start;
     width:100vw
 } */
-
-#logo-name-button {
-    font-family: 'Nothing You Could Do', cursive;
-    position: relative; left: 10px;
-}
-
 #brand {
     color: black;
     position: relative; top: 17px; right: 8px;
     font-size: 1rem;
+}
+
+#logo-name-button {
+    font-family: 'Nothing You Could Do', cursive;
+    position: relative; left: 10px;
+    width: fit-content;
 }
 
 .navbar-toggler {
@@ -120,6 +120,7 @@ form {
     background-color: rgba(128, 128, 128, 0.471);
     transition: background-color .3s ease-in; 
 }
+
 
 /* .nav-item {
     max-width: fit-content;
@@ -230,21 +231,21 @@ form {
 }
 .pantry-page-cont {
     height: 90vh;
-    position: relative; bottom: 2vh;
+    position: relative; bottom: 4vh;
     background: url("https://res.cloudinary.com/meal-creator/image/upload/v1662276036/page-images/pantry.jpg") no-repeat center center fixed;
     background-size: cover;
 }
 
 .list-page-cont {
     height: 90vh;
-    position: relative; bottom: 2vh;
+    position: relative; bottom: 4vh;
     background: url("https://res.cloudinary.com/meal-creator/image/upload/v1662276045/page-images/shopping-list.jpg") no-repeat center center fixed;
     background-size: cover;
 }
 
 .meals-page-cont {
     height: 90vh;
-    position: relative; bottom: 2vh;
+    position: relative; bottom: 4vh;
     background: url("https://res.cloudinary.com/meal-creator/image/upload/v1662276037/page-images/meals.jpg") no-repeat center center fixed;
     background-size: cover;
 }
@@ -643,7 +644,29 @@ form {
     font-size: 40px;
 }
 
-.alert-custom, .alert-custom-long {
+.btn-close {
+    padding: 16px !important
+}
+
+.btn-close:focus {
+    box-shadow: none;
+}
+
+#flash-error {
+    background-color: #ff00002f;
+    border-color: #ff00005a;
+    color: black;
+    font-size: 1.2em;
+}
+
+#flash-success {
+    background-color: #6aff001f;
+    border-color: #6cc82a82;
+    color: black;
+    font-size: 1.2em;
+}
+
+/* .alert-custom, .alert-custom-long {
     font-size: 20px;
     height: 55px;
     width: 100vw;
@@ -679,7 +702,7 @@ height: fit-content;
     margin-top: 40px;
     background-color:#ff000056;
     color:rgba(0, 0, 0, 0.779);
-}
+} */
 
 /* .btn.btn-default.regular-selection-button {
     margin-left: 32px;
@@ -933,9 +956,15 @@ height: fit-content;
         width: 80vw !important;
         border-radius: 0%;
     } 
+
+    #logo-name-button {
+        font-family: 'Nothing You Could Do', cursive;
+        position: relative; left: 10px;
+        max-width: fit-content;
+    }
 /* 
     #navbar {
-        height: 10vm !important;
+        max-height: 45px !important;
     } */
 
     .choice-btn {
@@ -1156,6 +1185,16 @@ height: fit-content;
         width: 100vw;
         padding-right: 0px;
         margin-right: 0px; margin-left: 0px;
+    }
+
+    #flash-error, #flash-success {
+        font-size: 1em;
+        height: 40px;
+        padding-top: 11px;
+    }
+
+    .btn-close {
+        padding: 12px !important;
     }
 }
 
