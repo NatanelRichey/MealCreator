@@ -1,4 +1,6 @@
 // --------------------------------------------------------------- TO ADD TO DB ----------------------------------------------------------
+console.log("GLOBAL.JS FILE CONNECTED")
+
 let choices = {
     healthChoice:"",
     mealChoice:"",

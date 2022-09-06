@@ -380,7 +380,7 @@ form {
 
 #saved-item-edit {
     width: 60vw;
-    max-width: 700px;
+    /* max-width: 700px; */
 }
 
 .add-ingredient-button {
@@ -693,6 +693,17 @@ height: fit-content;
     font-size: 15px;
     font-family: 'Kalam', cursive;
     opacity: 1;
+    border-radius: 5%;
+    background-color: white;
+}
+
+.selection-images {
+    border-radius: 5%;
+    width: 18vw;
+}
+
+.selection-col {
+    width: 20vw;
 }
 
 .btn.focus, .btn:focus {
@@ -1123,6 +1134,29 @@ height: fit-content;
     font-size: 35px;
     height: fit-content;
     }
+
+    .btn.btn-default.selection-button-meal {
+        font-size: 12px;
+        font-family: 'Kalam', cursive;
+        opacity: 1;
+        border-radius: 5%;
+        background-color: white;
+    }
+    
+    .selection-images {
+        border-radius: 5%;
+        width: 100vw;
+    }
+    
+    .selection-col {
+        width: 80vw;
+    }
+
+    .matched-meal-row {
+        width: 100vw;
+        padding-right: 0px;
+        margin-right: 0px; margin-left: 0px;
+    }
 }
 
 @media screen and (min-width: 790px) {
@@ -1186,6 +1220,11 @@ height: fit-content;
         border: none;
         font-size: 25px;
     }
+/* 
+    #saved-item-edit.item-edit {
+        max-width: 100vh !important;
+        width: 1000px !important;
+    } */
 
     .meal-item-edit {
         width: 60vw;

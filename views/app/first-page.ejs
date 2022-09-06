@@ -7,7 +7,7 @@
   <div class="row justify-content-around card-group">
     <% for (choice of choiceArr[0]) { %>
     <div class="col-11 col-md-5">
-      <div class="card shadow pt-1">
+      <div class="<%=choice.toLowerCase()%> card shadow pt-1">
         <form action="/app/<%=choice%>" method="post">
           <button type="submit" class="choice-btn">
             <img type="submit" class="two-choice-card" src="https://res.cloudinary.com/meal-creator/image/upload/v1662276033/page-images/<%=choice.toLowerCase()%>.jpg">

@@ -17,6 +17,7 @@ export const renderApp = async (req, res) => {
 
 export const processChoice = async (req, res) => {
     const choice = req.params.choice
+    console.log("CHOICE...", choice)
     const curUsername = res.locals.currentUser.username
     if (!choices.includes(choice.toLowerCase())) choices.push(choice.toLowerCase())
     if (choiceArr[0].includes(choice)){
@@ -28,19 +29,21 @@ export const processChoice = async (req, res) => {
         await findMatchedMeal(choices, curUsername)
         res.render('app/filtered-page', { matchedMeals })
     }
+    console.log("CHOICES...", choices)
 }
 
 async function findMatchedMeal (choices, curUser) {
-    console.log(curUser)
+    console.log("CUR USER...", curUser, "CHOICES...", choices)
     let healthMatch = false, mealMatch = false, genreMatch = false, ingMatch = true
     const meals = await Meals.find({owner:curUser})
-    console.log(meals)
+    // console.log("MEALS...", meals)
     const pantryItems = await Pantry.find({inStock:true, owner:curUser})
-    console.log(pantryItems)
+    // console.log(pantryItems)
     for (let meal of meals) {
         const sortedTags = sortTags(meal.tags)
-        console.log(sortedTags)
+        console.log("SORTED TAGS...", sortedTags)
         for (let ch of choices) {
+            ch = ch.toLowerCase()
             if (sortedTags["healthTags"].includes(ch)) healthMatch = true
             if (sortedTags["mealTags"].includes(ch)) mealMatch = true
             if (sortedTags["genreTags"].includes(ch)) genreMatch = true
@@ -53,16 +56,18 @@ async function findMatchedMeal (choices, curUser) {
             if (ingredients.includes(ingredient.toLowerCase().slice(0,-1))) ingMatch = true
         }
         if (healthMatch && mealMatch && genreMatch && ingMatch) {
-            matchedMeals.push(meal)
+            for (let i = 0; i < 10; i++) { matchedMeals.push(meal)}
         }
         healthMatch = false; mealMatch = false; genreMatch = false; ingMatch = true; 
-        console.log("test:", matchedMeals)
     }
 }
 
 function sortTags(tags) {
     let sortedTags = {"healthTags":[], "mealTags":[], "genreTags":[]}
+    console.log("TAGS...", tags)
     for (let tag of tags) {
+        console.log("TAG...", tag)
+        tag = tag.toLowerCase()
         if (tag === "healthy" || tag === "regular") sortedTags["healthTags"].push(tag)
         else if (tag === "breakfast" || tag === "lunch" || tag === "dinner") sortedTags["mealTags"].push(tag)
         else if (tag === "dairy" || tag === "parve" || tag === "meaty") sortedTags["genreTags"].push(tag)

@@ -1,6 +1,5 @@
-const homePage = document.querySelector('.home-page-cont')
-const healthyButton = document.querySelector("#healthy-button")
-const regularButton = document.querySelector("#regular-button")
+const healthyButton = document.querySelector(".healthy")
+const regularButton = document.querySelector(".regular")
 
 healthyButton.addEventListener('click', function () {
     location.href = "/second-page"

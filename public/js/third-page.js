@@ -1,8 +1,6 @@
-const thirdPage = document.querySelector('.third-page-cont')
-const dairyButton = document.querySelector("#dairy-button")
-const prvButton = document.querySelector("#prv-button")
-const meatButton = document.querySelector("#meat-button")
-const backButtonGnr = document.querySelector("#back-button-genre")
+const dairyButton = document.querySelector(".dairy")
+const prvButton = document.querySelector(".parve")
+const meatButton = document.querySelector(".meaty")
 
 dairyButton.addEventListener('click', function () {
     choices.genreChoice = "dairy"
@@ -23,11 +21,6 @@ meatButton.addEventListener('click', function () {
     location.href = "/filtered-page"
     findMatchedMeal()
     addMealToPage()
-})
-
-backButtonGnr.addEventListener('click', function () {
-    choices.mealChoice = ""
-    location.href = "/second-page"
 })
 
 function findMatchedMeal () {
