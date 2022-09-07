@@ -27,6 +27,10 @@ export const processChoice = async (req, res) => {
         }
     else if (choiceArr[1].includes(choice)) {
         res.render('app/third-page', { choiceArr })}
+    else if (choice === "suprise") {
+        await findMatchedMeal(["Healthy","Regular","Breakfast","Lunch","Dinner","Dairy","Parve","Meaty"], curUsername)
+        res.render('app/filtered-page', { matchedMeals })
+    }
     else {
         await findMatchedMeal(choices, curUsername)
         res.render('app/filtered-page', { matchedMeals })

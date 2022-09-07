@@ -1,7 +1,7 @@
 import Pantry from "../models/pantry.js"
 import ShoppingList from "../models/shopping-list.js"
 
-const categories = ["Vegetables", "Fruits", "Grains Pasta", "Dairy", "Meat Poultry", "Fish Eggs", "Fats Oils", "Condiments", "Freezer", "Baking", "Nuts Snacks", "Miscellaneous", "Saved Items"]
+const shoppingCategories = ["Vegetables", "Fruits", "Grains Pasta", "Dairy", "Meat Poultry", "Fish Eggs", "Fats Oils", "Condiments", "Freezer", "Baking", "Nuts Snacks", "Miscellaneous", "Saved Items"]
 const twoWordCats = {"Grains Pasta":"Grains & Pasta", "Fish Eggs":"Fish & Eggs", "Fats Oils":"Fats & Oils", "Meat Poultry":"Meat & Poultry", "Nuts Snacks":"Nuts & Snacks"}
 
 export const renderList = async (req, res) => {

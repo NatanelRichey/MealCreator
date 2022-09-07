@@ -9,7 +9,7 @@ let tags = []
 export const renderMeals =  async (req, res) => {
     const curUsername = res.locals.currentUser.username
     await Meals.deleteMany({confirmed: false, owner:curUsername})
-    const meals = await Meals.find({owner:curUsername})
+    const meals = await Meals.find({owner:curUsername}).sort({mealName:1})
     res.render('meal/meals', { meals })
 }
 

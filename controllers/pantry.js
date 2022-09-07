@@ -42,7 +42,7 @@ export const moveToCart =  async (req, res) => {
     const curUsername = res.locals.currentUser.username
     Pantry.findOne({name:name})
     .then (res => {
-        ShoppingList.insertMany({name:res.name, category:res.category, inStock:true, owner:curUsername})
+        ShoppingList.insertMany({name, category:res.category, inStock:true, owner:curUsername})
     })
     await Pantry.deleteMany({name:name, owner:curUsername})
     req.flash('success', `'${name}' moved succesfully to Shopping List!`);

@@ -733,11 +733,14 @@ height: fit-content;
     opacity: 1;
     border-radius: 5%;
     background-color: white;
+    max-height: 30vh !important;
 }
 
 .selection-images {
     border-radius: 5%;
-    width: 18vw;
+    width: 100vw;
+    max-height: 20vh !important;
+    object-fit: cover;
 }
 
 .selection-col {
@@ -1204,11 +1207,14 @@ height: fit-content;
         opacity: 1;
         border-radius: 5%;
         background-color: white;
+        max-height: 40vh !important;
     }
     
     .selection-images {
         border-radius: 5%;
         width: 100vw;
+        max-height: 30vh !important;
+        object-fit: cover;
     }
     
     .selection-col {
