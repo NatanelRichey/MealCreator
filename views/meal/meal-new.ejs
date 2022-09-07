@@ -10,7 +10,7 @@
 
       <form class="d-inline-block meal-new-form" action="/meals/new/name/<%=mealName%>/new" method="post">
         <div class="meal-name-header d-flex justify-content-center align-items-center">Meal Name: 
-          <input type="text" name="mealName" class="meal-form-category name-field" placeholder=<%=mealName%> value=<%=mealName%>>
+          <input type="text" name="mealName" class="meal-form-category name-field" placeholder=<%=mealName%> <% if (mealName !== "Untitled") { %> value=<%=mealName%> <% } %>>
           <input type="submit" class="add-name-button" value="V">
         </div>
       </form>

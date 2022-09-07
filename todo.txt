@@ -1,24 +1,18 @@
 Fix Now
 - page gets squashed when typing
-- add meal margin top
 
 Backend
 - env variable not working for credentials ???
-
-Optional...
+- Optional...
     - change flash on meal form to show on form and not redirect
     - form submit with enter
 
 JS
-- ingredients:
-    - front end remove/placeholder-reset immediately (cant change because of backend effects)
-Optional...
-
+- Optional...
 
 CSS 
-- meal thumbnails
 
-Later...
+LATER...
     Design Changes:
         - tabs?
         - lighter overlay
