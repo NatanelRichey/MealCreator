@@ -19,7 +19,7 @@ export const renderApp = async (req, res) => {
 
 export const processChoice = async (req, res) => {
     const choice = req.params.choice
-    console.log("CHOICE...", choice)
+    // console.log("CHOICE...", choice)
     const curUsername = res.locals.currentUser.username
     if (!choices.includes(choice.toLowerCase())) choices.push(choice.toLowerCase())
     if (choiceArr[0].includes(choice)){
@@ -31,7 +31,7 @@ export const processChoice = async (req, res) => {
         await findMatchedMeal(choices, curUsername)
         res.render('app/filtered-page', { matchedMeals })
     }
-    console.log("CHOICES...", choices)
+    // console.log("CHOICES...", choices)
 }
 
 async function findMatchedMeal (choices, curUser) {
@@ -43,7 +43,7 @@ async function findMatchedMeal (choices, curUser) {
     // console.log(pantryItems)
     for (let meal of meals) {
         const sortedTags = sortTags(meal.tags)
-        console.log("SORTED TAGS...", sortedTags)
+        // console.log("SORTED TAGS...", sortedTags)
         for (let ch of choices) {
             ch = ch.toLowerCase()
             if (sortedTags["healthTags"].includes(ch)) healthMatch = true
@@ -66,9 +66,9 @@ async function findMatchedMeal (choices, curUser) {
 
 function sortTags(tags) {
     let sortedTags = {"healthTags":[], "mealTags":[], "genreTags":[]}
-    console.log("TAGS...", tags)
+    // console.log("TAGS...", tags)
     for (let tag of tags) {
-        console.log("TAG...", tag)
+        // console.log("TAG...", tag)
         tag = tag.toLowerCase()
         if (tag === "healthy" || tag === "regular") sortedTags["healthTags"].push(tag)
         else if (tag === "breakfast" || tag === "lunch" || tag === "dinner") sortedTags["mealTags"].push(tag)

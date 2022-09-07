@@ -23,7 +23,7 @@ mealFormContainer.addEventListener('click', function (e) {
     }
     else if (e.target.className === "btn btn-light meal-edit tag-list-check") {
         e.target.classList.add("filter")
-        console.log(e.target.nextElementSibling.innerText)
+        // console.log(e.target.nextElementSibling.innerText)
         tags = arrayRemove(tags, e.target.nextElementSibling.innerText)
     }
 
@@ -39,8 +39,8 @@ mealFormContainer.addEventListener('click', function (e) {
         let newItem = addNewMealToList()
     }
 
-    if (e.target.nodeName === "INPU" && e.target.className === "cancel-tag") {
-        e.target.parentElement.parentElement.remove()
+    if (e.target.nodeName === "INPUT" && e.target.className === "cancel-tag") {
+        e.target.parentElement.parentElement.style.visibility = "hidden";
     }
 })
 
@@ -115,6 +115,7 @@ function addIngredient(target) {
     newForm.setAttribute("method", "post") 
     let newTag = document.createElement("div")
     newTag.setAttribute("class", "tag d-flex align-items-center") 
+    newTag.setAttribute("id", "ingredient-tag") 
     newTag.innerText = `${ingredientField.value}`
     newTag.innerHTML += '<input type="image" class="cancel-tag" src="https://res.cloudinary.com/meal-creator/image/upload/v1662276052/icons/cancel.png" value="">'
     newForm.appendChild(newTag)

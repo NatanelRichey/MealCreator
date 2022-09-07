@@ -17,7 +17,7 @@ pantryPageContainer.addEventListener('keypress', function (e) {
     }
 
     if (e.key === 'Enter' && e.target.nodeName === "INPUT" && e.target.className === "item-edit") {
-        console.log("test")
+        // console.log("test")
         document.getElementById("pantry-enter-btn").click()
         let item = e.target.parentElement.nextElementSibling.firstElementChild
         let enteredText = item.value
@@ -29,7 +29,7 @@ pantryPageContainer.addEventListener('keypress', function (e) {
 })
 
 pantryPageContainer.addEventListener('click', function (e) {
-    console.log(e)
+    // console.log(e)
     if (e.target.nodeName === "INPUT" && e.target.className === "btn btn-light add-button add-pantry-button d-flex justify-content-center align-items-center p-0") {
         addNewItem(e.target)
     }   
@@ -145,7 +145,7 @@ function hideRestButtons (e) {
     listItems = document.querySelectorAll(".item-edit")
     for (item of listItems) {
         if (item !== e.target) {
-            console.log(item)
+            // console.log(item)
             changeButtons(item, "hide")
         }
     }

@@ -7,25 +7,24 @@ import * as meals from "../controllers/meals.js";
 import multer from 'multer'
 import { storage } from '../cloudinary/index.js'
 const upload = multer({ storage });
-console.log(upload)
 
 router.get('/', isLoggedIn, catchAsync(meals.renderMeals))
 
 router.get('/new', isLoggedIn, meals.renderNewMealForm)
 
-router.post('/new/ingredients', isLoggedIn, meals.addIngredientToForm)
+router.post('/new/ingredients/:name/:status', isLoggedIn, meals.addIngredientToForm)
 
-router.delete('/new/ingredients/:ingredient', isLoggedIn, catchAsync (meals.removeIngredientFromForm))
+router.delete('/new/ingredients/:ingredient/:name/:status', isLoggedIn, catchAsync (meals.deleteIngredients))
 
-router.post("/new/tags/:choice", isLoggedIn, meals.toggleTags)
+router.post("/new/tags/:choice/:name/:status", isLoggedIn, meals.toggleTags)
 
 router.post('/new/name-img', isLoggedIn, upload.single("imgSrc"), validateMeal, catchAsync(meals.addMeal))
 
-router.post('/edit/ingredients', isLoggedIn, meals.editIngredients)
+router.post('/edit/ingredients/:name/:status', isLoggedIn, meals.addIngredientToForm)
 
-router.delete('/edit/ingredients/:ingredient', isLoggedIn, catchAsync(meals.deleteIngredients))
+router.delete('/edit/ingredients/:ingredient/:name/:status', isLoggedIn, catchAsync(meals.deleteIngredients))
 
-router.post("/edit/tags/:choice", isLoggedIn, meals.toggleTags)
+router.post("/edit/tags/:choice/:name/:status", isLoggedIn, meals.toggleTags)
 
 router.post('/edit/all/:name', isLoggedIn, catchAsync(meals.renderEditMealForm))
 

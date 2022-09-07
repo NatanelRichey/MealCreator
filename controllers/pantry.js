@@ -7,9 +7,9 @@ const twoWordCats = {"Grains Pasta":"Grains & Pasta", "Fish Eggs":"Fish & Eggs",
 export const moveToSavedItems =  async (req, res) => {
     const name = req.params.name
     const curUsername = res.locals.currentUser.username
-    console.log(curUsername)
+    // console.log(curUsername)
     const newItem = await Pantry.updateMany({name:name, owner:curUsername},{inStock:false})
-    console.log(newItem)
+    // console.log(newItem)
     req.flash('success', `'${name}' moved to Saved Items`);
     res.redirect('/pantry')
 }

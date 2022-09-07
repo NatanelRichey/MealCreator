@@ -104,7 +104,7 @@ function searchMealList(target) {
     let searchEntry = target.previousElementSibling
     let findClassName = ""
     for (let meal of mealElems) {
-        if (meal.firstElementChild.children[1].children[1].firstElementChild.value.toLowerCase().includes(searchEntry.value.toLowerCase())) {
+        if (meal.children[1].children[1].firstElementChild.value.toLowerCase().includes(searchEntry.value.toLowerCase())) {
             for (let classElem of meal.classList) {
                 findClassName += ('.' + classElem)
             }
@@ -118,7 +118,7 @@ function searchMealList(target) {
         searchEntry.value = ""
     }
     else {
-        console.log(findClassName)
+        // console.log(findClassName)
         let foundElem = document.querySelector(findClassName)
         foundElem.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" })
         foundElem.setAttribute("id", "bg-color-change")
@@ -132,10 +132,10 @@ function changeButtonsMeal (e, action) {
     let node = undefined
     if (e.nodeType === 1) node = e; 
     else node = e.target
-    console.log("NODE...", node)
+    // console.log("NODE...", node)
     let editBtn = node.parentElement.nextElementSibling
     let deleteBtn = node.parentElement.parentElement.nextElementSibling.firstElementChild
-    console.log("DEL BTN...", deleteBtn)
+    // console.log("DEL BTN...", deleteBtn)
     if (action === "hide") {
         editBtn.firstElementChild.style.display = "none"; 
         deleteBtn.firstElementChild.style.display = "none"; 
@@ -153,7 +153,7 @@ function hideRestButtonsMeal (e) {
             changeButtonsMeal(item, "hide")
         }
         else if (item !== e.target) {
-            console.log(item)
+            // console.log(item)
             changeButtonsMeal(item, "hide")
         }
     }
@@ -164,10 +164,10 @@ function editMealInList(target) {
     curImgSrc = target["src"]
     curEditElement = target.parentElement.parentElement
     let curName = target.parentElement.nextElementSibling.firstElementChild.value
-    console.log(curName)
+    // console.log(curName)
     document.querySelector(".meal-form-category.edit.name-field").placeholder = curName
     document.querySelector(".meal-form-category.edit.name-field").value = curName
-    console.log (document.querySelector(".meal-form-category.edit.name-field").placeholder, document.querySelector(".meal-form-category.edit.name-field").value)
+    // console.log (document.querySelector(".meal-form-category.edit.name-field").placeholder, document.querySelector(".meal-form-category.edit.name-field").value)
     let curIngredientList = meals[curName.toLowerCase()]["ingredients"]
     for (ingredient of curIngredientList) {
         editIngredient(ingredient)

@@ -18,7 +18,7 @@ mealEditContainer.addEventListener('click', function (e) {
     if (e.target.nodeName === "INPUT" && e.target.className === "add-ingredient-button") {
         addIngredient(e.target)
     }
-    if (e.target.nodeName === "INPU" && e.target.className === "cancel-tag") e.target.parentElement.remove()
+    if (e.target.nodeName === "INPUT" && e.target.className === "cancel-tag") e.target.parentElement.style.visibility = "hidden";
 
     if (e.target.nodeName === "BUTTON" && e.target.className === "cancel-button") {
         location.href = "/meals"
@@ -75,7 +75,7 @@ mealEditContainer.addEventListener('click', function (e) {
                                         <button class="btn btn-light trash-btn"></button> 
                                     </div>`
         if (curName !== mealName.value) delete meals[curName.toLowerCase()]
-        console.log(meals)
+        // console.log(meals)
     }
 
     if (e.target.nodeName === "BUTTON" && e.target.className === "cancel-button edit") {
@@ -83,49 +83,19 @@ mealEditContainer.addEventListener('click', function (e) {
     }
 })
 
-function editMealInList(target) {
-    // Get existing data
-    curImgSrc = target["src"]
-    curEditElement = target.parentElement.parentElement
-    let curName = target.parentElement.nextElementSibling.firstElementChild.value
-    console.log(curName)
-    document.querySelector(".meal-form-category.edit.name-field").placeholder = curName
-    document.querySelector(".meal-form-category.edit.name-field").value = curName
-    console.log (document.querySelector(".meal-form-category.edit.name-field").placeholder, document.querySelector(".meal-form-category.edit.name-field").value)
-    let curIngredientList = meals[curName.toLowerCase()]["ingredients"]
-    for (ingredient of curIngredientList) {
-        editIngredient(ingredient)
-    }
-    let curTagList = meals[curName.toLowerCase()]["tags"]
-    for (tagElement of document.querySelectorAll(".btn.btn-light.meal-edit.tag-list-check.filter")) {
-        for (savedTag of curTagList) {
-            if (tagElement.nextElementSibling.innerText.toLowerCase() === savedTag) {
-                tagElement.classList.remove("filter")
-            } 
-        }
-    }
-}
-
 function addIngredient(target) {
     let ingredientField = target.parentElement.previousElementSibling.firstElementChild
+    const ingredientName = ingredientField.value
     let ingredientRow = target.parentElement.parentElement.nextElementSibling
     let newForm = document.createElement("form")
     newForm.setAttribute("class", "d-block ingredient-form") 
-    newForm.setAttribute("action", `/meals/edit/ingredients/${ingredientField.value}?_method=DELETE`) 
+    newForm.setAttribute("action", `/meals/edit/ingredients/${ingredientName}?_method=DELETE`) 
     newForm.setAttribute("method", "post") 
     let newTag = document.createElement("div")
     newTag.setAttribute("class", "tag d-flex align-items-center") 
+    newTag.setAttribute("id", "ingredient-tag") 
     newTag.innerText = `${ingredientField.value}`
     newTag.innerHTML += `<input type="image" class="cancel-tag" src="https://res.cloudinary.com/meal-creator/image/upload/v1662276052/icons/cancel.png" value="">`
     newForm.appendChild(newTag)
     ingredientRow.appendChild(newForm)
-}
-
-function editIngredient (ingredient) {
-    let ingredientRow = document.querySelector(".row.d-flex.justify-content-center.edit-ingredient-row")
-    let newTag = document.createElement("div")
-    newTag.setAttribute("class", "tag col-md-4 d-flex align-items-center")
-    newTag.innerText = `${ingredient}`
-    newTag.innerHTML += `<img type="image" class="cancel-tag" src="https://res.cloudinary.com/meal-creator/image/upload/v1662276052/icons/cancel.png">`
-    ingredientRow.appendChild(newTag)
 }

@@ -12,7 +12,7 @@ export const validateMeal = (req, res, next) => {
 
 export const validatePantry = (req, res, next) => {
     const { error } = pantrySchema.validate(req.body);
-    console.log(req.body);
+    // console.log(req.body);
     if (error) {
         req.flash('error', `Enter item name`);
         res.redirect('/pantry')
@@ -23,7 +23,7 @@ export const validatePantry = (req, res, next) => {
 
 export const validateList = (req, res, next) => {
     const { error } = shoppingListSchema.validate(req.body);
-    console.log(req.body);
+    // console.log(req.body);
     if (error) {
         req.flash('error', `Enter item name`);
         res.redirect('/list')

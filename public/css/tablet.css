@@ -405,7 +405,7 @@ form {
     border: 1px solid white;
     border-left: 15px solid white;
     font-size: 25px; 
-    margin-bottom: 20px;
+    margin-bottom: 20px; margin-top: 5px !important;
 }
 
 .meal-search-category:focus {
@@ -1067,6 +1067,16 @@ height: fit-content;
         font-size: 18px !important;
     }
 
+    .ingredient-field {
+        /* padding-right: 10px !important; padding-left: 10px !important; */
+        max-width: 315px !important;
+        margin-left: 20px;
+    }
+
+    .ingredient-field-cont {
+        width: 300px !important;
+    }
+
     .meal-item-edit {
         font-size: 20px;
         width: 35vw;
@@ -1195,6 +1205,16 @@ height: fit-content;
 
     .btn-close {
         padding: 12px !important;
+    }
+
+    .ingredient-form {
+        height: 35px;
+        margin-top: 5px;
+    }
+
+    #ingredient-tag {
+        max-height: 35px;
+        font-size: 20px !important;
     }
 }
 

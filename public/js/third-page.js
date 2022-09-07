@@ -39,7 +39,7 @@ function findMatchedMeal () {
         if (healthMatch && mealMatch && genreMatch && ingMatch) {
             matchedMeals[name] = Object.values(dict)[2]
         }
-        console.log (name, ":\n", "health match: ", healthMatch, "meal match: ", mealMatch, "genre match: ", genreMatch, "ingredient match: ", ingMatch)
+        // console.log (name, ":\n", "health match: ", healthMatch, "meal match: ", mealMatch, "genre match: ", genreMatch, "ingredient match: ", ingMatch)
         healthMatch = false; mealMatch = false; genreMatch = false; 
     }
 }

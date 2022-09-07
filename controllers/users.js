@@ -1,7 +1,6 @@
 import User from "../models/user.js";
 
 export const renderRegisterForm = (req, res) => {
-    console.log("working")
     res.render('users/register');
 }
 
@@ -12,7 +11,6 @@ export const registerUser = async (req, res, next) => {
         const registeredUser = await User.register(user, password);
         req.login(registeredUser, err => {
             if (err) return next(err);
-            console.log("test")
             req.flash('success', 'Welcome to Meal Creator!');
             res.redirect('/app');
         })
@@ -29,7 +27,7 @@ export const renderLoginForm =  (req, res) => {
 export const login = (req, res) => {
     req.flash('success', 'welcome back!');
     const redirectUrl = req.session.returnTo || "/app";
-    console.log(redirectUrl)
+    // console.log(redirectUrl)
     delete req.session.returnTo;
     res.redirect(redirectUrl);
 }

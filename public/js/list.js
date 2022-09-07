@@ -159,9 +159,9 @@ function changeButtons (e, action) {
     let node = undefined
     if (e.nodeType === 1) node = e; 
     else node = e.target
-    console.log("NODE...", node)
+    // console.log("NODE...", node)
     let editBtn = node.parentElement.nextElementSibling.firstElementChild
-    console.log("EDIT BTN...", editBtn)
+    // console.log("EDIT BTN...", editBtn)
     let deleteBtn = node.parentElement.parentElement.nextElementSibling.firstElementChild.firstElementChild
     if (action === "hide") {
         editBtn.style.display = "none"; 
@@ -177,7 +177,7 @@ function hideRestButtons (e) {
     listItems = document.querySelectorAll(".item-edit")
     for (item of listItems) {
         if (item !== e.target) {
-            console.log(item)
+            // console.log(item)
             changeButtons(item, "hide")
         }
     }
