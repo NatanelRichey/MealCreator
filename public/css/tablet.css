@@ -521,6 +521,10 @@ form {
     width: 80vw;
 }
 
+.meal-name-header {
+    font-size: 25px;
+}
+
 .meal-form-category {
     min-width: 350px; height: 40px;
     margin-bottom: 20px;
@@ -561,6 +565,17 @@ form {
     font-size: 20px;
     padding-left: 10px;
     margin-left: 19px;
+}
+
+.add-name-button {
+    width: 40px;
+    height: 40px;
+    border-radius: 0%;
+    border: 1px solid white;
+    background-color: #6cc82a47;
+    text-align: center;
+    position: relative; right: 40px;
+    font-size: 20px;
 }
 
 .add-ingredient-button:active {
@@ -1034,6 +1049,10 @@ height: fit-content;
         font-size: 20px; 
     }
 
+    .meal-name-header {
+        font-size: 20px;
+    }
+
     .add-meal-button {
         width: 130px;
     }
@@ -1065,6 +1084,11 @@ height: fit-content;
 
     .ingredient-field, .add-ingredient-button, .name-field, .form-control {
         font-size: 18px !important;
+    }
+
+    .add-name-button  {
+        font-size: 18px;
+        right: 55px;
     }
 
     .ingredient-field {

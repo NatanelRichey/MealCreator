@@ -1,7 +1,7 @@
 import Joi from 'joi'
 
 export const mealSchema = Joi.object({
-    mealName: Joi.string().required(),
+    mealName: Joi.string(),
     ingredients: [Joi.string()],
     tags: [Joi.string()],
     imgSrc: Joi.string(),

@@ -7,8 +7,14 @@
 
     <section class="container meals-menu-cont p-0 overflow-auto">
       
+      <form class="d-inline-block meal-new-form" action="/meals/edit/name/<%=mealName%>/edit" method="post">
+        <div class="meal-name-header d-flex justify-content-center align-items-center">Meal Name: 
+          <input type="text" id="name" name="mealName" class="meal-form-category name-field" placeholder=<%=mealName%> value=<%=mealName%>>
+          <input type="submit" class="add-name-button" value="V">
+        </div>
+      </form>
 
-      <form class="d-inline-block meal-edit-form" action="/meals/edit/ingredients/<%=name%>/edit" method="post">
+      <form class="d-inline-block meal-edit-form" action="/meals/edit/ingredients/<%=mealName%>/edit" method="post">
           <div class="d-flex justify-content-md-start justify-content-center align-items-center ingredient-field-cont">
             <input type="text" name="ingredients" class="meal-form-category ingredient-field" placeholder="Enter an Ingredient">
           </div>
@@ -19,7 +25,7 @@
 
       <div class="row d-flex justify-content-md-start justify-content-center edit-ingredient-row mt-3">
         <% for (ingredient of item.ingredients) { %>
-          <form class="d-block ingredient-form" action="/meals/edit/ingredients/<%=ingredient%>/<%=name%>/edit?_method=DELETE" method="post">
+          <form class="d-block ingredient-form" action="/meals/edit/ingredients/<%=ingredient%>/<%=mealName%>/edit?_method=DELETE" method="post">
             <div class = "tag d-flex align-items-center" id="ingredient-tag"><%=ingredient%><input type="image" class="cancel-tag" src="https://res.cloudinary.com/meal-creator/image/upload/v1662276052/icons/cancel.png"></div>
           </form>
         <% } %> 
@@ -29,7 +35,7 @@
         <% for (let section of choiceArr) { %> 
           <div class="choose-tag d-flex align-items-center justify-content-md-start justify-content-center">
           <% for (let choice of section) { %> 
-            <form class="d-flex tag-tbn" action="/meals/edit/tags/<%=choice%>/<%=name%>/edit" method="post">
+            <form class="d-flex tag-tbn" action="/meals/edit/tags/<%=choice%>/<%=mealName%>/edit" method="post">
               <% if (item.tags.includes(choice)) { %> 
                 <button type="submit" class="btn btn-light meal-edit tag-list-check" id="<%=choice.toLowerCase()%>-tag"></button><span class="tag-text"><%=choice%></span>
               <% } else { %> 
@@ -41,10 +47,7 @@
         <% } %>
       </div>
 
-      <form class="d-block" action="/meals/edit/name-img/<%=name%>?_method=PATCH" method="post" enctype="multipart/form-data">
-        <div class="d-flex justify-content-md-start justify-content-center align-items-center">
-          <input type="text" name="mealName" class="meal-form-category edit name-field" placeholder="<%=name%>" value="<%=name%>">
-        </div>
+      <form class="d-block" action="/meals/edit/name-img/<%=mealName%>?_method=PATCH" method="post" enctype="multipart/form-data">
         <div class="choose-file-btn d-flex align-items-center justify-content-md-start justify-content-center">
           <input name="imgSrc" type="file" class="file-form-button form-control" id="imgSrc">
         </div>

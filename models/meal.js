@@ -11,7 +11,7 @@ const mealSchema = new Schema({
     ingredients: [String],
     tags: [String],
     imgSrc: {type: String, default: "https://res.cloudinary.com/meal-creator/image/upload/v1662279775/meal-images/empty-plate.jpg"},
-
+    confirmed: {type: String, default: false},
     owner: String
 })
 

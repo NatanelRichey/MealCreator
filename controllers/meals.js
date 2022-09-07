@@ -8,17 +8,19 @@ let tags = []
 
 export const renderMeals =  async (req, res) => {
     const curUsername = res.locals.currentUser.username
-    await Meals.deleteMany({mealName:"untitled", owner:curUsername})
+    await Meals.deleteMany({confirmed: false, owner:curUsername})
     const meals = await Meals.find({owner:curUsername})
     res.render('meal/meals', { meals })
 }
 
 export const renderNewMealForm = async (req, res) => {
     const curUsername = res.locals.currentUser.username
-    let item = new Meals ({mealName:"untitled", ingredients:[], tags:[], imgSrc:"", owner:curUsername}); 
-    const name = item.mealName
+    let item = new Meals ({mealName:"Untitled", ingredients:[], tags:[], imgSrc:"", owner:curUsername}); 
+    const mealName = item.mealName
+    toggleChoiceArr = {"Healthy":false,"Regular":false,"Breakfast":false,"Lunch":false,"Dinner":false,"Dairy":false,"Parve":false,"Meaty":false}
     Meals.insertMany(item);
-    res.render('meal/meal-new', {item, choiceArr, name})
+    ingredients = []; tags = [];
+    res.render('meal/meal-new', {item, choiceArr, mealName})
 }
 
 export const removeIngredientFromForm = async (req, res) => {
@@ -41,10 +43,11 @@ export const addMeal =  async (req, res) => {
     // try {
         req.body.imgSrc = req.file ? req.file.path : "https://res.cloudinary.com/meal-creator/image/upload/v1662460322/meal-images/untitled-meal.jpg"
         req.body.owner = res.locals.currentUser.username
-        const meal = new Meals(req.body);
-        Meals.insertMany(meal);
+        const meal = await Meals.findOneAndUpdate({mealName: req.params.name, owner: res.locals.currentUser.username}, req.body, {new: true});
+        meal.confirmed = true; 
+        await meal.save();
         // if (err) return next(err);
-        req.flash('success', `${req.body.mealName} added succesfully to meals!`);
+        req.flash('success', `${req.params.name} added succesfully to meals!`);
         res.redirect('/meals')
         tags = []
         ingredients = []
@@ -63,7 +66,11 @@ export const editMealName = async (req, res) => {
 export const addIngredientToForm = async (req, res) => {
     ingredients.push(req.body.ingredients)
     // console.log("NAME in addIng func...", req.params.name)
-    updateFormAndReload(res, req.params.name, ingredients, "ingredients", "new", req.params.status)
+    updateFormAndReload(res, req.params.name, ingredients, "ingredients", req.params.status)
+}
+
+export const addNameToForm = async (req, res) => {
+    updateFormAndReload(res, req.params.name, req.body.mealName, "name", req.params.status)
 }
 
 export const deleteIngredients =  async (req, res) => {
@@ -73,13 +80,13 @@ export const deleteIngredients =  async (req, res) => {
 }
 
 export const renderEditMealForm = async (req, res) => {
-    const name = req.params.name;
+    const mealName = req.params.name;
     const curUsername = res.locals.currentUser.username
-    const item = await Meals.findOne({mealName:name, owner:curUsername});
+    const item = await Meals.findOne({mealName, owner:curUsername});
     ingredients = item.ingredients
     tags = item.tags
     toggleChoiceArr = updateDictFromArray(item.tags, toggleChoiceArr)
-    res.render('meal/meal-edit.ejs', { name, curUsername, item, choiceArr })
+    res.render('meal/meal-edit.ejs', { mealName, curUsername, item, choiceArr })
 }
 
 export const editMeal = async (req, res) => {
@@ -143,12 +150,16 @@ function updateDictFromArray (array, dict) {
 
 async function updateFormAndReload(res, name, updateValue, updateName, state) {
     const curUsername = res.locals.currentUser.username
-    let item = undefined
+    let item = await Meals.find({mealName:name, owner:curUsername})
+    console.log(item)
     if (updateName === "ingredients") {
         item = await Meals.findOneAndUpdate({mealName:name, owner:curUsername}, {ingredients:updateValue}, {new: true}); }
     else if (updateName === "tags") {
         item = await Meals.findOneAndUpdate({mealName:name, owner:curUsername}, {tags:updateValue}, {new: true}); }
+    else if (updateName === "name") {
+        item = await Meals.findOneAndUpdate({mealName:name, owner:curUsername}, {mealName:updateValue}, {new: true}); }
     toggleChoiceArr = updateDictFromArray(item.tags, toggleChoiceArr)
-    if (state === "edit") res.render('meal/meal-edit.ejs', { name, curUsername, item, choiceArr })
-    if (state === "new") res.render('meal/meal-new.ejs', { name, curUsername, item, choiceArr })
-}
+    const mealName = item.mealName
+    if (state === "edit") res.render('meal/meal-edit.ejs', { mealName, curUsername, item, choiceArr })
+    if (state === "new") res.render('meal/meal-new.ejs', { mealName, curUsername, item, choiceArr })
+} 

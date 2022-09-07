@@ -35,7 +35,7 @@ export const processChoice = async (req, res) => {
 }
 
 async function findMatchedMeal (choices, curUser) {
-    console.log("CUR USER...", curUser, "CHOICES...", choices)
+    // console.log("CUR USER...", curUser, "CHOICES...", choices)
     let healthMatch = false, mealMatch = false, genreMatch = false, ingMatch = true
     const meals = await Meals.find({owner:curUser})
     // console.log("MEALS...", meals)

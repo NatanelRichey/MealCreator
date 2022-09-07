@@ -14,11 +14,15 @@ router.get('/new', isLoggedIn, meals.renderNewMealForm)
 
 router.post('/new/ingredients/:name/:status', isLoggedIn, meals.addIngredientToForm)
 
+router.post('/new/name/:name/:status', isLoggedIn, meals.addNameToForm)
+
+router.post('/edit/name/:name/:status', isLoggedIn, meals.addNameToForm)
+
 router.delete('/new/ingredients/:ingredient/:name/:status', isLoggedIn, catchAsync (meals.deleteIngredients))
 
 router.post("/new/tags/:choice/:name/:status", isLoggedIn, meals.toggleTags)
 
-router.post('/new/name-img', isLoggedIn, upload.single("imgSrc"), validateMeal, catchAsync(meals.addMeal))
+router.post('/new/name-img/:name', isLoggedIn, upload.single("imgSrc"), validateMeal, catchAsync(meals.addMeal))
 
 router.post('/edit/ingredients/:name/:status', isLoggedIn, meals.addIngredientToForm)
 
