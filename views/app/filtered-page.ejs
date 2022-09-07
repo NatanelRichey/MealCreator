@@ -6,7 +6,7 @@
         <div class="row matched-meal-row d-flex justify-content-center mb-5">
         <% let res = []; for (meal of matchedMeals) { %> 
             <div class="col-sm-3 d-flex justify-content-center selection-col mb-4 mt-4 p-0 mx-1">
-                <button class="btn btn-default selection-button-meal p-0" id = "matched-meal-btn">
+                <button class="btn btn-default selection-button-meal p-1" id = "matched-meal-btn">
                     <img src="<%=meal.imgSrc%>" class="selection-images img-fluid" id = "matched-meal-image"> 
                     <div class="matched-meal-txt"><%=meal.mealName%></div>
                 </button>

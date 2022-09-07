@@ -257,7 +257,7 @@ form {
 
 /* ------------------------ CATEGORY ROW ------------------------ */
 .category-row {
-    height: 6vh;
+    height: 60px;
     text-align: center;
     border-top: 1px solid black;
     border-bottom: 1px solid black;
@@ -269,7 +269,7 @@ form {
 }
 
 .list-item-bar {
-    height: 6vh;;
+    height: 60px;
     /* margin-top: 2vh; */
     width: 84vw;
     border-bottom: 1px solid rgba(0, 0, 0, 0.297);
@@ -478,7 +478,7 @@ form {
 }
 
 .meal-list-item.bar-1 {
-    height: 15vh;
+    height: 120px;
     margin-top: 5px;
     /* width: 90vw; */
     background-color:rgba(0, 0, 0, 0.13);
@@ -486,7 +486,7 @@ form {
 }
 
 .meal-list-item.bar-2 {
-    height: 15vh;
+    height: 120px;
     margin-top: 5px;
     /* width: 90vw; */
     background-color:#6aff001f;
@@ -732,14 +732,19 @@ height: fit-content;
     font-family: 'Kalam', cursive;
     opacity: 1;
     border-radius: 5%;
-    background-color: white;
-    max-height: 30vh !important;
+    height: 40vh !important;
+    margin: 10px;
+}
+
+.btn.btn-default.selection-button-meal:hover {
+    /* border: #04040449; */
+    border: none;
 }
 
 .selection-images {
     border-radius: 5%;
     width: 100vw;
-    max-height: 20vh !important;
+    max-height: 30vh !important;
     object-fit: cover;
 }
 
@@ -998,7 +1003,7 @@ height: fit-content;
     }
 
     .category-row {
-        height: 5.5vh;
+        height: 36.7px;
         text-align: center;
         border-top: 1px solid black;
         border-bottom: 1px solid black;
@@ -1006,11 +1011,11 @@ height: fit-content;
 
     .category-col   {
         font-size: 25px;
-        height: 5.5vh;
+        height: 36.7px
     }
 
     .list-item-bar {
-        height: 5.5vh;
+        height: 37.6px;
         width: 84vw;
         border-bottom: 1px solid rgba(0, 0, 0, 0.297);
         border-top: 1px solid rgba(0, 0, 0, 0.297);
@@ -1070,7 +1075,7 @@ height: fit-content;
     }
 
     .meal-list-item.bar-1 {
-        height: 10vh;
+        height: 81px;
         margin-top: 5px;
         width: 90vw;
         background-color:rgba(0, 0, 0, 0.13);
@@ -1078,7 +1083,7 @@ height: fit-content;
     }
     
     .meal-list-item.bar-2 {
-        height: 10vh;
+        height: 81px;
         margin-top: 5px;
         width: 90vw;
         background-color:#6aff001f;
@@ -1206,8 +1211,7 @@ height: fit-content;
         font-family: 'Kalam', cursive;
         opacity: 1;
         border-radius: 5%;
-        background-color: white;
-        max-height: 40vh !important;
+        max-height: 40vh !important; width: auto;
     }
     
     .selection-images {
@@ -1271,14 +1275,14 @@ height: fit-content;
     } */
 
     .category-row {
-        height: 7.5vh;
+        height: 60px;
         width: 84vw;
         text-align: center;
         border-top: 1px solid black;
     }
 
     .list-item-bar {
-        height: 7.5vh;
+        height: 60pxvh;
         /* margin-top: 2vh; */
         width: 84vw;
         border-bottom: 1px solid rgba(0, 0, 0, 0.297);
