@@ -2,10 +2,26 @@ import mongoose from 'mongoose';
 
 const Schema = mongoose.Schema;
 
-const ShoppingItemSchema = new Schema({
+const ShoppingListSchema = new Schema({
     name: {
         type: String,
         required: true
+    },
+    category: {
+        type: String,
+        required: true
+    },
+    owner: {
+        type: String,
+        required: true
+    },
+    inStock: {
+        type: Boolean,
+        default: false
+    },
+    checked: {
+        type: Boolean,
+        default: false
     },
     quantity: {
         type: Number,
@@ -15,27 +31,10 @@ const ShoppingItemSchema = new Schema({
         type: String,
         default: ''
     },
-    category: {
-        type: String,
-        default: 'Other'
-    },
-    checked: {
-        type: Boolean,
-        default: false
-    },
     addedDate: {
         type: Date,
         default: Date.now
     }
-});
-
-const ShoppingListSchema = new Schema({
-    user: {
-        type: Schema.Types.ObjectId,
-        ref: 'User',
-        required: true
-    },
-    items: [ShoppingItemSchema]
 });
 
 export default mongoose.model('ShoppingList', ShoppingListSchema);

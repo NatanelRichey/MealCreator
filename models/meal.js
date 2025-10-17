@@ -9,7 +9,7 @@ const IngredientSchema = new Schema({
 });
 
 const MealSchema = new Schema({
-    name: {
+    mealName: {
         type: String,
         required: true
     },
@@ -17,10 +17,15 @@ const MealSchema = new Schema({
         type: String,
         default: ''
     },
-    ingredients: [IngredientSchema],
+    ingredients: [String],
+    tags: [String],
     instructions: {
         type: String,
         default: ''
+    },
+    imgSrc: {
+        type: String,
+        default: 'https://res.cloudinary.com/meal-creator/image/upload/v1662460322/meal-images/untitled-meal.jpg'
     },
     prepTime: {
         type: Number,
@@ -38,14 +43,13 @@ const MealSchema = new Schema({
         type: String,
         default: 'Other'
     },
-    images: [{
-        url: String,
-        filename: String
-    }],
-    user: {
-        type: Schema.Types.ObjectId,
-        ref: 'User',
+    owner: {
+        type: String,
         required: true
+    },
+    confirmed: {
+        type: Boolean,
+        default: false
     },
     createdAt: {
         type: Date,
