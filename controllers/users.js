@@ -42,20 +42,12 @@ export const logout = (req, res, next) => {
 
 export const demoLogin = async (req, res, next) => {
     try {
-        // Check if demo user exists
-        const demoUser = await User.findOne({ username: 'demo' });
+        // Set demo credentials in request body
+        req.body.username = 'demo';
+        req.body.password = 'demo123';
         
-        if (!demoUser) {
-            req.flash('error', 'Demo account not found. Please run the seed script first.');
-            return res.redirect('/login');
-        }
-        
-        // Authenticate the demo user
-        req.login(demoUser, err => {
-            if (err) return next(err);
-            req.flash('success', 'Welcome to the Demo Account! Feel free to explore!');
-            res.redirect('/app');
-        });
+        // Use passport authentication with demo credentials
+        next();
     } catch (e) {
         req.flash('error', 'Error logging into demo account');
         res.redirect('/login');
