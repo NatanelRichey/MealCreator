@@ -7,7 +7,7 @@
     <% for (choice of choiceArr[1]) { %>
     <div class="col-11 col-md-4">
       <div class="<%=choice.toLowerCase()%> card shadow pt-1">
-        <form action="/app/<%=choice%>" method="post">
+        <form action="/app/choice/<%=choice%>" method="get">
           <button type="submit" class="choice-btn">
             <img type="submit" class="three-choice-card" src="https://res.cloudinary.com/meal-creator/image/upload/v1662276033/page-images/<%=choice.toLowerCase()%>.jpg">
             <div class="card-body"><%=choice%></div>
