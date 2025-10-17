@@ -23,7 +23,7 @@
             }
             %>
             <div class="row meal-list-item m-0 <%=meal.mealName.toLowerCase()%>">
-                <form class="col-sm-1 meal-form d-flex" action="/meals/edit/all/<%=meal.mealName%>" method="post">
+                <form class="col-sm-1 meal-form d-flex" action="/meals/edit/all/<%=meal.mealName%>" method="get">
                     <div class="d-flex justify-content-start align-items-center p-0 meal-img-col">
                         <input type="image" class="meal-img" src="<%=optimizedImgSrc.toLowerCase()%>" loading="lazy" value="">
                     </div>
