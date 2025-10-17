@@ -39,3 +39,25 @@ export const logout = (req, res, next) => {
         res.redirect('/login');
       });
 }
+
+export const demoLogin = async (req, res, next) => {
+    try {
+        // Check if demo user exists
+        const demoUser = await User.findOne({ username: 'demo' });
+        
+        if (!demoUser) {
+            req.flash('error', 'Demo account not found. Please run the seed script first.');
+            return res.redirect('/login');
+        }
+        
+        // Authenticate the demo user
+        req.login(demoUser, err => {
+            if (err) return next(err);
+            req.flash('success', 'Welcome to the Demo Account! Feel free to explore!');
+            res.redirect('/app');
+        });
+    } catch (e) {
+        req.flash('error', 'Error logging into demo account');
+        res.redirect('/login');
+    }
+}
