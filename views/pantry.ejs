@@ -10,7 +10,7 @@
             <section class="<%=cat.toLowerCase()%>-section pantry-category">
                 <div class="category-col category-row d-flex justify-content-center align-items-center"><%= cat in twoWordCats ? twoWordCats[cat] : cat %><img src="https://res.cloudinary.com/meal-creator/image/upload/v1662276054/icons/<%=cat.toLowerCase()%>.png" class="category-icon"></div>
                 <div class="category-row justify-content-start d-flex align-items-center p-0">
-                    <form action="/pantry/<%=cat%>" method="post" class="form-container">
+                    <form action="/pantry/add-item/<%=cat%>" method="post" class="form-container">
                         <button type="submit" disabled style="display: none" aria-hidden="true"></button>
                         <input type="text" name="name" placeholder="Add Item" class="search-category">
                         <button type="submit" id="new-item-pantry-btn" class="btn btn-light add-button add-pantry-button d-flex justify-content-center align-items-center p-0"></button>
@@ -19,7 +19,7 @@
                 <% for (let item of items) { %>
                     <% if (item.category === cat && cat !== "Saved Items" && item.inStock) { %>
                         <div class="row list-item-bar m-0" title="<%=cat.toLowerCase()%>-section pantry-category">
-                            <form class="d-flex form-container" action="/pantry/move/<%=item.name%>" method="post">
+                            <form class="d-flex form-container" action="/pantry/move-to-saved/<%=item.name%>?_method=PUT" method="post">
                                 <div class="col-sm-1 d-flex justify-content-begin align-items-center p-0 check-col">
                                     <input type="image" class="btn btn-light list-check" value="">
                                 </div>
@@ -41,7 +41,7 @@
                         </div>
                     <% } else if (cat === "Saved Items" && !item.inStock) { %>
                         <div class="row list-item-bar m-0" title="saved items-section pantry-category">
-                            <form class="d-flex form-container" action="/pantry/move-back/<%=item.name%>" method="post">
+                            <form class="d-flex form-container" action="/pantry/move-from-saved/<%=item.name%>?_method=PUT" method="post">
                                 <div class="col-sm-1 d-flex justify-content-begin align-items-center p-0 check-col">
                                     <input type="image" class="btn btn-light list-uncheck" value="">
                                 </div>
@@ -60,7 +60,7 @@
                                     <input type="submit" class="btn btn-light trash-btn-saved" value="">
                                 </div>
                             </form>
-                            <form class="form-container" action="/pantry/move-to-cart/<%=item.name%>" method="post">
+                            <form class="form-container" action="/pantry/move-to-cart/<%=item.name%>?_method=PUT" method="post">
                                 <div class="col-sm-1 d-flex align-items-center p-0">
                                     <input type="submit" class="btn btn-light cart-btn" value="">
                                 </div>

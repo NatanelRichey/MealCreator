@@ -16,7 +16,7 @@ router.get('/edit/all/:name', isLoggedIn, meals.renderEditMealForm);
 
 router.put('/edit/all/:name', isLoggedIn, upload.single('imgSrc'), validateMeal, meals.editMeal);
 
-router.put('/edit/name/:id', isLoggedIn, validateMeal, meals.editMealName);
+router.patch('/edit/name/:id', isLoggedIn, validateMeal, meals.editMealName);
 
 router.put('/new/add-ingredient/:name/:status', isLoggedIn, meals.addIngredientToForm);
 

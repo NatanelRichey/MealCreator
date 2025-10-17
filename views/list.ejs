@@ -10,7 +10,7 @@
             <section class="<%= cat.toLowerCase() %>-section list-category">
                     <div class="category-row category-col d-flex justify-content-center align-items-center p-0"><%= cat in twoWordCats ? twoWordCats[cat] : cat %><img src="https://res.cloudinary.com/meal-creator/image/upload/v1662276054/icons/<%=cat.toLowerCase()%>.png" class="category-icon"></div>
                     <div class="category-row justify-content-start d-flex align-items-center p-0">
-                        <form action="/shopping-list/<%=cat%>" method="post" class="validated-form form-container">
+                        <form action="/shopping-list/add-item/<%=cat%>" method="post" class="validated-form form-container">
                             <button type="submit" disabled style="display: none" aria-hidden="true"></button>
                             <input type="text" name="name" placeholder="Add Item" class="search-category">
                             <input type="submit" value="" id="new-item-pantry-btn" class="btn btn-light add-button add-pantry-button d-flex justify-content-center align-items-center p-0">
@@ -20,7 +20,7 @@
             <% for (let item of items) { %>
                 <% if (item.category === cat) { %>
                     <div class="row list-item-bar m-0" title="<%=cat.toLowerCase()%>-section pantry-category">
-                        <form class="d-flex form-container" action="/shopping-list/move-to-pantry/<%=item.name%>" method="post">
+                        <form class="d-flex form-container" action="/shopping-list/move-to-pantry/<%=item.name%>?_method=PUT" method="post">
                             <div class="col-sm-1 d-flex justify-content-begin align-items-center p-0 check-col">
                                 <input type="image" class="btn btn-light list-check" value="">
                             </div>

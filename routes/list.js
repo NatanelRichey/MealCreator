@@ -9,7 +9,7 @@ router.post('/add-item/:category', isLoggedIn, validateList, list.addToList);
 
 router.put('/move-to-pantry/:name', isLoggedIn, list.moveToPantry);
 
-router.put('/edit/:id', isLoggedIn, validateList, list.updateItemName);
+router.patch('/edit/:id', isLoggedIn, validateList, list.updateItemName);
 
 router.delete('/delete/:id', isLoggedIn, list.deleteFromList);
 

@@ -13,7 +13,7 @@ router.put('/move-from-saved/:name', isLoggedIn, pantry.moveFromSavedItems);
 
 router.put('/move-to-cart/:name', isLoggedIn, pantry.moveToCart);
 
-router.put('/edit/:id', isLoggedIn, validatePantry, pantry.editPantryItemName);
+router.patch('/edit/:id', isLoggedIn, validatePantry, pantry.editPantryItemName);
 
 router.delete('/delete/:id', isLoggedIn, pantry.deleteItem);
 

@@ -24,7 +24,7 @@ export const addItemToPantry =  async (req, res) => {
     const name = req.body.name
     const category = req.params.category
     const curUsername = res.locals.currentUser.username
-    await Pantry.insertMany({name:name, category:category, owner:curUsername});
+    await Pantry.insertMany({name:name, category:category, owner:curUsername, inStock:true});
     req.flash('success', `'${name}' added successfully!`);
     res.redirect('/pantry')
 }

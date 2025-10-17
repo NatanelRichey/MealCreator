@@ -28,7 +28,7 @@
                         <input type="image" class="meal-img" src="<%=optimizedImgSrc.toLowerCase()%>" loading="lazy" value="">
                     </div>
                 </form>
-                <form class="meal-form d-flex" action="/meals/<%=meal._id%>?_method=PATCH" method="post">
+                <form class="meal-form d-flex" action="/meals/edit/name/<%=meal._id%>?_method=PATCH" method="post">
                     <button type="submit" disabled style="display: none" aria-hidden="true"></button>
                     <div class="p-0 meal-search-col col-sm-11 p-0">
                         <input type="text" name="mealName" class="meal-item-edit" value="<%=meal.mealName %>" placeholder="<%= meal.mealName %>">
@@ -37,7 +37,7 @@
                         <input value="" type="submit" class="btn btn-light enter-btn">
                     </div>
                 </form>
-                <form class="meal-form d-flex" action="/meals/<%=meal._id%>?_method=DELETE" method="post">
+                <form class="meal-form d-flex" action="/meals/delete/<%=meal._id%>?_method=DELETE" method="post">
                     <div class="col-1 d-flex align-items-center p-0">
                         <input value="" type="submit" class="btn btn-light trash-btn-meal">
                     </div>
