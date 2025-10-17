@@ -26,7 +26,7 @@ app.use(express.static(path.join(__dirname, "node_modules/bootstrap/dist/")));
 
 // --------------------------------------------------------- EXPRESS INITIALIZATIONS --------------------------------------------------------
 
-const dbUrl = process.env.DB_URL || "mongodb+srv://natanelrichey:jA78gKsDQWh4shU@cluster0.rxrufjj.mongodb.net/?retryWrites=true&w=majority"
+const dbUrl = process.env.DB_URL || "mongodb+srv://natanelrichey:jA78gKsDQWh4shU@cluster0.rxrufjj.mongodb.net/mealcreator?retryWrites=true&w=majority"
 connect(dbUrl, { 
     useNewUrlParser: true,
     useUnifiedTopology: true,
