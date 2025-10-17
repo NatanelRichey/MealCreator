@@ -131,9 +131,10 @@ app.use((err, req, res, next) => {
 })
 
 const port = process.env.PORT || 3000
+const host = process.env.HOST || '0.0.0.0'
 
-app.listen(port, () => {
-    console.log(`APP IS LISTENING ON PORT ${port}!`)
+app.listen(port, host, () => {
+    console.log(`APP IS LISTENING ON ${host}:${port}!`)
 })
 
 export default curUser
