@@ -48,17 +48,18 @@ const MongoDBStore = connectMongoDBSession(session);
 
 const store = new MongoDBStore ({
     uri: dbUrl,
-    useNewUrlParser: true, 
-    useUnifiedTopology: true,
-    serverApi: ServerApiVersion.v1, 
-    collection: 'sessions'
+    collection: 'sessions',
+    connectionOptions: {
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+    }
 })
 
 store.on("error", function (e) {
-    console.log("SESSION STORE ERROR")
+    console.log("SESSION STORE ERROR:", e)
 })
 
-const secret = process.env.secret || "fEdfg23@fgRTh6^%$ttdfVC234"
+const secret = process.env.SECRET || "fEdfg23@fgRTh6^%$ttdfVC234"
 
 const sessionConfig = {
     store,
