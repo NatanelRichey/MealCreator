@@ -42,16 +42,13 @@ connect(dbUrl, {
 // ------------------------------------------------------------ SESSIONS & FLASH ------------------------------------------------------------
 
 import session from 'express-session'
-import { ServerApiVersion } from 'mongodb'
-import { default as connectMongoDBSession} from 'connect-mongodb-session';
-const MongoDBStore = connectMongoDBSession(session);
+import MongoStore from 'connect-mongo'
 
-const store = new MongoDBStore ({
-    uri: dbUrl,
-    collection: 'sessions',
-    connectionOptions: {
-        useNewUrlParser: true,
-        useUnifiedTopology: true
+const store = MongoStore.create({
+    mongoUrl: dbUrl,
+    touchAfter: 24 * 3600, // lazy session update
+    crypto: {
+        secret: process.env.SECRET || "fEdfg23@fgRTh6^%$ttdfVC234"
     }
 })
 
