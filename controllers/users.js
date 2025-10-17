@@ -186,25 +186,6 @@ async function seedDemoData(demoUsername) {
         { mealName: "Breakfast Burrito", ingredients: ["Eggs", "Chicken", "Cheese", "Tomatoes"], tags: ["Regular", "Breakfast", "Meaty"], imgSrc: "https://images.unsplash.com/photo-1626700051175-6818013e1d4f?w=600&q=80", instructions: "Scramble eggs with cooked chicken, add cheese and tomatoes", owner: demoUsername, confirmed: true, prepTime: 8, cookTime: 10, servings: 2 }
     ];
 
-    const shoppingListItems = [
-        { name: "Lettuce", category: "Vegetables", owner: demoUsername, inStock: false },
-        { name: "Carrots", category: "Vegetables", owner: demoUsername, inStock: false },
-        { name: "Cucumbers", category: "Vegetables", owner: demoUsername, inStock: false },
-        { name: "Celery", category: "Vegetables", owner: demoUsername, inStock: false },
-        { name: "Oranges", category: "Fruits", owner: demoUsername, inStock: false },
-        { name: "Grapes", category: "Fruits", owner: demoUsername, inStock: false },
-        { name: "Blueberries", category: "Fruits", owner: demoUsername, inStock: false },
-        { name: "Tortillas", category: "Grains Pasta", owner: demoUsername, inStock: false },
-        { name: "Cereal", category: "Grains Pasta", owner: demoUsername, inStock: false },
-        { name: "Sour Cream", category: "Dairy", owner: demoUsername, inStock: false },
-        { name: "Mozzarella", category: "Dairy", owner: demoUsername, inStock: false },
-        { name: "Bacon", category: "Meat Poultry", owner: demoUsername, inStock: false },
-        { name: "Sausage", category: "Meat Poultry", owner: demoUsername, inStock: false },
-        { name: "Ranch Dressing", category: "Condiments", owner: demoUsername, inStock: false },
-        { name: "Coffee", category: "Miscellaneous", owner: demoUsername, inStock: false },
-        { name: "Tea", category: "Miscellaneous", owner: demoUsername, inStock: false }
-    ];
-
     // Clear existing demo data
     await Pantry.deleteMany({ owner: demoUsername });
     await ShoppingList.deleteMany({ owner: demoUsername });
