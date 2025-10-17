@@ -42,13 +42,25 @@ export const logout = (req, res, next) => {
 
 export const demoLogin = async (req, res, next) => {
     try {
-        // Set demo credentials in request body
-        req.body.username = 'demo';
-        req.body.password = 'demo123';
+        const demoUser = await User.findOne({ username: 'demo' });
         
-        // Use passport authentication with demo credentials
-        next();
+        if (!demoUser) {
+            req.flash('error', 'Demo account not found. Please contact administrator.');
+            return res.redirect('/login');
+        }
+        
+        // Manually log in the user
+        req.login(demoUser, (err) => {
+            if (err) {
+                console.error('Demo login error:', err);
+                req.flash('error', 'Error logging into demo account');
+                return res.redirect('/login');
+            }
+            req.flash('success', 'Welcome to the Demo Account! Feel free to explore!');
+            res.redirect('/app');
+        });
     } catch (e) {
+        console.error('Demo login catch error:', e);
         req.flash('error', 'Error logging into demo account');
         res.redirect('/login');
     }
