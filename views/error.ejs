@@ -1,0 +1,14 @@
+<%- include("./partials/header.ejs") %>
+<title>Error!</title>
+<%- include("./partials/navbar.ejs") %>
+<div class="row">
+    <div class="col-10 offset-1">
+        <div class="alert alert-error-custom" role="alert">
+            <h2 class="alert-heading">Error :(</h2>
+            <br>
+            <p><%=err.message%></p>
+        </div>
+    </div>
+</div>
+<%- include("./partials/scripts.ejs") %>
+<%- include("./partials/footer.ejs") %>

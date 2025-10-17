@@ -1,0 +1,35 @@
+<%- include("../partials/header.ejs") %>
+<title>Register</title>
+<%- include("../partials/navbar-dim.ejs") %>
+    <div class="container d-flex justify-content-center align-items-center mt-2">
+        <div class="card login-reg shadow pt-1 px-1">
+            <h5 class="card-header">Register</h5>
+            <img  src="https://images.unsplash.com/photo-1543352634-a1c51d9f1fa7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="" class="card-img-top">
+            <div class="card-body login-reg justify-content-center">
+                <%- include('../partials/flash') %>
+                <form action="/register" method="POST" class="validated-form d-block" novalidate>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <label class="form-label user-input-labels" for="username">Username</label>
+                            <input class="form-control user-input-fields" type="text" id="username" name="username" required autofocus>
+                        </div>
+                        <div>
+                            <label class="form-label user-input-labels" for="password">Password</label>
+                            <input class="form-control user-input-fields" type="password" id="password" name="password" required>
+                        </div>
+                        <div>
+                            <button type="submit" class="btn btn-success btn-block reg-form-user-btn-reg">Register</button>
+                        </div>
+                    </div>
+                </form>
+                <div class="d-flex justify-content-center"> 
+                    <form action="/login" method="GET" class="validated-form d-inline-block" novalidate>
+                        <button type="submit" class="btn btn-success btn-block reg-form-user-btn-login d-block">&lsaquo; Already Signed Up? Click Here To Login</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+<%- include("../partials/scripts.ejs") %>
+<!-- <script src="/js/list.js"></script> -->
+<%- include("../partials/footer.ejs") %>

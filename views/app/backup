@@ -1,0 +1,14 @@
+<section class="container home-page-cont">
+  <% for (choice of choiceArr[0]) { %> 
+    <form class="d-inline-block two-choice-form" action="/app/<%=choice%>" method="post">
+      <div class="row">
+        <div class="col-sm">
+          <button type="submit" class="btn btn-default selection-button" id = "<%=choice.toLowerCase()%>-button">
+            <img src="page-images/<%=choice.toLowerCase()%>.jpg" class="selection-images img-fluid" id = "<%=choice.toLowerCase()%>-img"/> 
+            <div><%=choice%></div>
+          </button>
+        </div>
+      </div>
+    </form>
+  <% } %>
+</section>
