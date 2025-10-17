@@ -15,10 +15,17 @@
             </div>
         <div class="flash-container"> <%- include('../partials/flash') %> </div>
         <% for (meal of meals) { %>
+            <% 
+            // Optimize Cloudinary image URL for faster loading
+            let optimizedImgSrc = meal.imgSrc;
+            if (meal.imgSrc && meal.imgSrc.includes('cloudinary.com')) {
+                optimizedImgSrc = meal.imgSrc.replace('/upload/', '/upload/w_180,h_180,c_fill,q_auto,f_auto/');
+            }
+            %>
             <div class="row meal-list-item m-0 <%=meal.mealName.toLowerCase()%>">
                 <form class="col-sm-1 meal-form d-flex" action="/meals/edit/all/<%=meal.mealName%>" method="post">
                     <div class="d-flex justify-content-start align-items-center p-0 meal-img-col">
-                        <input type="image" class="meal-img" src="<%=meal.imgSrc.toLowerCase()%>" value="">
+                        <input type="image" class="meal-img" src="<%=optimizedImgSrc.toLowerCase()%>" loading="lazy" value="">
                     </div>
                 </form>
                 <form class="meal-form d-flex" action="/meals/<%=meal._id%>?_method=PATCH" method="post">

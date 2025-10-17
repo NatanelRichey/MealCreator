@@ -5,9 +5,16 @@
 <section class="container fourth-page-cont">
         <div class="row matched-meal-row d-flex justify-content-center mb-5">
         <% let res = []; for (meal of matchedMeals) { %> 
+            <% 
+            // Optimize Cloudinary image URL for faster loading
+            let optimizedImgSrc = meal.imgSrc;
+            if (meal.imgSrc && meal.imgSrc.includes('cloudinary.com')) {
+                optimizedImgSrc = meal.imgSrc.replace('/upload/', '/upload/w_400,h_400,c_fill,q_auto,f_auto/');
+            }
+            %>
             <div class="col-sm-3 d-flex justify-content-center selection-col mb-4 mt-4 p-0 mx-1">
                 <button class="btn btn-default selection-button-meal p-1" id = "matched-meal-btn">
-                    <img src="<%=meal.imgSrc%>" class="selection-images img-fluid" id = "matched-meal-image"> 
+                    <img src="<%=optimizedImgSrc%>" class="selection-images img-fluid" loading="lazy" id = "matched-meal-image"> 
                     <div class="matched-meal-txt"><%=meal.mealName%></div>
                 </button>
             </div> 
