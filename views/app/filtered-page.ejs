@@ -33,12 +33,12 @@ body {
         <% let res = []; for (meal of matchedMeals) { %> 
             <% 
             // Optimize Cloudinary image URL for faster loading
-            let optimizedImgSrc = meal.imgSrc;
-            if (meal.imgSrc && meal.imgSrc.includes('cloudinary.com')) {
-                optimizedImgSrc = meal.imgSrc.replace('/upload/', '/upload/w_400,h_400,c_fill,q_auto,f_auto/');
+            let optimizedImgSrc = meal.imgSrc || 'https://res.cloudinary.com/meal-creator/image/upload/v1662460322/meal-images/untitled-meal.jpg';
+            if (optimizedImgSrc && optimizedImgSrc.includes('cloudinary.com') && !optimizedImgSrc.includes('/w_')) {
+                optimizedImgSrc = optimizedImgSrc.replace('/upload/', '/upload/w_400,h_400,c_fill,q_auto,f_auto/');
             }
             %>
-            <div class="col-6 col-sm-4 col-md-3 d-flex justify-content-center selection-col mb-4 mt-4 p-0 mx-1">
+            <div class="col-4 col-sm-4 col-md-3 d-flex justify-content-center selection-col mb-3 mt-3 p-1">
                 <button class="btn btn-default selection-button-meal p-1" id = "matched-meal-btn">
                     <img src="<%=optimizedImgSrc%>" class="selection-images img-fluid" loading="lazy" id="matched-meal-image" onerror="this.src='https://res.cloudinary.com/meal-creator/image/upload/v1662460322/meal-images/untitled-meal.jpg'"> 
                     <div class="matched-meal-txt"><%=meal.mealName%></div>

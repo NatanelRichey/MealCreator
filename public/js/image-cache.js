@@ -39,8 +39,11 @@ function addLoadingStates() {
     // Only target meal images, not page images
     const mealImages = document.querySelectorAll('.meal-img, .selection-images, #matched-meal-image');
     mealImages.forEach(img => {
-        img.style.opacity = '0';
-        img.style.transition = 'opacity 0.3s ease';
+        // Only apply loading state if image hasn't loaded yet
+        if (!img.complete) {
+            img.style.opacity = '0';
+            img.style.transition = 'opacity 0.3s ease';
+        }
         
         img.onload = function() {
             this.style.opacity = '1';
@@ -50,6 +53,11 @@ function addLoadingStates() {
             this.src = 'https://res.cloudinary.com/meal-creator/image/upload/v1662460322/meal-images/untitled-meal.jpg';
             this.style.opacity = '1';
         };
+        
+        // If image is already loaded (from cache), ensure it's visible
+        if (img.complete && img.naturalHeight !== 0) {
+            img.style.opacity = '1';
+        }
     });
 }
 
