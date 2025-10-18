@@ -11,6 +11,10 @@ export const storage = new CloudinaryStorage({
     cloudinary,
     params: {
         folder: 'meal-images',
-        allowedFormats: ['jpeg', 'png', 'jpg', 'webp']
+        allowedFormats: ['jpeg', 'png', 'jpg', 'webp'],
+        transformation: [
+            { width: 400, height: 400, crop: 'fill', quality: 'auto' },
+            { fetch_format: 'auto' }
+        ]
     }
 });
