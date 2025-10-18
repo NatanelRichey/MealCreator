@@ -749,9 +749,7 @@ height: fit-content;
     object-fit: cover;
 }
 
-.selection-col {
-    width: auto;
-}
+/* Removed - now handled by responsive rules */
 
 .btn.focus, .btn:focus {
     outline: 0;
@@ -1223,9 +1221,10 @@ height: fit-content;
         object-fit: cover;
     }
     
-    .selection-col {
-        width: auto;
-        max-width: 30%;
+    /* Grid items - 3 per row on tablet */
+    .matched-meal-row > div {
+        flex: 0 0 calc(33.333% - 4px) !important;
+        max-width: calc(33.333% - 4px) !important;
     }
 
     .matched-meal-row {

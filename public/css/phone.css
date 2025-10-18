@@ -221,10 +221,10 @@
         object-fit: cover;
     }
     
-    .selection-col {
-        width: auto;
-        flex: 0 0 31%;
-        max-width: 31%;
+    /* Grid items - 3 per row on mobile */
+    .matched-meal-row > div {
+        flex: 0 0 calc(33.333% - 4px) !important;
+        max-width: calc(33.333% - 4px) !important;
         padding: 2px !important;
         margin: 2px !important;
     }

@@ -38,7 +38,7 @@ body {
                 optimizedImgSrc = optimizedImgSrc.replace('/upload/', '/upload/w_400,h_400,c_fill,q_auto,f_auto/');
             }
             %>
-            <div class="col-4 col-sm-4 col-md-3 d-flex justify-content-center selection-col mb-3 mt-3 p-1">
+            <div class="col-4 col-sm-4 col-md-3 d-flex justify-content-center mb-3 mt-3 p-1" style="max-width: none !important;">
                 <button class="btn btn-default selection-button-meal p-1" id = "matched-meal-btn">
                     <img src="<%=optimizedImgSrc%>" class="selection-images img-fluid" alt="<%=meal.mealName%>" style="opacity: 1 !important; visibility: visible !important;" onerror="this.src='https://res.cloudinary.com/meal-creator/image/upload/v1662460322/meal-images/untitled-meal.jpg'"> 
                     <div class="matched-meal-txt"><%=meal.mealName%></div>
