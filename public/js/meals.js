@@ -27,41 +27,44 @@ mealPageContainer.addEventListener('keypress', function (e) {
 // Auto-save on blur (when clicking away from the field)
 mealPageContainer.addEventListener('blur', async function (e) {
     if (e.target.nodeName === "INPUT" && e.target.className === "meal-item-edit") {
-        const form = e.target.closest('form')
-        const mealId = form.action.match(/\/edit\/name\/([^?]+)/)?.[1]
-        const newName = e.target.value
-        const oldName = e.target.placeholder
-        
-        // Only update if the name actually changed
-        if (newName && newName !== oldName) {
-            try {
-                const response = await fetch(`/meals/edit/name/${mealId}`, {
-                    method: 'PATCH',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-Requested-With': 'XMLHttpRequest'
-                    },
-                    body: JSON.stringify({ mealName: newName })
-                })
-                
-                if (response.ok) {
-                    // Update placeholder to reflect saved value
-                    e.target.placeholder = newName
-                    // Update meals object for local tracking
-                    delete Object.assign(meals, {[newName.toLowerCase()]: meals[oldName.toLowerCase()] })[oldName.toLowerCase()];
-                    changeButtonsMeal(e, "hide")
-                } else {
-                    console.error('Failed to update meal')
-                    // Revert to old name on error
+        // Small delay to allow button clicks to complete before hiding
+        setTimeout(async () => {
+            const form = e.target.closest('form')
+            const mealId = form.action.match(/\/edit\/name\/([^?]+)/)?.[1]
+            const newName = e.target.value
+            const oldName = e.target.placeholder
+            
+            // Only update if the name actually changed
+            if (newName && newName !== oldName) {
+                try {
+                    const response = await fetch(`/meals/edit/name/${mealId}`, {
+                        method: 'PATCH',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-Requested-With': 'XMLHttpRequest'
+                        },
+                        body: JSON.stringify({ mealName: newName })
+                    })
+                    
+                    if (response.ok) {
+                        // Update placeholder to reflect saved value
+                        e.target.placeholder = newName
+                        // Update meals object for local tracking
+                        delete Object.assign(meals, {[newName.toLowerCase()]: meals[oldName.toLowerCase()] })[oldName.toLowerCase()];
+                        changeButtonsMeal(e, "hide")
+                    } else {
+                        console.error('Failed to update meal')
+                        // Revert to old name on error
+                        e.target.value = oldName
+                    }
+                } catch (error) {
+                    console.error('Error updating meal:', error)
                     e.target.value = oldName
                 }
-            } catch (error) {
-                console.error('Error updating meal:', error)
-                e.target.value = oldName
+            } else {
+                changeButtonsMeal(e, "hide")
             }
-        } else {
-            changeButtonsMeal(e, "hide")
-        }
+        }, 150)
     }
 }, true)
 

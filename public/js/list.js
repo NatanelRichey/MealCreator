@@ -28,39 +28,42 @@ listPageContainer.addEventListener('keypress', function (e) {
 // Auto-save on blur (when clicking away from the field)
 listPageContainer.addEventListener('blur', async function (e) {
     if (e.target.nodeName === "INPUT" && e.target.className === "item-edit") {
-        const form = e.target.closest('form')
-        const itemId = form.action.match(/\/edit\/([^?]+)/)?.[1]
-        const newName = e.target.value
-        const oldName = e.target.placeholder
-        
-        // Only update if the name actually changed
-        if (newName && newName !== oldName) {
-            try {
-                const response = await fetch(`/shopping-list/edit/${itemId}`, {
-                    method: 'PATCH',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-Requested-With': 'XMLHttpRequest'
-                    },
-                    body: JSON.stringify({ name: newName })
-                })
-                
-                if (response.ok) {
-                    // Update placeholder to reflect saved value
-                    e.target.placeholder = newName
-                    changeButtons(e, "hide")
-                } else {
-                    console.error('Failed to update item')
-                    // Revert to old name on error
+        // Small delay to allow button clicks to complete before hiding
+        setTimeout(async () => {
+            const form = e.target.closest('form')
+            const itemId = form.action.match(/\/edit\/([^?]+)/)?.[1]
+            const newName = e.target.value
+            const oldName = e.target.placeholder
+            
+            // Only update if the name actually changed
+            if (newName && newName !== oldName) {
+                try {
+                    const response = await fetch(`/shopping-list/edit/${itemId}`, {
+                        method: 'PATCH',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-Requested-With': 'XMLHttpRequest'
+                        },
+                        body: JSON.stringify({ name: newName })
+                    })
+                    
+                    if (response.ok) {
+                        // Update placeholder to reflect saved value
+                        e.target.placeholder = newName
+                        changeButtons(e, "hide")
+                    } else {
+                        console.error('Failed to update item')
+                        // Revert to old name on error
+                        e.target.value = oldName
+                    }
+                } catch (error) {
+                    console.error('Error updating item:', error)
                     e.target.value = oldName
                 }
-            } catch (error) {
-                console.error('Error updating item:', error)
-                e.target.value = oldName
+            } else {
+                changeButtons(e, "hide")
             }
-        } else {
-            changeButtons(e, "hide")
-        }
+        }, 150)
     }
 }, true)
 
