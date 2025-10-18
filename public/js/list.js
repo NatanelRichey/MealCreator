@@ -25,47 +25,61 @@ listPageContainer.addEventListener('keypress', function (e) {
     }
 })
 
+// Track if we're clicking a button to prevent hiding it
+let isClickingButton = false
+
 // Auto-save on blur (when clicking away from the field)
 listPageContainer.addEventListener('blur', async function (e) {
     if (e.target.nodeName === "INPUT" && e.target.className === "item-edit") {
-        // Small delay to allow button clicks to complete before hiding
-        setTimeout(async () => {
-            const form = e.target.closest('form')
-            const itemId = form.action.match(/\/edit\/([^?]+)/)?.[1]
-            const newName = e.target.value
-            const oldName = e.target.placeholder
-            
-            // Only update if the name actually changed
-            if (newName && newName !== oldName) {
-                try {
-                    const response = await fetch(`/shopping-list/edit/${itemId}`, {
-                        method: 'PATCH',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'X-Requested-With': 'XMLHttpRequest'
-                        },
-                        body: JSON.stringify({ name: newName })
-                    })
-                    
-                    if (response.ok) {
-                        // Update placeholder to reflect saved value
-                        e.target.placeholder = newName
-                        changeButtons(e, "hide")
-                    } else {
-                        console.error('Failed to update item')
-                        // Revert to old name on error
-                        e.target.value = oldName
-                    }
-                } catch (error) {
-                    console.error('Error updating item:', error)
+        const form = e.target.closest('form')
+        const itemId = form.action.match(/\/edit\/([^?]+)/)?.[1]
+        const newName = e.target.value
+        const oldName = e.target.placeholder
+        
+        // Only update if the name actually changed
+        if (newName && newName !== oldName) {
+            try {
+                const response = await fetch(`/shopping-list/edit/${itemId}`, {
+                    method: 'PATCH',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Requested-With': 'XMLHttpRequest'
+                    },
+                    body: JSON.stringify({ name: newName })
+                })
+                
+                if (response.ok) {
+                    // Update placeholder to reflect saved value
+                    e.target.placeholder = newName
+                } else {
+                    console.error('Failed to update item')
+                    // Revert to old name on error
                     e.target.value = oldName
                 }
-            } else {
-                changeButtons(e, "hide")
+            } catch (error) {
+                console.error('Error updating item:', error)
+                e.target.value = oldName
             }
-        }, 150)
+        }
+        
+        // Only hide buttons if not clicking a button (like delete)
+        if (!isClickingButton) {
+            changeButtons(e, "hide")
+        }
     }
 }, true)
+
+// Detect mousedown on delete/trash buttons to prevent hiding
+listPageContainer.addEventListener('mousedown', function (e) {
+    if ((e.target.nodeName === "INPUT" || e.target.nodeName === "BUTTON") && e.target.className.includes('trash-btn')) {
+        isClickingButton = true
+    }
+})
+
+// Reset after click completes
+listPageContainer.addEventListener('mouseup', function (e) {
+    setTimeout(() => { isClickingButton = false }, 100)
+})
 
 listPageContainer.addEventListener('click', function (e) {
     if (e.target.nodeName === "BUTTON" && e.target.className === "btn btn-light add-button add-pantry-button d-flex justify-content-center align-items-center p-0") {
@@ -92,6 +106,7 @@ listPageContainer.addEventListener('click', function (e) {
     }   
 
     if (e.target.nodeName === "INPUT" && e.target.className === "item-edit") {
+        isClickingButton = false  // Reset when clicking back into field
         changeButtons(e, "show")
         hideRestButtons (e)
     }
