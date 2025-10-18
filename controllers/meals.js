@@ -15,7 +15,7 @@ export const renderMeals =  async (req, res) => {
 
 export const renderNewMealForm = async (req, res) => {
     const curUsername = res.locals.currentUser.username
-    let item = new Meals ({mealName:"Untitled", ingredients:[], tags:[], imgSrc:"", owner:curUsername}); 
+    let item = new Meals ({mealName:"Untitled", ingredients:[], tags:[], imgSrc:"https://res.cloudinary.com/meal-creator/image/upload/v1662460322/meal-images/untitled-meal.jpg", owner:curUsername}); 
     const mealName = item.mealName
     toggleChoiceArr = {"Healthy":false,"Regular":false,"Breakfast":false,"Lunch":false,"Dinner":false,"Dairy":false,"Parve":false,"Meaty":false}
     Meals.insertMany(item);

@@ -732,7 +732,8 @@ height: fit-content;
     font-family: 'Kalam', cursive;
     opacity: 1;
     border-radius: 5%;
-    height: 40vh !important;
+    width: 100%;
+    max-height: 250px;
     margin: 10px;
 }
 
@@ -743,13 +744,13 @@ height: fit-content;
 
 .selection-images {
     border-radius: 5%;
-    width: 100vw;
-    max-height: 30vh !important;
+    width: 100%;
+    max-height: 200px !important;
     object-fit: cover;
 }
 
 .selection-col {
-    width: 20vw;
+    width: auto;
 }
 
 .btn.focus, .btn:focus {
@@ -1211,18 +1212,20 @@ height: fit-content;
         font-family: 'Kalam', cursive;
         opacity: 1;
         border-radius: 5%;
-        max-height: 40vh !important; width: auto;
+        max-height: 200px !important;
+        width: 100%;
     }
     
     .selection-images {
         border-radius: 5%;
-        width: 100vw;
-        max-height: 30vh !important;
+        width: 100%;
+        max-height: 150px !important;
         object-fit: cover;
     }
     
     .selection-col {
-        width: 80vw;
+        width: auto;
+        max-width: 30%;
     }
 
     .matched-meal-row {

@@ -203,4 +203,37 @@
     font-size: 35px;
     height: fit-content;
     }
+
+    .btn.btn-default.selection-button-meal {
+        font-size: 12px;
+        font-family: 'Kalam', cursive;
+        opacity: 1;
+        border-radius: 5%;
+        width: 100%;
+        max-height: 180px !important;
+    }
+    
+    .selection-images {
+        border-radius: 5%;
+        width: 100%;
+        max-height: 140px !important;
+        object-fit: cover;
+    }
+    
+    .selection-col {
+        width: auto;
+        max-width: 45%;
+    }
+
+    .matched-meal-row {
+        width: 100vw;
+        padding-right: 0px;
+        margin-right: 0px;
+        margin-left: 0px;
+    }
+
+    .matched-meal-txt {
+        font-size: 14px;
+        margin-top: 5px;
+    }
 }
