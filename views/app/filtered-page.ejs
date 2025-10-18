@@ -40,7 +40,7 @@ body {
             %>
             <div class="col-4 col-sm-4 col-md-3 d-flex justify-content-center selection-col mb-3 mt-3 p-1">
                 <button class="btn btn-default selection-button-meal p-1" id = "matched-meal-btn">
-                    <img src="<%=optimizedImgSrc%>" class="selection-images img-fluid" loading="lazy" id="matched-meal-image" onerror="this.src='https://res.cloudinary.com/meal-creator/image/upload/v1662460322/meal-images/untitled-meal.jpg'"> 
+                    <img src="<%=optimizedImgSrc%>" class="selection-images img-fluid" alt="<%=meal.mealName%>" style="opacity: 1 !important; visibility: visible !important;" onerror="this.src='https://res.cloudinary.com/meal-creator/image/upload/v1662460322/meal-images/untitled-meal.jpg'"> 
                     <div class="matched-meal-txt"><%=meal.mealName%></div>
                 </button>
             </div> 
