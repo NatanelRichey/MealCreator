@@ -1,7 +1,19 @@
 <%- include("../partials/header.ejs") %>
 <title>Meal Creator - Results</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Athiti:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
 <%- include("../partials/navbar.ejs") %>
 <!-------------------------------------------------- ENTER CONTENT HERE -------------------------------------------------->
+<style>
+body {
+    font-family: 'Athiti', sans-serif;
+}
+.matched-meal-txt {
+    font-family: 'Athiti', sans-serif;
+    font-weight: 400;
+}
+</style>
 <section class="container fourth-page-cont">
         <div class="row matched-meal-row d-flex justify-content-center mb-5">
         <% let res = []; for (meal of matchedMeals) { %> 

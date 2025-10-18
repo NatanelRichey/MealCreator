@@ -1,7 +1,5 @@
 const optionCards = document.querySelectorAll('.option-card');
-const submitBtn = document.getElementById('submit-btn');
 const surpriseBtn = document.getElementById('surprise-btn');
-const errorMessage = document.getElementById('error-message');
 const form = document.getElementById('meal-selector-form');
 
 // Track selections
@@ -39,33 +37,10 @@ optionCards.forEach(card => {
         // Update hidden form inputs
         document.getElementById(`${category}-input`).value = value;
         
-        // Check if all categories are selected
-        validateSelections();
+        // Auto-submit if all categories are selected
+        if (selections.health && selections.mealtime && selections.genre) {
+            form.submit();
+        }
     });
-});
-
-// Validate that all categories have a selection
-function validateSelections() {
-    const allSelected = selections.health && selections.mealtime && selections.genre;
-    
-    if (allSelected) {
-        submitBtn.disabled = false;
-        errorMessage.style.display = 'none';
-    } else {
-        submitBtn.disabled = true;
-    }
-    
-    return allSelected;
-}
-
-// Handle form submission
-form.addEventListener('submit', function(e) {
-    if (!validateSelections()) {
-        e.preventDefault();
-        errorMessage.style.display = 'block';
-        
-        // Scroll to error message
-        errorMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
 });
 

@@ -9,8 +9,9 @@
 <style>
 .selector-container {
     max-width: 1000px;
-    margin: 2rem auto;
-    padding: 0 2rem;
+    min-height: calc(100vh - 80px);
+    margin: 0 auto;
+    padding: 2rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -42,56 +43,62 @@
     gap: 1.5rem;
     width: 100%;
     max-width: 900px;
-    margin: 0 auto 1.5rem auto;
+    margin: 0 auto;
 }
 
-/* Surprise Me button - top left */
+/* Grid positions 1-9 (left to right, top to bottom) */
+/* Position 1 - Surprise Me */
 .surprise-card {
     grid-column: 1;
-    grid-row: 1 / 2;
+    grid-row: 1;
 }
 
-/* Health column - 2 items */
+/* Position 2 - Healthy */
 .option-card:nth-child(1) {
-    grid-column: 1;
-    grid-row: 2 / 3;
-}
-
-.option-card:nth-child(2) {
-    grid-column: 1;
-    grid-row: 3 / 4;
-}
-
-/* Meal Time column - 3 items */
-.option-card:nth-child(3) {
     grid-column: 2;
-    grid-row: 1 / 2;
+    grid-row: 1;
 }
 
+/* Position 3 - Regular */
+.option-card:nth-child(2) {
+    grid-column: 3;
+    grid-row: 1;
+}
+
+/* Position 4 - Breakfast */
+.option-card:nth-child(3) {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+/* Position 5 - Lunch */
 .option-card:nth-child(4) {
     grid-column: 2;
-    grid-row: 2 / 3;
+    grid-row: 2;
 }
 
+/* Position 6 - Dinner */
 .option-card:nth-child(5) {
-    grid-column: 2;
-    grid-row: 3 / 4;
+    grid-column: 3;
+    grid-row: 2;
 }
 
-/* Genre column - 3 items */
+/* Position 7 - Dairy */
 .option-card:nth-child(6) {
-    grid-column: 3;
-    grid-row: 1 / 2;
+    grid-column: 1;
+    grid-row: 3;
 }
 
+/* Position 8 - Parve */
 .option-card:nth-child(7) {
-    grid-column: 3;
-    grid-row: 2 / 3;
+    grid-column: 2;
+    grid-row: 3;
 }
 
+/* Position 9 - Meaty */
 .option-card:nth-child(8) {
     grid-column: 3;
-    grid-row: 3 / 4;
+    grid-row: 3;
 }
 
 .surprise-card {
@@ -163,50 +170,10 @@
     font-weight: 400;
 }
 
-.action-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    margin-top: 1.5rem;
-    flex-wrap: wrap;
-}
-
-.submit-btn {
-    padding: 1rem 3rem;
-    font-size: 1.2rem;
-    font-family: 'Athiti', sans-serif;
-    font-weight: 400;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    background-color: #28a745;
-    color: white;
-}
-
-.submit-btn:hover:not(:disabled) {
-    background-color: #218838;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(40, 167, 69, 0.3);
-}
-
-.submit-btn:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-}
-
-.error-message {
-    text-align: center;
-    color: #dc3545;
-    font-family: 'Athiti', sans-serif;
-    font-weight: 400;
-    margin-top: 1rem;
-    display: none;
-}
 
 @media (max-width: 768px) {
     .selector-container {
-        padding: 0 1rem;
+        padding: 1rem;
     }
     
     .selector-title {
@@ -235,12 +202,6 @@
     .option-label,
     .surprise-label {
         font-size: 0.9rem;
-    }
-    
-    .submit-btn {
-        padding: 0.8rem 2rem;
-        font-size: 1rem;
-        width: 100%;
     }
 }
 </style>
@@ -298,14 +259,6 @@
         <input type="hidden" name="health" id="health-input">
         <input type="hidden" name="mealtime" id="mealtime-input">
         <input type="hidden" name="genre" id="genre-input">
-        
-        <div class="action-buttons">
-            <button type="submit" class="submit-btn" id="submit-btn" disabled>Find Meals</button>
-        </div>
-        
-        <div class="error-message" id="error-message">
-            Please select one option from each category
-        </div>
     </form>
 </section>
 
