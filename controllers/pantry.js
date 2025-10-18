@@ -40,10 +40,10 @@ export const moveFromSavedItems =  async (req, res) => {
 export const moveToCart =  async (req, res) => {
     const name = req.params.name
     const curUsername = res.locals.currentUser.username
-    Pantry.findOne({name:name})
-    .then (res => {
-        ShoppingList.insertMany({name, category:res.category, inStock:true, owner:curUsername})
-    })
+    const item = await Pantry.findOne({name:name, owner:curUsername})
+    if (item) {
+        await ShoppingList.insertMany({name, category:item.category, inStock:true, owner:curUsername})
+    }
     await Pantry.deleteMany({name:name, owner:curUsername})
     req.flash('success', `'${name}' moved succesfully to Shopping List!`);
     res.redirect('/pantry')

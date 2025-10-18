@@ -77,14 +77,6 @@ pantryPageContainer.addEventListener('click', function (e) {
         hideRestButtons (e)
     }
 
-    if (e.target.nodeName === "INPUT" && e.target.className === "btn btn-light trash-btn") {
-        // let elemToDel = e.target.parentElement.parentElement
-        // let elemName = e.target.parentElement.previousElementSibling.previousElementSibling.firstElementChild.value
-        // let categoryList = e.target.parentElement.parentElement.parentElement
-        // categoryList.removeChild(elemToDel);
-        // pantry = arrayRemove(pantry, elemName.toLowerCase())
-    }
-
     if (e.target.nodeName === "INPUT" && e.target.className === "btn btn-light tag-list-check") {
         let elemToDel = e.target.parentElement.parentElement
         let categoryList = e.target.parentElement.parentElement.parentElement

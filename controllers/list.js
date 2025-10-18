@@ -13,10 +13,10 @@ export const renderList = async (req, res) => {
 export const moveToPantry =  async (req, res) => {
     const name = req.params.name
     const curUsername = res.locals.currentUser.username
-    ShoppingList.findOne({name:name, owner:curUsername})
-    .then (res => {
-        Pantry.insertMany({name:res.name, category:res.category, owner:curUsername, inStock:true})
-    })
+    const item = await ShoppingList.findOne({name:name, owner:curUsername})
+    if (item) {
+        await Pantry.insertMany({name:item.name, category:item.category, owner:curUsername, inStock:true})
+    }
     await ShoppingList.deleteMany({name:name, owner:curUsername})
     req.flash('success', `'${name}' stocked in Pantry`);
     res.redirect('/shopping-list')
