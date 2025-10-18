@@ -18,3 +18,12 @@ export const storage = new CloudinaryStorage({
         ]
     }
 });
+
+// Export a separate storage for page images that don't need transformation
+export const pageImageStorage = new CloudinaryStorage({
+    cloudinary,
+    params: {
+        folder: 'page-images',
+        allowedFormats: ['jpeg', 'png', 'jpg', 'webp']
+    }
+});

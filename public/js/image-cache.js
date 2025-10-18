@@ -25,8 +25,9 @@ function preloadImage(src) {
 
 // Preload images when page loads
 document.addEventListener('DOMContentLoaded', function() {
-    const images = document.querySelectorAll('img[src*="cloudinary.com"]');
-    images.forEach(img => {
+    // Only target meal images, not page images
+    const mealImages = document.querySelectorAll('.meal-img, .selection-images, #matched-meal-image');
+    mealImages.forEach(img => {
         if (img.src) {
             preloadImage(img.src).catch(console.warn);
         }
@@ -35,8 +36,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Add loading states to images
 function addLoadingStates() {
-    const images = document.querySelectorAll('img[src*="cloudinary.com"]');
-    images.forEach(img => {
+    // Only target meal images, not page images
+    const mealImages = document.querySelectorAll('.meal-img, .selection-images, #matched-meal-image');
+    mealImages.forEach(img => {
         img.style.opacity = '0';
         img.style.transition = 'opacity 0.3s ease';
         
