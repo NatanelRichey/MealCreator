@@ -11,14 +11,18 @@ const listPageContainer = document.querySelector(".list-page-cont")
 
 listPageContainer.addEventListener('keypress', function (e) {
     if (e.key === 'Enter' && e.target.nodeName === "INPUT" && e.target.className === "search-category") {
-        addNewItem(e.target.nextElementSibling)
+        e.preventDefault()
+        const form = e.target.closest('form')
+        const submitButton = form.querySelector('input[type="submit"]')
+        submitButton.click()
+        addNewItem(submitButton)
     }
 
     if (e.key === 'Enter' && e.target.nodeName === "INPUT" && e.target.className === "item-edit") {
-        let item = e.target.parentElement.nextElementSibling.firstElementChild
-        let enteredText = item.value
-        item.placeholder = enteredText
-        item.value = enteredText
+        e.preventDefault()
+        const form = e.target.closest('form')
+        const enterButton = form.querySelector('.enter-btn-list')
+        enterButton.click()
         changeButtons (e, "hide")
         e.target.blur()
     }

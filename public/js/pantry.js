@@ -12,17 +12,20 @@ const savedItemsSectionList = document.querySelector(".saved-items-section.list-
 
 pantryPageContainer.addEventListener('keypress', function (e) {
     if (e.key === 'Enter' && e.target.nodeName === "INPUT" && e.target.className === "search-category") {
-        document.getElementById("new-item-pantry-btn").click()
-        addNewItem(e.target.nextElementSibling)
+        e.preventDefault()
+        // Find the submit button in the same form as the input
+        const form = e.target.closest('form')
+        const submitButton = form.querySelector('.add-pantry-button')
+        submitButton.click()
+        addNewItem(submitButton)
     }
 
     if (e.key === 'Enter' && e.target.nodeName === "INPUT" && e.target.className === "item-edit") {
-        // console.log("test")
-        document.getElementById("pantry-enter-btn").click()
-        let item = e.target.parentElement.nextElementSibling.firstElementChild
-        let enteredText = item.value
-        item.placeholder = enteredText
-        item.value = enteredText
+        e.preventDefault()
+        // Find the enter button in the same form
+        const form = e.target.closest('form')
+        const enterButton = form.querySelector('.enter-btn, .enter-btn-saved')
+        enterButton.click()
         changeButtons (e, "hide")
         e.target.blur()
     }

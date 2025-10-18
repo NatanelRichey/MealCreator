@@ -25,7 +25,7 @@
                                 <input type="image" class="btn btn-light list-check" value="">
                             </div>
                         </form>
-                        <form class="d-flex form-container" action="/shopping-list/<%=item._id%>?_method=PATCH" method="post">
+                        <form class="d-flex form-container" action="/shopping-list/edit/<%=item._id%>?_method=PATCH" method="post">
                             <button type="submit" disabled style="display: none" aria-hidden="true"></button>
                             <div class="col-sm-11 p-0">
                                 <input type="text" name="name" id="saved-item-edit" class="item-edit" value="<%= item.name %>" placeholder="<%= item.name %>">
@@ -34,7 +34,7 @@
                                 <input type="submit" id="pantry-enter-btn" class="btn btn-light enter-btn-list" value="">
                             </div>
                         </form>
-                        <form class="form-container" action="/shopping-list/<%=item._id%>?_method=DELETE" method="post">
+                        <form class="form-container" action="/shopping-list/delete/<%=item._id%>?_method=DELETE" method="post">
                             <div class="col-sm-1 d-flex align-items-center p-0">
                                 <input type="submit" class="btn btn-light trash-btn" value="">
                             </div>
