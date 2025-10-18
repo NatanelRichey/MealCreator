@@ -22,25 +22,37 @@ body {
     margin-top: 4rem;
     padding: 2rem;
 }
-/* Force 3 columns grid - highest priority */
+/* Responsive meal results grid */
 .matched-meal-row {
     display: flex !important;
     flex-wrap: wrap !important;
-    justify-content: flex-start !important;
+    justify-content: center !important;
     width: 100% !important;
 }
 .matched-meal-row > div {
-    flex: 0 0 calc(33.333% - 10px) !important;
-    max-width: calc(33.333% - 10px) !important;
-    width: calc(33.333% - 10px) !important;
-    margin: 5px !important;
+    flex: 0 0 100% !important;
+    max-width: 500px !important;
+    width: 100% !important;
+    margin: 10px auto !important;
     padding: 0 !important;
+}
+@media (min-width: 768px) {
+    .matched-meal-row > div {
+        flex: 0 0 calc(50% - 20px) !important;
+        max-width: calc(50% - 20px) !important;
+        margin: 10px !important;
+    }
 }
 @media (min-width: 1000px) {
     .matched-meal-row > div {
-        flex: 0 0 calc(25% - 10px) !important;
-        max-width: calc(25% - 10px) !important;
-        width: calc(25% - 10px) !important;
+        flex: 0 0 calc(33.333% - 20px) !important;
+        max-width: calc(33.333% - 20px) !important;
+    }
+}
+@media (min-width: 1400px) {
+    .matched-meal-row > div {
+        flex: 0 0 calc(25% - 20px) !important;
+        max-width: calc(25% - 20px) !important;
     }
 }
 </style>
