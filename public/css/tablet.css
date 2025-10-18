@@ -749,7 +749,18 @@ height: fit-content;
     object-fit: cover;
 }
 
-/* Removed - now handled by responsive rules */
+/* Grid items - 3 per row base rule for all smaller screens */
+.matched-meal-row {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: flex-start !important;
+}
+
+.matched-meal-row > div {
+    flex: 0 0 calc(33.333% - 6px) !important;
+    max-width: calc(33.333% - 6px) !important;
+    margin: 3px !important;
+}
 
 .btn.focus, .btn:focus {
     outline: 0;
@@ -1324,6 +1335,12 @@ height: fit-content;
     .meal-item-edit {
         width: 60vw;
         max-width: 1064px;
+    }
+
+    /* 4 items per row on larger screens */
+    .matched-meal-row > div {
+        flex: 0 0 calc(25% - 6px) !important;
+        max-width: calc(25% - 6px) !important;
     }
 }
 /* Responsive Image Fixes */
