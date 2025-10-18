@@ -50,7 +50,7 @@ body {
             No meals found. It looks like it's time for a shop!
         </div>
     <% } else { %>
-        <div class="row matched-meal-row d-flex justify-content-center mb-5">
+        <div style="display: flex !important; flex-wrap: wrap !important; justify-content: flex-start !important; width: 100% !important; padding: 0 !important; margin: 0 !important;">
         <% let res = []; for (meal of matchedMeals) { %> 
             <% 
             // Optimize Cloudinary image URL for faster loading
@@ -59,7 +59,7 @@ body {
                 optimizedImgSrc = optimizedImgSrc.replace('/upload/', '/upload/w_400,h_400,c_fill,q_auto,f_auto/');
             }
             %>
-            <div class="meal-grid-item d-flex justify-content-center">
+            <div style="flex: 0 0 calc(33.333% - 10px) !important; max-width: calc(33.333% - 10px) !important; width: calc(33.333% - 10px) !important; margin: 5px !important; padding: 0 !important; display: flex !important; justify-content: center !important; box-sizing: border-box !important;">
                 <button class="btn btn-default selection-button-meal p-1" id = "matched-meal-btn">
                     <img src="<%=optimizedImgSrc%>" class="selection-images img-fluid" alt="<%=meal.mealName%>" style="opacity: 1 !important; visibility: visible !important;" onerror="this.src='https://res.cloudinary.com/meal-creator/image/upload/v1662460322/meal-images/untitled-meal.jpg'"> 
                     <div class="matched-meal-txt"><%=meal.mealName%></div>
