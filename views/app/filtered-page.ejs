@@ -13,8 +13,22 @@ body {
     font-family: 'Athiti', sans-serif;
     font-weight: 400;
 }
+.no-meals-message {
+    font-family: 'Athiti', sans-serif;
+    font-weight: 400;
+    font-size: 2rem;
+    text-align: center;
+    color: #333;
+    margin-top: 4rem;
+    padding: 2rem;
+}
 </style>
 <section class="container fourth-page-cont">
+    <% if (matchedMeals.length === 0) { %>
+        <div class="no-meals-message">
+            No meals found. It looks like it's time for a shop!
+        </div>
+    <% } else { %>
         <div class="row matched-meal-row d-flex justify-content-center mb-5">
         <% let res = []; for (meal of matchedMeals) { %> 
             <% 
@@ -32,6 +46,7 @@ body {
             </div> 
         <% } %>
         </div>
+    <% } %>
 </section>
 <!--------------------------------------------------- CONTENT ENDS HERE -------------------------------------------------->
 <%- include("../partials/scripts.ejs") %>
