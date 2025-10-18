@@ -1,6 +1,5 @@
 const optionCards = document.querySelectorAll('.option-card');
 const submitBtn = document.getElementById('submit-btn');
-const surpriseBtn = document.getElementById('surprise-btn');
 const errorMessage = document.getElementById('error-message');
 const form = document.getElementById('meal-selector-form');
 
@@ -59,10 +58,5 @@ form.addEventListener('submit', function(e) {
         // Scroll to error message
         errorMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
-});
-
-// Handle surprise me button
-surpriseBtn.addEventListener('click', function() {
-    window.location.href = '/app/choice/suprise';
 });
 

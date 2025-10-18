@@ -5,43 +5,81 @@
 <!-------------------------------------------------- ENTER CONTENT HERE -------------------------------------------------->
 <style>
 .selector-container {
-    max-width: 1200px;
+    max-width: 1000px;
     margin: 2rem auto;
-    padding: 0 1rem;
+    padding: 0 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .selector-title {
     text-align: center;
-    font-size: 2rem;
-    font-weight: bold;
+    font-size: 1.8rem;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     margin-bottom: 1rem;
     color: #333;
 }
 
 .selector-subtitle {
     text-align: center;
-    font-size: 1.1rem;
+    font-size: 1rem;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     color: #666;
-    margin-bottom: 2rem;
-}
-
-.category-section {
-    margin-bottom: 2rem;
-}
-
-.category-title {
-    font-size: 1.3rem;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 1rem;
-    text-align: center;
+    margin-bottom: 2.5rem;
 }
 
 .options-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
     gap: 1.5rem;
-    margin-bottom: 1rem;
+    width: 100%;
+    max-width: 900px;
+    margin-bottom: 2rem;
+}
+
+/* Health column - 2 items centered vertically */
+.option-card:nth-child(1) {
+    grid-column: 1;
+    grid-row: 1 / 2;
+}
+
+.option-card:nth-child(2) {
+    grid-column: 1;
+    grid-row: 3 / 4;
+}
+
+/* Meal Time column - 3 items */
+.option-card:nth-child(3) {
+    grid-column: 2;
+    grid-row: 1 / 2;
+}
+
+.option-card:nth-child(4) {
+    grid-column: 2;
+    grid-row: 2 / 3;
+}
+
+.option-card:nth-child(5) {
+    grid-column: 2;
+    grid-row: 3 / 4;
+}
+
+/* Genre column - 3 items */
+.option-card:nth-child(6) {
+    grid-column: 3;
+    grid-row: 1 / 2;
+}
+
+.option-card:nth-child(7) {
+    grid-column: 3;
+    grid-row: 2 / 3;
+}
+
+.option-card:nth-child(8) {
+    grid-column: 3;
+    grid-row: 3 / 4;
 }
 
 .option-card {
@@ -81,7 +119,7 @@
     padding: 1.5rem 0.5rem 0.5rem;
     text-align: center;
     font-size: 1.1rem;
-    font-weight: bold;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
 .action-buttons {
@@ -92,17 +130,14 @@
     flex-wrap: wrap;
 }
 
-.submit-btn, .surprise-btn {
+.submit-btn {
     padding: 1rem 3rem;
     font-size: 1.2rem;
-    font-weight: bold;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     border: none;
     border-radius: 10px;
     cursor: pointer;
     transition: all 0.3s ease;
-}
-
-.submit-btn {
     background-color: #28a745;
     color: white;
 }
@@ -118,40 +153,46 @@
     cursor: not-allowed;
 }
 
-.surprise-btn {
-    background-color: #28a745;
-    color: white;
-}
-
-.surprise-btn:hover {
-    background-color: #218838;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(40, 167, 69, 0.3);
-}
-
 .error-message {
     text-align: center;
     color: #dc3545;
-    font-weight: bold;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     margin-top: 1rem;
     display: none;
 }
 
 @media (max-width: 768px) {
+    .selector-container {
+        padding: 0 1rem;
+    }
+    
     .selector-title {
         font-size: 1.5rem;
     }
     
     .options-grid {
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
         gap: 1rem;
+    }
+    
+    .option-card:nth-child(1),
+    .option-card:nth-child(2),
+    .option-card:nth-child(3),
+    .option-card:nth-child(4),
+    .option-card:nth-child(5),
+    .option-card:nth-child(6),
+    .option-card:nth-child(7),
+    .option-card:nth-child(8) {
+        grid-column: 1;
+        grid-row: auto;
     }
     
     .option-label {
         font-size: 0.9rem;
     }
     
-    .submit-btn, .surprise-btn {
+    .submit-btn {
         padding: 0.8rem 2rem;
         font-size: 1rem;
         width: 100%;
@@ -164,56 +205,43 @@
     <p class="selector-subtitle">Select one option from each category</p>
     
     <form id="meal-selector-form" action="/app/find-meals" method="POST">
-        <!-- Health Category -->
-        <div class="category-section">
-            <h2 class="category-title">Health</h2>
-            <div class="options-grid">
-                <div class="option-card" data-category="health" data-value="Healthy">
-                    <img src="https://res.cloudinary.com/meal-creator/image/upload/v1662276033/page-images/healthy.jpg" alt="Healthy">
-                    <div class="option-label">Healthy</div>
-                </div>
-                <div class="option-card" data-category="health" data-value="Regular">
-                    <img src="https://res.cloudinary.com/meal-creator/image/upload/v1662276033/page-images/regular.jpg" alt="Regular">
-                    <div class="option-label">Regular</div>
-                </div>
+        <div class="options-grid">
+            <!-- Health Column -->
+            <div class="option-card" data-category="health" data-value="Healthy">
+                <img src="https://res.cloudinary.com/meal-creator/image/upload/v1662276033/page-images/healthy.jpg" alt="Healthy">
+                <div class="option-label">Healthy</div>
             </div>
-        </div>
-        
-        <!-- Meal Time Category -->
-        <div class="category-section">
-            <h2 class="category-title">Meal Time</h2>
-            <div class="options-grid">
-                <div class="option-card" data-category="mealtime" data-value="Breakfast">
-                    <img src="https://res.cloudinary.com/meal-creator/image/upload/v1662276033/page-images/breakfast.jpg" alt="Breakfast">
-                    <div class="option-label">Breakfast</div>
-                </div>
-                <div class="option-card" data-category="mealtime" data-value="Lunch">
-                    <img src="https://res.cloudinary.com/meal-creator/image/upload/v1662276033/page-images/lunch.jpg" alt="Lunch">
-                    <div class="option-label">Lunch</div>
-                </div>
-                <div class="option-card" data-category="mealtime" data-value="Dinner">
-                    <img src="https://res.cloudinary.com/meal-creator/image/upload/v1662276033/page-images/dinner.jpg" alt="Dinner">
-                    <div class="option-label">Dinner</div>
-                </div>
+            <div class="option-card" data-category="health" data-value="Regular">
+                <img src="https://res.cloudinary.com/meal-creator/image/upload/v1662276033/page-images/regular.jpg" alt="Regular">
+                <div class="option-label">Regular</div>
             </div>
-        </div>
-        
-        <!-- Genre Category -->
-        <div class="category-section">
-            <h2 class="category-title">Genre</h2>
-            <div class="options-grid">
-                <div class="option-card" data-category="genre" data-value="Dairy">
-                    <img src="https://res.cloudinary.com/meal-creator/image/upload/v1662276033/page-images/dairy.jpg" alt="Dairy">
-                    <div class="option-label">Dairy</div>
-                </div>
-                <div class="option-card" data-category="genre" data-value="Parve">
-                    <img src="https://res.cloudinary.com/meal-creator/image/upload/v1662276033/page-images/parve.jpg" alt="Parve">
-                    <div class="option-label">Parve</div>
-                </div>
-                <div class="option-card" data-category="genre" data-value="Meaty">
-                    <img src="https://res.cloudinary.com/meal-creator/image/upload/v1662276033/page-images/meaty.jpg" alt="Meaty">
-                    <div class="option-label">Meaty</div>
-                </div>
+            
+            <!-- Meal Time Column -->
+            <div class="option-card" data-category="mealtime" data-value="Breakfast">
+                <img src="https://res.cloudinary.com/meal-creator/image/upload/v1662276033/page-images/breakfast.jpg" alt="Breakfast">
+                <div class="option-label">Breakfast</div>
+            </div>
+            <div class="option-card" data-category="mealtime" data-value="Lunch">
+                <img src="https://res.cloudinary.com/meal-creator/image/upload/v1662276033/page-images/lunch.jpg" alt="Lunch">
+                <div class="option-label">Lunch</div>
+            </div>
+            <div class="option-card" data-category="mealtime" data-value="Dinner">
+                <img src="https://res.cloudinary.com/meal-creator/image/upload/v1662276033/page-images/dinner.jpg" alt="Dinner">
+                <div class="option-label">Dinner</div>
+            </div>
+            
+            <!-- Genre Column -->
+            <div class="option-card" data-category="genre" data-value="Dairy">
+                <img src="https://res.cloudinary.com/meal-creator/image/upload/v1662276033/page-images/dairy.jpg" alt="Dairy">
+                <div class="option-label">Dairy</div>
+            </div>
+            <div class="option-card" data-category="genre" data-value="Parve">
+                <img src="https://res.cloudinary.com/meal-creator/image/upload/v1662276033/page-images/parve.jpg" alt="Parve">
+                <div class="option-label">Parve</div>
+            </div>
+            <div class="option-card" data-category="genre" data-value="Meaty">
+                <img src="https://res.cloudinary.com/meal-creator/image/upload/v1662276033/page-images/meaty.jpg" alt="Meaty">
+                <div class="option-label">Meaty</div>
             </div>
         </div>
         
@@ -223,7 +251,6 @@
         
         <div class="action-buttons">
             <button type="submit" class="submit-btn" id="submit-btn" disabled>Find Meals</button>
-            <button type="button" class="surprise-btn" id="surprise-btn">Surprise Me!</button>
         </div>
         
         <div class="error-message" id="error-message">
