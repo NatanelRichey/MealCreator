@@ -83,9 +83,9 @@ body {
                 optimizedImgSrc = optimizedImgSrc.replace('/upload/', '/upload/w_400,h_400,c_fill,q_auto,f_auto/');
             }
             %>
-            <div style="flex: 0 0 calc(33.333% - 10px) !important; max-width: calc(33.333% - 10px) !important; width: calc(33.333% - 10px) !important; margin: 5px !important; padding: 0 !important; display: flex !important; justify-content: center !important; box-sizing: border-box !important;">
-                <button class="btn btn-default selection-button-meal p-1" id = "matched-meal-btn">
-                    <img src="<%=optimizedImgSrc%>" class="selection-images img-fluid" alt="<%=meal.mealName%>" style="opacity: 1 !important; visibility: visible !important;" onerror="this.src='https://res.cloudinary.com/meal-creator/image/upload/v1662460322/meal-images/untitled-meal.jpg'"> 
+            <div style="flex: 0 0 100% !important; max-width: 100% !important; width: 100% !important; margin: 10px 0 !important; padding: 0 10px !important; display: flex !important; justify-content: center !important; box-sizing: border-box !important;">
+                <button class="btn btn-default selection-button-meal p-1" id = "matched-meal-btn" style="width: 100% !important; max-width: 100% !important; max-height: none !important;">
+                    <img src="<%=optimizedImgSrc%>" class="selection-images img-fluid" alt="<%=meal.mealName%>" style="opacity: 1 !important; visibility: visible !important; width: 100% !important; max-width: 100% !important; max-height: 400px !important; height: auto !important;" onerror="this.src='https://res.cloudinary.com/meal-creator/image/upload/v1662460322/meal-images/untitled-meal.jpg'"> 
                     <div class="matched-meal-txt"><%=meal.mealName%></div>
                 </button>
             </div> 
