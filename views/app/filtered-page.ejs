@@ -31,16 +31,28 @@ body {
 }
 .matched-meal-row > div {
     flex: 0 0 100% !important;
-    max-width: 500px !important;
+    max-width: 100% !important;
     width: 100% !important;
-    margin: 10px auto !important;
-    padding: 0 !important;
+    margin: 10px 0 !important;
+    padding: 0 10px !important;
+}
+.matched-meal-row > div .selection-button-meal {
+    width: 100% !important;
+    max-width: 100% !important;
+    max-height: none !important;
+}
+.matched-meal-row > div .selection-images {
+    width: 100% !important;
+    max-width: 100% !important;
+    max-height: 400px !important;
+    height: auto !important;
 }
 @media (min-width: 768px) {
     .matched-meal-row > div {
         flex: 0 0 calc(50% - 20px) !important;
         max-width: calc(50% - 20px) !important;
         margin: 10px !important;
+        padding: 0 !important;
     }
 }
 @media (min-width: 1000px) {
