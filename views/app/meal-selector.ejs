@@ -16,7 +16,8 @@
 .selector-title {
     text-align: center;
     font-size: 1.8rem;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-weight: 400;
     margin-bottom: 1rem;
     color: #333;
 }
@@ -24,7 +25,8 @@
 .selector-subtitle {
     text-align: center;
     font-size: 1rem;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-weight: 400;
     color: #666;
     margin-bottom: 2.5rem;
 }
@@ -36,13 +38,21 @@
     gap: 1.5rem;
     width: 100%;
     max-width: 900px;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-/* Health column - 2 items centered vertically */
-.option-card:nth-child(1) {
+/* Surprise Me button - top left */
+.surprise-card {
     grid-column: 1;
     grid-row: 1 / 2;
+}
+
+/* Health column - 2 items */
+.option-card:nth-child(1) {
+    grid-column: 1;
+    grid-row: 2 / 3;
 }
 
 .option-card:nth-child(2) {
@@ -82,6 +92,34 @@
     grid-row: 3 / 4;
 }
 
+.surprise-card {
+    position: relative;
+    aspect-ratio: 1;
+    overflow: hidden;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 3px solid #28a745;
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.surprise-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(40, 167, 69, 0.4);
+}
+
+.surprise-label {
+    color: white;
+    font-size: 1.3rem;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-weight: 400;
+    text-align: center;
+    padding: 1rem;
+}
+
 .option-card {
     position: relative;
     aspect-ratio: 1;
@@ -119,21 +157,23 @@
     padding: 1.5rem 0.5rem 0.5rem;
     text-align: center;
     font-size: 1.1rem;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-weight: 400;
 }
 
 .action-buttons {
     display: flex;
     justify-content: center;
     gap: 1rem;
-    margin-top: 2rem;
+    margin-top: 1.5rem;
     flex-wrap: wrap;
 }
 
 .submit-btn {
     padding: 1rem 3rem;
     font-size: 1.2rem;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-weight: 400;
     border: none;
     border-radius: 10px;
     cursor: pointer;
@@ -156,7 +196,8 @@
 .error-message {
     text-align: center;
     color: #dc3545;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-weight: 400;
     margin-top: 1rem;
     display: none;
 }
@@ -176,6 +217,7 @@
         gap: 1rem;
     }
     
+    .surprise-card,
     .option-card:nth-child(1),
     .option-card:nth-child(2),
     .option-card:nth-child(3),
@@ -188,7 +230,8 @@
         grid-row: auto;
     }
     
-    .option-label {
+    .option-label,
+    .surprise-label {
         font-size: 0.9rem;
     }
     
@@ -206,6 +249,11 @@
     
     <form id="meal-selector-form" action="/app/find-meals" method="POST">
         <div class="options-grid">
+            <!-- Surprise Me Button -->
+            <div class="surprise-card" id="surprise-btn">
+                <div class="surprise-label">Surprise Me!</div>
+            </div>
+            
             <!-- Health Column -->
             <div class="option-card" data-category="health" data-value="Healthy">
                 <img src="https://res.cloudinary.com/meal-creator/image/upload/v1662276033/page-images/healthy.jpg" alt="Healthy">

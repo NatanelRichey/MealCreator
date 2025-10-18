@@ -1,5 +1,6 @@
 const optionCards = document.querySelectorAll('.option-card');
 const submitBtn = document.getElementById('submit-btn');
+const surpriseBtn = document.getElementById('surprise-btn');
 const errorMessage = document.getElementById('error-message');
 const form = document.getElementById('meal-selector-form');
 
@@ -9,6 +10,14 @@ const selections = {
     mealtime: null,
     genre: null
 };
+
+// Handle Surprise Me button
+if (surpriseBtn) {
+    surpriseBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        window.location.href = '/app/choice/suprise';
+    });
+}
 
 // Handle option card clicks
 optionCards.forEach(card => {
