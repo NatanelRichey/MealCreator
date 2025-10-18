@@ -12,9 +12,27 @@ export const renderHome = async (req, res) => {
 }
 
 export const renderApp = async (req, res) => {
-    res.render('app/first-page', { choiceArr })
+    res.render('app/home-page')
     choices = []
     matchedMeals = []
+}
+
+export const renderMealSelector = async (req, res) => {
+    res.render('app/meal-selector', { choiceArr })
+    choices = []
+    matchedMeals = []
+}
+
+export const processMealSelection = async (req, res) => {
+    const { health, mealtime, genre } = req.body
+    const curUsername = res.locals.currentUser.username
+    
+    // Build choices array from form data
+    choices = [health.toLowerCase(), mealtime.toLowerCase(), genre.toLowerCase()]
+    
+    // Find matching meals
+    await findMatchedMeal(choices, curUsername)
+    res.render('app/filtered-page', { matchedMeals })
 }
 
 export const processChoice = async (req, res) => {
@@ -28,7 +46,7 @@ export const processChoice = async (req, res) => {
     else if (choiceArr[1].includes(choice)) {
         res.render('app/third-page', { choiceArr })}
     else if (choice === "suprise") {
-        await findMatchedMeal(["Healthy","Regular","Breakfast","Lunch","Dinner","Dairy","Parve","Meaty"], curUsername)
+        await findMatchedMeal(["healthy","regular","breakfast","lunch","dinner","dairy","parve","meaty"], curUsername)
         res.render('app/filtered-page', { matchedMeals })
     }
     else {

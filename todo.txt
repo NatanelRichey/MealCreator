@@ -16,3 +16,12 @@ LATER...
     Design Changes:
         - tabs?
         - lighter overlay
+
+Create menu redesign
+enter key appropriate to text field
+send and delete buttons not working
+auto-identify category (with AI)
+swipe left to delete Option
+dont go back to head of page after edit
+
+express app (loading times)

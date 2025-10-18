@@ -1,0 +1,239 @@
+<%- include("../partials/header.ejs") %>
+<title>Find Your Perfect Meal</title>
+<%- include("../partials/navbar.ejs") %>
+<%- include('../partials/flash') %>
+<!-------------------------------------------------- ENTER CONTENT HERE -------------------------------------------------->
+<style>
+.selector-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.selector-title {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.selector-subtitle {
+    text-align: center;
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 2rem;
+}
+
+.category-section {
+    margin-bottom: 2rem;
+}
+
+.category-title {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.options-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.option-card {
+    position: relative;
+    aspect-ratio: 1;
+    overflow: hidden;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 3px solid transparent;
+}
+
+.option-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: filter 0.3s ease;
+    filter: grayscale(100%);
+}
+
+.option-card.selected {
+    border-color: #28a745;
+    box-shadow: 0 0 20px rgba(40, 167, 69, 0.5);
+}
+
+.option-card.selected img {
+    filter: grayscale(0%);
+}
+
+.option-label {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    color: white;
+    padding: 1.5rem 0.5rem 0.5rem;
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+}
+
+.submit-btn, .surprise-btn {
+    padding: 1rem 3rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.submit-btn {
+    background-color: #28a745;
+    color: white;
+}
+
+.submit-btn:hover:not(:disabled) {
+    background-color: #218838;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(40, 167, 69, 0.3);
+}
+
+.submit-btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.surprise-btn {
+    background-color: #28a745;
+    color: white;
+}
+
+.surprise-btn:hover {
+    background-color: #218838;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(40, 167, 69, 0.3);
+}
+
+.error-message {
+    text-align: center;
+    color: #dc3545;
+    font-weight: bold;
+    margin-top: 1rem;
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .selector-title {
+        font-size: 1.5rem;
+    }
+    
+    .options-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 1rem;
+    }
+    
+    .option-label {
+        font-size: 0.9rem;
+    }
+    
+    .submit-btn, .surprise-btn {
+        padding: 0.8rem 2rem;
+        font-size: 1rem;
+        width: 100%;
+    }
+}
+</style>
+
+<section class="selector-container">
+    <h1 class="selector-title">Find Your Perfect Meal</h1>
+    <p class="selector-subtitle">Select one option from each category</p>
+    
+    <form id="meal-selector-form" action="/app/find-meals" method="POST">
+        <!-- Health Category -->
+        <div class="category-section">
+            <h2 class="category-title">Health</h2>
+            <div class="options-grid">
+                <div class="option-card" data-category="health" data-value="Healthy">
+                    <img src="https://res.cloudinary.com/meal-creator/image/upload/v1662276033/page-images/healthy.jpg" alt="Healthy">
+                    <div class="option-label">Healthy</div>
+                </div>
+                <div class="option-card" data-category="health" data-value="Regular">
+                    <img src="https://res.cloudinary.com/meal-creator/image/upload/v1662276033/page-images/regular.jpg" alt="Regular">
+                    <div class="option-label">Regular</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Meal Time Category -->
+        <div class="category-section">
+            <h2 class="category-title">Meal Time</h2>
+            <div class="options-grid">
+                <div class="option-card" data-category="mealtime" data-value="Breakfast">
+                    <img src="https://res.cloudinary.com/meal-creator/image/upload/v1662276033/page-images/breakfast.jpg" alt="Breakfast">
+                    <div class="option-label">Breakfast</div>
+                </div>
+                <div class="option-card" data-category="mealtime" data-value="Lunch">
+                    <img src="https://res.cloudinary.com/meal-creator/image/upload/v1662276033/page-images/lunch.jpg" alt="Lunch">
+                    <div class="option-label">Lunch</div>
+                </div>
+                <div class="option-card" data-category="mealtime" data-value="Dinner">
+                    <img src="https://res.cloudinary.com/meal-creator/image/upload/v1662276033/page-images/dinner.jpg" alt="Dinner">
+                    <div class="option-label">Dinner</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Genre Category -->
+        <div class="category-section">
+            <h2 class="category-title">Genre</h2>
+            <div class="options-grid">
+                <div class="option-card" data-category="genre" data-value="Dairy">
+                    <img src="https://res.cloudinary.com/meal-creator/image/upload/v1662276033/page-images/dairy.jpg" alt="Dairy">
+                    <div class="option-label">Dairy</div>
+                </div>
+                <div class="option-card" data-category="genre" data-value="Parve">
+                    <img src="https://res.cloudinary.com/meal-creator/image/upload/v1662276033/page-images/parve.jpg" alt="Parve">
+                    <div class="option-label">Parve</div>
+                </div>
+                <div class="option-card" data-category="genre" data-value="Meaty">
+                    <img src="https://res.cloudinary.com/meal-creator/image/upload/v1662276033/page-images/meaty.jpg" alt="Meaty">
+                    <div class="option-label">Meaty</div>
+                </div>
+            </div>
+        </div>
+        
+        <input type="hidden" name="health" id="health-input">
+        <input type="hidden" name="mealtime" id="mealtime-input">
+        <input type="hidden" name="genre" id="genre-input">
+        
+        <div class="action-buttons">
+            <button type="submit" class="submit-btn" id="submit-btn" disabled>Find Meals</button>
+            <button type="button" class="surprise-btn" id="surprise-btn">Surprise Me!</button>
+        </div>
+        
+        <div class="error-message" id="error-message">
+            Please select one option from each category
+        </div>
+    </form>
+</section>
+
+<!--------------------------------------------------- CONTENT ENDS HERE -------------------------------------------------->
+<%- include("../partials/scripts.ejs") %>
+<script src="/js/meal-selector.js"></script>
+<%- include("../partials/footer.ejs") %>
+
