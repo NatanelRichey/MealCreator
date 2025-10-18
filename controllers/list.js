@@ -40,6 +40,13 @@ export const deleteFromList = async (req, res) => {
 
 export const updateItemName = async (req, res) => {
     const { id } = req.params;
-    await ShoppingList.findByIdAndUpdate(id, req.body, { runValidators: true, new: true });
+    const updatedItem = await ShoppingList.findByIdAndUpdate(id, req.body, { runValidators: true, new: true });
+    
+    // Check if request is AJAX (from fetch)
+    if (req.headers['x-requested-with'] === 'XMLHttpRequest' || req.headers['content-type'] === 'application/json') {
+        return res.json({ success: true, item: updatedItem });
+    }
+    
+    // Traditional form submission
     res.redirect('/shopping-list')
 }

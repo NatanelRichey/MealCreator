@@ -59,7 +59,14 @@ export const addMeal =  async (req, res) => {
 
 export const editMealName = async (req, res) => {
     const { id } = req.params;
-    await Meals.findByIdAndUpdate(id, req.body, { runValidators: true, new: true });
+    const updatedMeal = await Meals.findByIdAndUpdate(id, req.body, { runValidators: true, new: true });
+    
+    // Check if request is AJAX (from fetch)
+    if (req.headers['x-requested-with'] === 'XMLHttpRequest' || req.headers['content-type'] === 'application/json') {
+        return res.json({ success: true, meal: updatedMeal });
+    }
+    
+    // Traditional form submission
     res.redirect('/meals')
 }
 

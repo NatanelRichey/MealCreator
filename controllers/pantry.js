@@ -51,7 +51,14 @@ export const moveToCart =  async (req, res) => {
 
 export const editPantryItemName =  async (req, res) => {
     const { id } = req.params;
-    await Pantry.findByIdAndUpdate(id, req.body, { runValidators: true, new: true });
+    const updatedItem = await Pantry.findByIdAndUpdate(id, req.body, { runValidators: true, new: true });
+    
+    // Check if request is AJAX (from fetch)
+    if (req.headers['x-requested-with'] === 'XMLHttpRequest' || req.headers['content-type'] === 'application/json') {
+        return res.json({ success: true, item: updatedItem });
+    }
+    
+    // Traditional form submission
     res.redirect('/pantry')
 }
 

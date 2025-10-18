@@ -22,14 +22,49 @@ pantryPageContainer.addEventListener('keypress', function (e) {
 
     if (e.key === 'Enter' && e.target.nodeName === "INPUT" && e.target.className === "item-edit") {
         e.preventDefault()
-        // Find the enter button in the same form
-        const form = e.target.closest('form')
-        const enterButton = form.querySelector('.enter-btn, .enter-btn-saved')
-        enterButton.click()
-        changeButtons (e, "hide")
+        // Trigger blur to auto-save
         e.target.blur()
     }
 })
+
+// Auto-save on blur (when clicking away from the field)
+pantryPageContainer.addEventListener('blur', async function (e) {
+    if (e.target.nodeName === "INPUT" && e.target.className === "item-edit") {
+        const form = e.target.closest('form')
+        const itemId = form.action.match(/\/edit\/([^?]+)/)?.[1]
+        const newName = e.target.value
+        const oldName = e.target.placeholder
+        
+        // Only update if the name actually changed
+        if (newName && newName !== oldName) {
+            try {
+                const response = await fetch(`/pantry/edit/${itemId}`, {
+                    method: 'PATCH',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Requested-With': 'XMLHttpRequest'
+                    },
+                    body: JSON.stringify({ name: newName })
+                })
+                
+                if (response.ok) {
+                    // Update placeholder to reflect saved value
+                    e.target.placeholder = newName
+                    changeButtons(e, "hide")
+                } else {
+                    console.error('Failed to update item')
+                    // Revert to old name on error
+                    e.target.value = oldName
+                }
+            } catch (error) {
+                console.error('Error updating item:', error)
+                e.target.value = oldName
+            }
+        } else {
+            changeButtons(e, "hide")
+        }
+    }
+}, true)
 
 pantryPageContainer.addEventListener('click', function (e) {
     // console.log(e)
@@ -40,10 +75,6 @@ pantryPageContainer.addEventListener('click', function (e) {
     if (e.target.nodeName === "INPUT" && e.target.className === "item-edit") {
         changeButtons(e, "show")
         hideRestButtons (e)
-    }
-
-    if (e.target.nodeName === "INPUT" && e.target.className === "btn btn-light enter-btn") {
-        editItemName(e.target)
     }
 
     if (e.target.nodeName === "INPUT" && e.target.className === "btn btn-light trash-btn") {
@@ -130,17 +161,25 @@ function changeButtons (e, action) {
     let node = undefined
     if (e.nodeType === 1) node = e; 
     else node = e.target
-    // console.log("NODE...", node)
-    let editBtn = node.parentElement.nextElementSibling.firstElementChild
-    let deleteBtn = node.parentElement.parentElement.nextElementSibling.firstElementChild.firstElementChild
-    // console.log("DEL BTN...", deleteBtn)
+    
+    // Find the delete button - it's in the next form after the edit form
+    let editForm = node.closest('form')
+    let deleteForm = editForm.nextElementSibling
+    
+    // Skip the hidden save button form if it exists
+    if (deleteForm && deleteForm.querySelector('.enter-btn, .enter-btn-saved')) {
+        deleteForm = deleteForm.nextElementSibling
+    }
+    
+    if (!deleteForm) return
+    
+    let deleteBtn = deleteForm.querySelector('.trash-btn, .trash-btn-saved')
+    
     if (action === "hide") {
-        editBtn.style.display = "none"; 
-        deleteBtn.style.display = "none"; 
+        if (deleteBtn) deleteBtn.style.display = "none"
     }
     else {
-        editBtn.style.display = "block"
-        deleteBtn.style.display = "block"
+        if (deleteBtn) deleteBtn.style.display = "block"
     }
 }
 

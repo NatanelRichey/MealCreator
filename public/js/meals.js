@@ -18,16 +18,52 @@ mealPageContainer.addEventListener('keypress', function (e) {
     }
 
     if (e.key === 'Enter' && e.target.nodeName === "INPUT" && e.target.className === "meal-item-edit") {
-        let item = e.target
-        delete Object.assign(meals, {[item.value.toLowerCase()]: meals[item.placeholder.toLowerCase()] })[item.placeholder.toLowerCase()];
-        let enteredText = item.value
-        item.placeholder = enteredText
-        item.value = enteredText
+        e.preventDefault()
+        // Trigger blur to auto-save
         e.target.blur()
-        changeButtonsMeal(e, "hide")
-        hideRestButtonsMeal(e)
     }
 })
+
+// Auto-save on blur (when clicking away from the field)
+mealPageContainer.addEventListener('blur', async function (e) {
+    if (e.target.nodeName === "INPUT" && e.target.className === "meal-item-edit") {
+        const form = e.target.closest('form')
+        const mealId = form.action.match(/\/edit\/name\/([^?]+)/)?.[1]
+        const newName = e.target.value
+        const oldName = e.target.placeholder
+        
+        // Only update if the name actually changed
+        if (newName && newName !== oldName) {
+            try {
+                const response = await fetch(`/meals/edit/name/${mealId}`, {
+                    method: 'PATCH',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Requested-With': 'XMLHttpRequest'
+                    },
+                    body: JSON.stringify({ mealName: newName })
+                })
+                
+                if (response.ok) {
+                    // Update placeholder to reflect saved value
+                    e.target.placeholder = newName
+                    // Update meals object for local tracking
+                    delete Object.assign(meals, {[newName.toLowerCase()]: meals[oldName.toLowerCase()] })[oldName.toLowerCase()];
+                    changeButtonsMeal(e, "hide")
+                } else {
+                    console.error('Failed to update meal')
+                    // Revert to old name on error
+                    e.target.value = oldName
+                }
+            } catch (error) {
+                console.error('Error updating meal:', error)
+                e.target.value = oldName
+            }
+        } else {
+            changeButtonsMeal(e, "hide")
+        }
+    }
+}, true)
 
 mealPageContainer.addEventListener('click', function (e) {
     console.log(e)
@@ -42,16 +78,6 @@ mealPageContainer.addEventListener('click', function (e) {
     if (e.target.nodeName === "INPUT" && e.target.className === "meal-item-edit") {
         changeButtonsMeal(e, "show")
         hideRestButtonsMeal(e)
-    }
-
-    if (e.target.nodeName === "BUTTON" && e.target.className === "btn btn-light tick-btn") {
-        let item = e.target.parentElement.previousElementSibling.firstElementChild
-        delete Object.assign(meals, {[item.value.toLowerCase()]: meals[item.placeholder.toLowerCase()] })[item.placeholder.toLowerCase()];
-        console.log(meals)
-        let enteredText = item.value
-        item.placeholder = enteredText
-        item.value = enteredText
-        changeButtonsMeal(e, "hide")
     }
 
     if (e.target.nodeName === "BUTTON" && e.target.className === "btn btn-light trash-btn") {
@@ -132,17 +158,25 @@ function changeButtonsMeal (e, action) {
     let node = undefined
     if (e.nodeType === 1) node = e; 
     else node = e.target
-    // console.log("NODE...", node)
-    let editBtn = node.parentElement.nextElementSibling
-    let deleteBtn = node.parentElement.parentElement.nextElementSibling.firstElementChild
-    // console.log("DEL BTN...", deleteBtn)
+    
+    // Find the delete button - it's in the next form after the edit form
+    let editForm = node.closest('form')
+    let deleteForm = editForm.nextElementSibling
+    
+    // Skip the hidden save button form if it exists
+    if (deleteForm && deleteForm.querySelector('.enter-btn')) {
+        deleteForm = deleteForm.nextElementSibling
+    }
+    
+    if (!deleteForm) return
+    
+    let deleteBtn = deleteForm.querySelector('.trash-btn-meal')
+    
     if (action === "hide") {
-        editBtn.firstElementChild.style.display = "none"; 
-        deleteBtn.firstElementChild.style.display = "none"; 
+        if (deleteBtn) deleteBtn.style.display = "none"
     }
     else {
-        editBtn.firstElementChild.style.display = "block"
-        deleteBtn.firstElementChild.style.display = "block"
+        if (deleteBtn) deleteBtn.style.display = "block"
     }
 }
 
