@@ -7,6 +7,21 @@
     max-height: 200px;
     object-fit: cover;
 }
+.btn-login-default {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 15px 40px;
+    font-size: 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-weight: 500;
+}
+.btn-login-default:hover {
+    background-color: #218838;
+    color: white;
+}
 .btn-demo-original {
     background-color: #28a745;
     color: white;
@@ -33,9 +48,16 @@
                 alt="" class="card-img-top" />
             <div class="card-body login-reg justify-content-center d-flex align-items-center" style="background-color: white; min-height: 200px;">
                 <%- include('../partials/flash') %>
-                <form action="/demo-login" method="POST" class="text-center">
-                    <button type="submit" class="btn btn-demo-original">🍔 Demo Account - Try Without Signing Up!</button>
-                </form>
+                <div class="d-flex gap-3 flex-wrap justify-content-center">
+                    <form action="/login" method="POST">
+                        <input type="hidden" name="username" value="defaultuser">
+                        <input type="hidden" name="password" value="defaultpass">
+                        <button type="submit" class="btn btn-login-default">Login</button>
+                    </form>
+                    <form action="/demo-login" method="POST">
+                        <button type="submit" class="btn btn-demo-original">🍔 Demo Account - Try Without Signing Up!</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
