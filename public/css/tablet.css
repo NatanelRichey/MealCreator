@@ -1156,12 +1156,15 @@ height: fit-content;
     }
 
     .card.login-reg {
-        height: 30%;
+        height: auto;
+        min-height: 30%;
         margin-bottom: 3vh;
+        padding-bottom: 20px;
     }
 
     .card-body.login-reg {
         padding-top: 25px;
+        padding-bottom: 20px;
     }
 
     .user-input-fields {
