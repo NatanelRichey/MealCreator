@@ -137,7 +137,17 @@ form {
 
 .card.login-reg {
     width: 90vw !important;
-    height: 70vh !important;   
+    max-width: 900px !important;
+    height: auto !important;
+    min-height: 70vh !important;
+    background-color: white;
+}
+
+.card.login-reg .card-img-top {
+    width: 100%;
+    height: auto;
+    max-height: 250px;
+    object-fit: cover;
 }
 
 .validated-form {
