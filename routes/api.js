@@ -3,7 +3,107 @@ const router = express.Router();
 import Pantry from '../models/pantry.js';
 import ShoppingList from '../models/shopping-list.js';
 import Meal from '../models/meal.js';
+import User from '../models/user.js';
 import { isLoggedIn } from '../middleware.js';
+
+// ==============================================
+// AUTH API ROUTES
+// ==============================================
+
+router.post('/demo-login', async (req, res) => {
+    try {
+        const demoUsername = 'demo';
+        let demoUser = await User.findOne({ username: demoUsername });
+        
+        // If demo user doesn't exist, create it
+        if (!demoUser) {
+            demoUser = new User({ email: 'demo@mealcreator.com', username: demoUsername });
+            await User.register(demoUser, 'demo123');
+            
+            // Seed demo data
+            await seedDemoData(demoUsername);
+        }
+        
+        // Check if demo data exists
+        const pantryCount = await Pantry.countDocuments({ owner: demoUsername });
+        if (pantryCount === 0) {
+            await seedDemoData(demoUsername);
+        }
+        
+        // Log in the demo user
+        req.login(demoUser, (err) => {
+            if (err) {
+                console.error('Demo login error:', err);
+                return res.status(500).json({ success: false, error: 'Login failed' });
+            }
+            res.json({ success: true, user: { username: demoUser.username, email: demoUser.email } });
+        });
+    } catch (e) {
+        console.error('Demo login error:', e);
+        res.status(500).json({ success: false, error: 'Login failed' });
+    }
+});
+
+// Helper function to seed demo data
+async function seedDemoData(demoUsername) {
+    const pantryItems = [
+        { name: "Tomatoes", category: "Vegetables", owner: demoUsername, inStock: true },
+        { name: "Onions", category: "Vegetables", owner: demoUsername, inStock: true },
+        { name: "Garlic", category: "Vegetables", owner: demoUsername, inStock: true },
+        { name: "Spinach", category: "Vegetables", owner: demoUsername, inStock: true },
+        { name: "Bell Peppers", category: "Vegetables", owner: demoUsername, inStock: true },
+        { name: "Broccoli", category: "Vegetables", owner: demoUsername, inStock: true },
+        { name: "Eggs", category: "Fish Eggs", owner: demoUsername, inStock: true },
+        { name: "Chicken", category: "Meat Poultry", owner: demoUsername, inStock: true },
+        { name: "Olive Oil", category: "Fats Oils", owner: demoUsername, inStock: true },
+        { name: "Salt", category: "Condiments", owner: demoUsername, inStock: true },
+        { name: "Pepper", category: "Condiments", owner: demoUsername, inStock: true }
+    ];
+
+    const shoppingListItems = [
+        { name: "Lettuce", category: "Vegetables", owner: demoUsername, inStock: false },
+        { name: "Milk", category: "Dairy", owner: demoUsername, inStock: false }
+    ];
+
+    const meals = [
+        { 
+            mealName: "Healthy Breakfast Bowl", 
+            ingredients: ["Eggs", "Spinach", "Tomatoes"], 
+            tags: ["Healthy", "Breakfast", "Parve"], 
+            imgSrc: "https://images.unsplash.com/photo-1482049016688-2d3e1b311543?w=600&q=80", 
+            instructions: "Scramble eggs with fresh spinach, top with diced tomatoes.", 
+            owner: demoUsername, 
+            confirmed: true, 
+            prepTime: 5, 
+            cookTime: 10, 
+            servings: 2,
+            category: "Breakfast",
+            description: "A nutritious breakfast bowl"
+        },
+        { 
+            mealName: "Garlic Chicken", 
+            ingredients: ["Chicken", "Garlic", "Olive Oil", "Salt", "Pepper"], 
+            tags: ["Regular", "Dinner", "Meaty"], 
+            imgSrc: "https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=600&q=80", 
+            instructions: "Marinate chicken with garlic, salt, pepper. Pan fry in olive oil.", 
+            owner: demoUsername, 
+            confirmed: true, 
+            prepTime: 10, 
+            cookTime: 20, 
+            servings: 3,
+            category: "Dinner",
+            description: "Simple garlic chicken"
+        }
+    ];
+
+    await Pantry.deleteMany({ owner: demoUsername });
+    await ShoppingList.deleteMany({ owner: demoUsername });
+    await Meal.deleteMany({ owner: demoUsername });
+
+    await Pantry.insertMany(pantryItems);
+    await ShoppingList.insertMany(shoppingListItems);
+    await Meal.insertMany(meals);
+}
 
 // ==============================================
 // MEALS API ROUTES
