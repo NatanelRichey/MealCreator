@@ -46,6 +46,8 @@ router.post('/demo-login', async (req, res) => {
 
 // Helper function to seed demo data
 async function seedDemoData(demoUsername) {
+    console.log('🌱 Starting to seed demo data for:', demoUsername);
+    
     const pantryItems = [
         { name: "Tomatoes", category: "Vegetables", owner: demoUsername, inStock: true },
         { name: "Onions", category: "Vegetables", owner: demoUsername, inStock: true },
@@ -96,13 +98,24 @@ async function seedDemoData(demoUsername) {
         }
     ];
 
-    await Pantry.deleteMany({ owner: demoUsername });
-    await ShoppingList.deleteMany({ owner: demoUsername });
-    await Meal.deleteMany({ owner: demoUsername });
+    try {
+        console.log('🗑️  Clearing existing demo data...');
+        await Pantry.deleteMany({ owner: demoUsername });
+        await ShoppingList.deleteMany({ owner: demoUsername });
+        await Meal.deleteMany({ owner: demoUsername });
 
-    await Pantry.insertMany(pantryItems);
-    await ShoppingList.insertMany(shoppingListItems);
-    await Meal.insertMany(meals);
+        console.log('📦 Inserting pantry items...');
+        await Pantry.insertMany(pantryItems);
+        console.log('🛒 Inserting shopping list items...');
+        await ShoppingList.insertMany(shoppingListItems);
+        console.log('🍽️  Inserting meals...');
+        await Meal.insertMany(meals);
+        
+        console.log(`✅ Demo data seeded successfully: ${pantryItems.length} pantry items, ${shoppingListItems.length} shopping items, ${meals.length} meals`);
+    } catch (error) {
+        console.error('❌ Error seeding demo data:', error);
+        throw error;
+    }
 }
 
 // ==============================================
