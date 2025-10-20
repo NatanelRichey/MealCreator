@@ -7,23 +7,28 @@ const app = express()
 import pkg  from 'mongoose';
 const { connect } = pkg
 
-import methodOverride from "method-override"
-app.use(methodOverride('_method'))
-
 import cors from 'cors'
 
+// CORS MUST be the FIRST middleware for preflight to work!
 const corsOptions = {
     origin: function (origin, callback) {
+        console.log('🌐 CORS check for origin:', origin);
+        
         // Allow requests with no origin (mobile apps, Postman, etc.)
-        if (!origin) return callback(null, true);
+        if (!origin) {
+            console.log('✅ Allowing request with no origin');
+            return callback(null, true);
+        }
         
         // Allow localhost for development
         if (origin && origin.includes('localhost')) {
+            console.log('✅ Allowing localhost origin');
             return callback(null, true);
         }
         
         // Allow any onrender.com subdomain (your deployed apps)
         if (origin && origin.endsWith('.onrender.com')) {
+            console.log('✅ Allowing onrender.com origin');
             return callback(null, true);
         }
         
@@ -32,16 +37,23 @@ const corsOptions = {
     },
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'Cookie'],
     exposedHeaders: ['Set-Cookie'],
     preflightContinue: false,
     optionsSuccessStatus: 204
 };
 
+console.log('🌐 Setting up CORS middleware...');
 app.use(cors(corsOptions));
+app.options('*', (req, res) => {
+    console.log('✈️  OPTIONS request received for:', req.path);
+    cors(corsOptions)(req, res, () => {
+        res.sendStatus(204);
+    });
+});
 
-// Handle preflight requests explicitly
-app.options('*', cors(corsOptions));
+import methodOverride from "method-override"
+app.use(methodOverride('_method'))
 
 import * as url from 'url';
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
