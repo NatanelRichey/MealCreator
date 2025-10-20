@@ -126,16 +126,17 @@ const sessionConfig = {
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production', // Require HTTPS in production
         sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax', // Allow cross-origin in production
-        expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
-        maxAge: 1000 * 60 * 60 * 24 * 7,
-        domain: process.env.NODE_ENV === 'production' ? '.onrender.com' : undefined // Allow subdomain cookies
+        maxAge: 1000 * 60 * 60 * 24 * 7
+        // Note: removed domain setting - it prevents cookie from being set
+        // Note: removed expires - using maxAge instead (more reliable)
     }
 }
 
 console.log('🍪 Session configuration:');
 console.log('  - secure:', sessionConfig.cookie.secure);
 console.log('  - sameSite:', sessionConfig.cookie.sameSite);
-console.log('  - domain:', sessionConfig.cookie.domain);
+console.log('  - httpOnly:', sessionConfig.cookie.httpOnly);
+console.log('  - maxAge:', sessionConfig.cookie.maxAge);
 
 app.use(session(sessionConfig));
 
