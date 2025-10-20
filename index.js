@@ -11,21 +11,22 @@ import methodOverride from "method-override"
 app.use(methodOverride('_method'))
 
 import cors from 'cors'
-const allowedOrigins = [
-    'http://localhost:3001',
-    'https://meal-creator-frontend.onrender.com'
-];
-
 app.use(cors({
     origin: function (origin, callback) {
         // Allow requests with no origin (mobile apps, Postman, etc.)
         if (!origin) return callback(null, true);
         
-        if (allowedOrigins.indexOf(origin) !== -1) {
-            callback(null, true);
-        } else {
-            callback(new Error('Not allowed by CORS'));
+        // Allow localhost for development
+        if (origin && origin.includes('localhost')) {
+            return callback(null, true);
         }
+        
+        // Allow any onrender.com subdomain (your deployed apps)
+        if (origin && origin.endsWith('.onrender.com')) {
+            return callback(null, true);
+        }
+        
+        callback(new Error('Not allowed by CORS'));
     },
     credentials: true
 }))

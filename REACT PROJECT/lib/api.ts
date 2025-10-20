@@ -290,7 +290,7 @@ export async function loginUser(username: string, password: string): Promise<{ s
 // Demo login
 export async function demoLogin(): Promise<{ success: boolean; user?: User }> {
   try {
-    const response = await fetch(`${API_BASE_URL}/demo-login`, {
+    const response = await fetch(`${API_BASE_URL}/api/demo-login`, {
       method: 'POST',
       credentials: 'include',
       redirect: 'manual', // Don't follow redirects automatically
