@@ -10,6 +10,26 @@ const { connect } = pkg
 import methodOverride from "method-override"
 app.use(methodOverride('_method'))
 
+import cors from 'cors'
+const allowedOrigins = [
+    'http://localhost:3001',
+    'https://meal-creator-frontend.onrender.com'
+];
+
+app.use(cors({
+    origin: function (origin, callback) {
+        // Allow requests with no origin (mobile apps, Postman, etc.)
+        if (!origin) return callback(null, true);
+        
+        if (allowedOrigins.indexOf(origin) !== -1) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
+    credentials: true
+}))
+
 import * as url from 'url';
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 import path, { join } from "path"
@@ -26,7 +46,7 @@ app.use(express.static(path.join(__dirname, "node_modules/bootstrap/dist/")));
 
 // --------------------------------------------------------- EXPRESS INITIALIZATIONS --------------------------------------------------------
 
-const dbUrl = process.env.DB_URL || "mongodb+srv://natanelrichey_db_user:X4EXwqcwo7ldxtUZ@cluster0.afremsw.mongodb.net/mealcreator?retryWrites=true&w=majority&appName=Cluster0"
+const dbUrl = process.env.DB_URL
 connect(dbUrl, { 
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -48,7 +68,7 @@ const store = MongoStore.create({
     mongoUrl: dbUrl,
     touchAfter: 24 * 3600, // lazy session update
     crypto: {
-        secret: process.env.SECRET || "fEdfg23@fgRTh6^%$ttdfVC234"
+        secret: process.env.SECRET
     }
 })
 
@@ -56,7 +76,7 @@ store.on("error", function (e) {
     console.log("SESSION STORE ERROR:", e)
 })
 
-const secret = process.env.SECRET || "fEdfg23@fgRTh6^%$ttdfVC234"
+const secret = process.env.SECRET
 
 const sessionConfig = {
     store,
@@ -106,7 +126,9 @@ import listRoutes from "./routes/list.js";
 import mealsRoutes from "./routes/meals.js";
 import appRoutes from "./routes/app.js";
 import usersRoutes from "./routes/users.js";
+import apiRoutes from "./routes/api.js";
 
+app.use('/api', apiRoutes)  // JSON API routes for React
 app.use('/app', appRoutes)
 app.use('/pantry', pantryRoutes)
 app.use('/shopping-list', listRoutes)

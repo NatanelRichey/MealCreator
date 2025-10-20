@@ -1,6 +1,7 @@
 services:
+  # Backend API (Express.js)
   - type: web
-    name: meal-creator
+    name: meal-creator-api
     env: node
     buildCommand: npm install
     startCommand: npm start
@@ -17,4 +18,16 @@ services:
         sync: false
       - key: SECRET
         generateValue: true
+
+  # Frontend (Next.js)
+  - type: web
+    name: meal-creator-frontend
+    env: node
+    buildCommand: cd "REACT PROJECT" && npm install && npm run build
+    startCommand: cd "REACT PROJECT" && npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: BACKEND_API_URL
+        value: https://meal-creator-api.onrender.com
 

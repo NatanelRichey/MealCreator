@@ -7,7 +7,12 @@ import Pantry from './models/pantry.js';
 import ShoppingList from './models/shopping-list.js';
 import Meals from './models/meal.js';
 
-const dbUrl = process.env.DB_URL || "mongodb+srv://natanelrichey_db_user:X4EXwqcwo7ldxtUZ@cluster0.afremsw.mongodb.net/mealcreator?retryWrites=true&w=majority&appName=Cluster0";
+const dbUrl = process.env.DB_URL;
+
+if (!dbUrl) {
+    console.error("ERROR: DB_URL environment variable is required");
+    process.exit(1);
+}
 
 connect(dbUrl, { 
     useNewUrlParser: true,
