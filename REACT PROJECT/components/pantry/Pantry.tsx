@@ -45,29 +45,33 @@ export function Pantry({ items = [] }: PantryProps) {
       // Convert backend format to component format
       const allItems: PantryItem[] = [];
       
-      // Add category items (in stock)
-      Object.entries(data.categories).forEach(([category, items]) => {
-        items.forEach((item) => {
+      // Add category items (in stock) - with safety check
+      if (data && data.categories && typeof data.categories === 'object') {
+        Object.entries(data.categories).forEach(([category, items]) => {
+          items.forEach((item) => {
+            allItems.push({
+              ...item,
+              inStock: true,
+              quantity: 1,
+              unit: 'piece',
+              addedDate: item.createdAt,
+            });
+          });
+        });
+      }
+      
+      // Add saved items (not in stock) - with safety check
+      if (data && data.savedItems && Array.isArray(data.savedItems)) {
+        data.savedItems.forEach((item) => {
           allItems.push({
             ...item,
-            inStock: true,
+            inStock: false,
             quantity: 1,
             unit: 'piece',
             addedDate: item.createdAt,
           });
         });
-      });
-      
-      // Add saved items (not in stock)
-      data.savedItems.forEach((item) => {
-        allItems.push({
-          ...item,
-          inStock: false,
-          quantity: 1,
-          unit: 'piece',
-          addedDate: item.createdAt,
-        });
-      });
+      }
       
       setPantryItems(allItems);
     } catch (err) {

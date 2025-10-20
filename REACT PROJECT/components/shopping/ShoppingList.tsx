@@ -45,18 +45,21 @@ export function ShoppingList({ items = [] }: ShoppingListProps) {
       // Convert backend format to component format
       const allItems: ShoppingListItem[] = [];
       
-      Object.entries(data.categories).forEach(([category, items]) => {
-        items.forEach((item) => {
-          allItems.push({
-            ...item,
-            checked: false, // Shopping list items are not checked initially
-            inStock: false,
-            quantity: 1,
-            unit: 'piece',
-            addedDate: item.createdAt,
+      // Safety check: make sure categories exists and is an object
+      if (data && data.categories && typeof data.categories === 'object') {
+        Object.entries(data.categories).forEach(([category, items]) => {
+          items.forEach((item) => {
+            allItems.push({
+              ...item,
+              checked: false, // Shopping list items are not checked initially
+              inStock: false,
+              quantity: 1,
+              unit: 'piece',
+              addedDate: item.createdAt,
+            });
           });
         });
-      });
+      }
       
       setShoppingItems(allItems);
     } catch (err) {
