@@ -4,6 +4,9 @@ import { useRouter } from 'next/navigation';
 import { MealsPage } from '@/components/meal/MealsPage';
 import { ProtectedRoute } from '@/components/auth/ProtectedRoute';
 
+// Force dynamic rendering for this page
+export const dynamic = 'force-dynamic';
+
 export default function MealsPageRoute() {
   const router = useRouter();
 

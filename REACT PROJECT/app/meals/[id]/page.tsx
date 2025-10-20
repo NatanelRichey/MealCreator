@@ -7,6 +7,9 @@ import { MealForm } from '@/components/meal/MealForm';
 import { ProtectedRoute } from '@/components/auth/ProtectedRoute';
 import type { Meal } from '@/lib/types';
 
+// Force dynamic rendering for this page
+export const dynamic = 'force-dynamic';
+
 export default function EditMealPage() {
   const params = useParams();
   const router = useRouter();
