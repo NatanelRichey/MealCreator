@@ -11,7 +11,8 @@ import methodOverride from "method-override"
 app.use(methodOverride('_method'))
 
 import cors from 'cors'
-app.use(cors({
+
+const corsOptions = {
     origin: function (origin, callback) {
         // Allow requests with no origin (mobile apps, Postman, etc.)
         if (!origin) return callback(null, true);
@@ -26,10 +27,21 @@ app.use(cors({
             return callback(null, true);
         }
         
+        console.log('❌ CORS blocked origin:', origin);
         callback(new Error('Not allowed by CORS'));
     },
-    credentials: true
-}))
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    exposedHeaders: ['Set-Cookie'],
+    preflightContinue: false,
+    optionsSuccessStatus: 204
+};
+
+app.use(cors(corsOptions));
+
+// Handle preflight requests explicitly
+app.options('*', cors(corsOptions));
 
 import * as url from 'url';
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
