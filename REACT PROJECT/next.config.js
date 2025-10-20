@@ -18,10 +18,6 @@ const nextConfig = {
   },
   // Enable strict mode for better error detection
   reactStrictMode: true,
-  // Configure environment variables
-  env: {
-    BACKEND_API_URL: process.env.BACKEND_API_URL || 'http://localhost:3000',
-  },
 }
 
 module.exports = nextConfig

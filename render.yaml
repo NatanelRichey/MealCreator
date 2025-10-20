@@ -28,6 +28,6 @@ services:
     envVars:
       - key: NODE_ENV
         value: production
-      - key: BACKEND_API_URL
+      - key: NEXT_PUBLIC_API_URL
         value: https://meal-creator-api.onrender.com
 
