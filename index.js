@@ -48,16 +48,29 @@ app.use(express.static(path.join(__dirname, "node_modules/bootstrap/dist/")));
 // --------------------------------------------------------- EXPRESS INITIALIZATIONS --------------------------------------------------------
 
 const dbUrl = process.env.DB_URL
+
+// Check if DB_URL is set
+if (!dbUrl) {
+    console.error('❌ FATAL ERROR: DB_URL environment variable is not set!');
+    console.error('Please set DB_URL in your Render environment variables.');
+    process.exit(1);
+}
+
+console.log('🔌 Attempting to connect to MongoDB...');
+console.log('📍 DB URL starts with:', dbUrl.substring(0, 20) + '...');
+
 connect(dbUrl, { 
     useNewUrlParser: true,
     useUnifiedTopology: true,
 })
     .then(() => {
-        console.log("CONNECTION OPEN")
+        console.log("✅ MongoDB CONNECTION OPEN - Database connected successfully!")
     })
     .catch(err => {
-        console.log("CONNECTION ERROR")
-        console.log(err)
+        console.error("❌ MongoDB CONNECTION ERROR - Failed to connect to database!")
+        console.error("Error details:", err.message)
+        console.error("Full error:", err)
+        process.exit(1);
     })
 
 // ------------------------------------------------------------ SESSIONS & FLASH ------------------------------------------------------------
