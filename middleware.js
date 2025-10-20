@@ -33,10 +33,28 @@ export const validateList = (req, res, next) => {
 }
 
 export const isLoggedIn = (req, res, next) => {
+    console.log('🔒 isLoggedIn middleware - Path:', req.path);
+    console.log('🍪 Session ID:', req.sessionID);
+    console.log('👤 Authenticated:', req.isAuthenticated());
+    console.log('👤 User:', req.user?.username || 'none');
+    
     if (!req.isAuthenticated()) {
-        req.session.returnTo = req.originalUrl
+        // Check if this is an API request (starts with /api)
+        if (req.path.startsWith('/api')) {
+            console.log('❌ Not authenticated - returning 401 JSON error');
+            return res.status(401).json({ 
+                error: 'Authentication required',
+                message: 'You must be signed in first!'
+            });
+        }
+        
+        // For non-API requests, redirect to login
+        console.log('❌ Not authenticated - redirecting to login');
+        req.session.returnTo = req.originalUrl;
         req.flash('error', 'You must be signed in first!');
         return res.redirect('/login');
     }
+    
+    console.log('✅ Authentication passed');
     next();
 }
