@@ -97,15 +97,21 @@ const sessionConfig = {
     name: 'session',
     secret,
     resave: false,
-    saveUninitialized: false, // Don't create session until something stored
+    saveUninitialized: true, // Create session immediately for cross-origin to work
     cookie: {
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production', // Require HTTPS in production
         sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax', // Allow cross-origin in production
         expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
-        maxAge: 1000 * 60 * 60 * 24 * 7
+        maxAge: 1000 * 60 * 60 * 24 * 7,
+        domain: process.env.NODE_ENV === 'production' ? '.onrender.com' : undefined // Allow subdomain cookies
     }
 }
+
+console.log('🍪 Session configuration:');
+console.log('  - secure:', sessionConfig.cookie.secure);
+console.log('  - sameSite:', sessionConfig.cookie.sameSite);
+console.log('  - domain:', sessionConfig.cookie.domain);
 
 app.use(session(sessionConfig));
 

@@ -45,10 +45,22 @@ router.post('/demo-login', async (req, res) => {
                 console.error('❌ Demo login error:', err);
                 return res.status(500).json({ success: false, error: 'Login failed' });
             }
-            console.log('✅ Demo user logged in successfully');
-            console.log('🍪 Session ID after login:', req.sessionID);
-            console.log('👤 Current user after login:', req.user.username);
-            res.json({ success: true, user: { username: demoUser.username, email: demoUser.email } });
+            
+            // Explicitly save the session
+            req.session.save((saveErr) => {
+                if (saveErr) {
+                    console.error('❌ Session save error:', saveErr);
+                    return res.status(500).json({ success: false, error: 'Session save failed' });
+                }
+                
+                console.log('✅ Demo user logged in successfully');
+                console.log('🍪 Session ID after login:', req.sessionID);
+                console.log('👤 Current user after login:', req.user.username);
+                console.log('📝 Session saved to store');
+                console.log('🍪 Cookie header will be set:', res.getHeader('Set-Cookie') ? 'YES' : 'NO');
+                
+                res.json({ success: true, user: { username: demoUser.username, email: demoUser.email } });
+            });
         });
     } catch (e) {
         console.error('❌ Demo login error:', e);
