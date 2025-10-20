@@ -12,20 +12,29 @@ import { isLoggedIn } from '../middleware.js';
 
 router.post('/demo-login', async (req, res) => {
     try {
+        console.log('🔐 Demo login request received');
+        console.log('📍 Origin:', req.headers.origin);
+        console.log('🍪 Has session ID:', !!req.sessionID);
+        console.log('👤 Current user before login:', req.user?.username || 'none');
+        
         const demoUsername = 'demo';
         let demoUser = await User.findOne({ username: demoUsername });
         
         // If demo user doesn't exist, create it
         if (!demoUser) {
+            console.log('👤 Creating new demo user...');
             demoUser = new User({ email: 'demo@mealcreator.com', username: demoUsername });
             await User.register(demoUser, 'demo123');
             
             // Seed demo data
             await seedDemoData(demoUsername);
+        } else {
+            console.log('👤 Demo user found in database');
         }
         
         // Check if demo data exists
         const pantryCount = await Pantry.countDocuments({ owner: demoUsername });
+        console.log('📊 Pantry items count:', pantryCount);
         if (pantryCount === 0) {
             await seedDemoData(demoUsername);
         }
@@ -33,13 +42,16 @@ router.post('/demo-login', async (req, res) => {
         // Log in the demo user
         req.login(demoUser, (err) => {
             if (err) {
-                console.error('Demo login error:', err);
+                console.error('❌ Demo login error:', err);
                 return res.status(500).json({ success: false, error: 'Login failed' });
             }
+            console.log('✅ Demo user logged in successfully');
+            console.log('🍪 Session ID after login:', req.sessionID);
+            console.log('👤 Current user after login:', req.user.username);
             res.json({ success: true, user: { username: demoUser.username, email: demoUser.email } });
         });
     } catch (e) {
-        console.error('Demo login error:', e);
+        console.error('❌ Demo login error:', e);
         res.status(500).json({ success: false, error: 'Login failed' });
     }
 });
@@ -124,12 +136,17 @@ async function seedDemoData(demoUsername) {
 
 router.get('/meals', isLoggedIn, async (req, res) => {
     try {
+        console.log('🍽️  GET /api/meals - Session ID:', req.sessionID);
+        console.log('👤 User:', req.user?.username || 'NOT AUTHENTICATED');
+        
         const curUsername = res.locals.currentUser.username;
         await Meal.deleteMany({ confirmed: false, owner: curUsername });
         const meals = await Meal.find({ owner: curUsername }).sort({ mealName: 1 });
+        
+        console.log('📊 Found', meals.length, 'meals for user:', curUsername);
         res.json({ meals });
     } catch (error) {
-        console.error('Error fetching meals:', error);
+        console.error('❌ Error fetching meals:', error);
         res.status(500).json({ error: 'Failed to fetch meals' });
     }
 });
