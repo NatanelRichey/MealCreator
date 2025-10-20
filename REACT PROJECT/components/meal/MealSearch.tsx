@@ -24,11 +24,11 @@ export function MealSearch({ meals, onMealSelect, scrollContainerRef }: MealSear
     setNotFound(false);
 
     console.log('Searching for:', searchTerm);
-    console.log('Available meals:', meals.map(m => m.name || m.mealName));
+    console.log('Available meals:', meals.map(m => m.mealName));
 
     // Find matching meal (partial match, case insensitive)
     const foundMeal = meals.find(meal => {
-      const mealName = meal.name || meal.mealName || '';
+      const mealName = meal.mealName || '';
       return mealName.toLowerCase().includes(searchTerm.toLowerCase());
     });
 
@@ -36,7 +36,7 @@ export function MealSearch({ meals, onMealSelect, scrollContainerRef }: MealSear
 
     if (foundMeal) {
       // Scroll to the meal
-      const mealId = foundMeal.id || foundMeal._id;
+      const mealId = foundMeal._id;
       console.log('Looking for element with data-meal-id:', mealId);
       
       const mealElement = document.querySelector(`[data-meal-id="${mealId}"]`);
