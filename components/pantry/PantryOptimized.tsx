@@ -29,7 +29,7 @@ interface FlashMsg {
 export function PantryOptimized({ items = [] }: PantryProps) {
   const [editingItem, setEditingItem] = useState<string | null>(null);
   const [flashMessages, setFlashMessages] = useState<FlashMsg[]>([]);
-  const [categoryFilter, setCategoryFilter] = useState<string | null>(null);
+  const [categoryFilters, setCategoryFilters] = useState<string[]>([]);
 
   // React Query hooks - with caching and optimistic updates
   const { data: pantryData, isLoading, error: queryError } = usePantry();
@@ -160,7 +160,7 @@ export function PantryOptimized({ items = [] }: PantryProps) {
   };
 
   return (
-    <div className="fixed top-16 bottom-0 left-0 right-0 w-full bg-pantry bg-cover bg-center overflow-y-auto">
+    <div className="fixed top-16 bottom-0 left-0 right-0 w-full bg-pantry bg-cover bg-center flex flex-col overflow-hidden">
       {/* Overlay */}
       <div className="absolute inset-0 bg-meal-overlay pointer-events-none"></div>
       
@@ -176,8 +176,21 @@ export function PantryOptimized({ items = [] }: PantryProps) {
         ))}
       </div>
       
-      {/* Content */}
-      <div className="relative z-10 container mx-auto p-4 space-y-6 pointer-events-auto">
+      {/* Fixed Category Filter at Top */}
+      <div className="relative z-10 flex-shrink-0 pointer-events-auto p-4 pb-0">
+        <div className="container mx-auto">
+          {!isLoading && !queryError && (
+            <CategoryFilter 
+              currentFilters={categoryFilters}
+              onFilterChange={setCategoryFilters}
+            />
+          )}
+        </div>
+      </div>
+      
+      {/* Scrollable Content */}
+      <div className="relative z-10 flex-1 overflow-y-auto pointer-events-auto">
+        <div className="container mx-auto p-4 pt-2 space-y-6">
         {/* Loading State */}
         {isLoading && (
           <div className="text-center py-12">
@@ -197,15 +210,9 @@ export function PantryOptimized({ items = [] }: PantryProps) {
 
         {!isLoading && !queryError && (
           <>
-        {/* Category Filter */}
-        <CategoryFilter 
-          currentFilter={categoryFilter}
-          onFilterChange={setCategoryFilter}
-        />
-
         {/* Regular Categories - Only show in-stock items */}
         {PANTRY_CATEGORIES.filter(cat => cat !== 'Saved Items')
-          .filter(cat => !categoryFilter || cat === categoryFilter)
+          .filter(cat => categoryFilters.length === 0 || categoryFilters.includes(cat))
           .map((category) => {
           const categoryItems = itemsByCategory[category] || [];
           const inStockItems = categoryItems.filter(item => item.inStock);
@@ -442,8 +449,9 @@ export function PantryOptimized({ items = [] }: PantryProps) {
             </div>
           </div>
         )}
-        </>
+          </>
         )}
+        </div>
       </div>
     </div>
   );

@@ -1,0 +1,31 @@
+name: Home.made Pizza
+servings: 2 servings
+on_favorites: no
+favorite: no
+cook_count: 0
+images: []
+keywords: Dough
+tags:
+  - Dough
+ingredients:
+  - ¾ cup warm water, 40 degree celsius
+  - 2 ¼ tsp instant yeast
+  - 1 2-3 tsp sugar
+  - 2 tbsp olive oil
+  - 2 cups (plus 1/3 cup more if needed) all purpose or bread flour
+  - 1 tsp garlic powder
+  - ¼ tsp dried basil leaves, optional
+  - ¾ tsp salt
+directions:
+  - ""
+  - |-
+    Put warm water into a large mixing bowl.
+    Add sugar and yeast and stir to combine.
+  - Let mixture sit for 5 minutes, or until it becomes frothy and bubbles form.
+  - Add olive oil and gently stir to combine.
+  - Add 2 cups of flour and salt and mix with a spatula until a ball begins to
+    form (dough will still be slightly sticky). Add more flour as needed to form
+    a dough ball.
+exportedBy: |-
+  Shared from CookBook 
+  https://cookbookmanager.com

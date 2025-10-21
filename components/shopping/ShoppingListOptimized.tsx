@@ -27,7 +27,7 @@ interface FlashMsg {
 export function ShoppingListOptimized({ items = [] }: ShoppingListProps) {
   const [editingItem, setEditingItem] = useState<string | null>(null);
   const [flashMessages, setFlashMessages] = useState<FlashMsg[]>([]);
-  const [categoryFilter, setCategoryFilter] = useState<string | null>(null);
+  const [categoryFilters, setCategoryFilters] = useState<string[]>([]);
 
   // React Query hooks - with caching and optimistic updates
   const { data: shoppingListData, isLoading, error: queryError } = useShoppingList();
@@ -122,7 +122,7 @@ export function ShoppingListOptimized({ items = [] }: ShoppingListProps) {
   };
 
   return (
-    <div className="fixed top-16 bottom-0 left-0 right-0 w-full bg-shopping-list bg-cover bg-center overflow-y-auto">
+    <div className="fixed top-16 bottom-0 left-0 right-0 w-full bg-shopping-list bg-cover bg-center flex flex-col overflow-hidden">
       {/* Overlay */}
       <div className="absolute inset-0 bg-meal-overlay pointer-events-none"></div>
       
@@ -138,8 +138,21 @@ export function ShoppingListOptimized({ items = [] }: ShoppingListProps) {
         ))}
       </div>
       
-      {/* Content */}
-      <div className="relative z-10 container mx-auto p-4 space-y-6 pointer-events-auto">
+      {/* Fixed Category Filter at Top */}
+      <div className="relative z-10 flex-shrink-0 pointer-events-auto p-4 pb-0">
+        <div className="container mx-auto">
+          {!isLoading && !queryError && (
+            <CategoryFilter 
+              currentFilters={categoryFilters}
+              onFilterChange={setCategoryFilters}
+            />
+          )}
+        </div>
+      </div>
+      
+      {/* Scrollable Content */}
+      <div className="relative z-10 flex-1 overflow-y-auto pointer-events-auto">
+        <div className="container mx-auto p-4 pt-2 space-y-6">
         {/* Loading State */}
         {isLoading && (
           <div className="text-center py-12">
@@ -157,17 +170,9 @@ export function ShoppingListOptimized({ items = [] }: ShoppingListProps) {
           </div>
         )}
 
-        {/* Category Filter */}
-        {!isLoading && !queryError && (
-          <CategoryFilter 
-            currentFilter={categoryFilter}
-            onFilterChange={setCategoryFilter}
-          />
-        )}
-
         {/* Render each category */}
         {!isLoading && !queryError && PANTRY_CATEGORIES
-          .filter(cat => !categoryFilter || cat === categoryFilter)
+          .filter(cat => categoryFilters.length === 0 || categoryFilters.includes(cat))
           .map((category) => {
           const categoryItems = itemsByCategory[category] || [];
           const uncheckedItems = categoryItems.filter(item => !item.checked);
@@ -304,6 +309,7 @@ export function ShoppingListOptimized({ items = [] }: ShoppingListProps) {
             </div>
           );
         })}
+        </div>
       </div>
     </div>
   );

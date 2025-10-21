@@ -7,12 +7,13 @@
 // Meal object type
 export interface Meal {
     _id?: string;  // MongoDB ID (optional for new meals)
-    mealName: string;
-    description: string;
-    ingredients: string[];
-    tags: string[];
-    instructions: string;
-    imgSrc: string;
+  mealName: string;
+  description: string;
+  ingredients: string[];
+  tags: string[];
+  cookbookTags?: string[];  // Tags from CookBook Manager (stored but not displayed yet)
+  instructions: string;
+  imgSrc: string;
     prepTime: number;
     cookTime: number;
     servings: number;

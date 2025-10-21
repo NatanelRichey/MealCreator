@@ -63,22 +63,24 @@ export function MealCard({ meal, index = 0 }: MealCardProps) {
       
       {/* Content Section */}
       <div className="p-4">
-        {/* Meal Name */}
-        <h3 className="font-athiti text-lg mb-2">
+        {/* Meal Name - Truncate with ellipsis */}
+        <h3 className="font-athiti text-lg mb-2 truncate text-center">
           {meal.mealName}
         </h3>
         
         {/* Tags */}
-        <div className="flex gap-2 flex-wrap">
-          {meal.tags.map((tag) => (
-            <span 
-              key={tag} 
-              className="text-xs font-athiti bg-meal-green-light px-2 py-1 rounded"
-            >
-              {tag}
-            </span>
-          ))}
-        </div>
+        {meal.tags.length > 0 && (
+          <div className="flex gap-1 flex-wrap mt-2 justify-center">
+            {meal.tags.slice(0, 3).map((tag) => (
+              <span 
+                key={tag} 
+                className="text-xs font-athiti bg-meal-green-light px-2 py-0.5 rounded"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+        )}
       </div>
     </Link>
   );

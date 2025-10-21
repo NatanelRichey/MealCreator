@@ -1,0 +1,34 @@
+name: Jasmine Rice
+servings: 2 servings
+on_favorites: no
+favorite: no
+cook_count: 0
+images: []
+ingredients:
+  - "Rice Cooker 1:"
+  - 1 cup rice
+  - 1 tsp salt
+  - 1 tbsp oil
+  - 2 cups water
+  - "Rice Cooker 2:"
+  - 2 cups rice
+  - 1 tsp salt
+  - ¼ cup oil
+  - 3 cups water
+directions:
+  - ""
+  - |-
+    wash rice super well. 
+    Then mix rice with salt and oil. 
+    Then add water
+  - "Rice Cooker 1:"
+  - |-
+    15 mins microwave
+    5 mins steam
+  - "Rice Cooker 2:"
+  - |-
+    17 mins microwave
+    5 mins steam
+exportedBy: |-
+  Shared from CookBook 
+  https://cookbookmanager.com

@@ -5,8 +5,8 @@ import Image from 'next/image';
 import { PANTRY_CATEGORIES, getCategoryDisplayName } from '@/lib/data';
 
 interface CategoryFilterProps {
-  onFilterChange: (category: string | null) => void;
-  currentFilter: string | null;
+  onFilterChange: (categories: string[]) => void;
+  currentFilters: string[];
 }
 
 /**
@@ -14,20 +14,34 @@ interface CategoryFilterProps {
  * 
  * Displays clickable category buttons with icons to filter items
  * - Shows all categories from PANTRY_CATEGORIES
- * - Highlights selected category
- * - Click to filter, click again to show all
+ * - Supports multiple category selection
+ * - Click to add/remove from filter, click All to clear all
  */
-export function CategoryFilter({ onFilterChange, currentFilter }: CategoryFilterProps) {
+export function CategoryFilter({ onFilterChange, currentFilters }: CategoryFilterProps) {
+  const toggleCategory = (category: string) => {
+    if (currentFilters.includes(category)) {
+      // Remove category from filters
+      onFilterChange(currentFilters.filter(c => c !== category));
+    } else {
+      // Add category to filters
+      onFilterChange([...currentFilters, category]);
+    }
+  };
+
+  const clearAll = () => {
+    onFilterChange([]);
+  };
+
   return (
-    <div className="bg-white/80 backdrop-blur-md rounded-lg shadow-lg p-4 mb-6">
+    <div className="bg-white/80 backdrop-blur-md rounded-lg shadow-lg p-4">
       <div className="flex items-center justify-center gap-2 flex-wrap">
         {/* All Items Button */}
         <button
-          onClick={() => onFilterChange(null)}
+          onClick={clearAll}
           className={`
             flex items-center gap-2 px-4 py-2 rounded-lg
             font-athiti text-base transition-all duration-200
-            ${currentFilter === null
+            ${currentFilters.length === 0
               ? 'bg-meal-green-light border-2 border-meal-green shadow-md'
               : 'bg-white border-2 border-gray-200 hover:border-meal-green-light hover:bg-meal-green-light/30'
             }
@@ -38,44 +52,50 @@ export function CategoryFilter({ onFilterChange, currentFilter }: CategoryFilter
         </button>
 
         {/* Category Buttons */}
-        {PANTRY_CATEGORIES.filter(cat => cat !== 'Saved Items').map((category) => (
-          <button
-            key={category}
-            onClick={() => onFilterChange(currentFilter === category ? null : category)}
-            className={`
-              flex items-center gap-2 px-4 py-2 rounded-lg
-              font-athiti text-base transition-all duration-200
-              ${currentFilter === category
-                ? 'bg-meal-green-light border-2 border-meal-green shadow-md scale-105'
-                : 'bg-white border-2 border-gray-200 hover:border-meal-green-light hover:bg-meal-green-light/30'
-              }
-            `}
-          >
-            <Image
-              src={`https://res.cloudinary.com/meal-creator/image/upload/v1662276054/icons/${category.toLowerCase()}.png`}
-              alt={category}
-              width={24}
-              height={24}
-              className="w-6 h-6"
-            />
-            <span className="text-gray-800 font-medium">
-              {getCategoryDisplayName(category)}
-            </span>
-          </button>
-        ))}
+        {PANTRY_CATEGORIES.filter(cat => cat !== 'Saved Items').map((category) => {
+          const isSelected = currentFilters.includes(category);
+          
+          return (
+            <button
+              key={category}
+              onClick={() => toggleCategory(category)}
+              className={`
+                flex items-center gap-2 px-4 py-2 rounded-lg
+                font-athiti text-base transition-all duration-200
+                ${isSelected
+                  ? 'bg-meal-green-light border-2 border-meal-green shadow-md scale-105'
+                  : 'bg-white border-2 border-gray-200 hover:border-meal-green-light hover:bg-meal-green-light/30'
+                }
+              `}
+            >
+              <Image
+                src={`https://res.cloudinary.com/meal-creator/image/upload/v1662276054/icons/${category.toLowerCase()}.png`}
+                alt={category}
+                width={24}
+                height={24}
+                className="w-6 h-6"
+              />
+              <span className="text-gray-800 font-medium">
+                {getCategoryDisplayName(category)}
+              </span>
+            </button>
+          );
+        })}
       </div>
 
-      {/* Active Filter Indicator */}
-      {currentFilter && (
+      {/* Active Filters Indicator */}
+      {currentFilters.length > 0 && (
         <div className="mt-3 text-center">
           <p className="text-sm font-athiti text-gray-600">
-            Showing: <span className="font-bold text-meal-green">{getCategoryDisplayName(currentFilter)}</span>
+            Showing: <span className="font-bold text-meal-green">
+              {currentFilters.map(getCategoryDisplayName).join(', ')}
+            </span>
             {' • '}
             <button
-              onClick={() => onFilterChange(null)}
+              onClick={clearAll}
               className="text-meal-green hover:text-meal-green-dark underline"
             >
-              Clear filter
+              Clear all
             </button>
           </p>
         </div>

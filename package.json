@@ -7,13 +7,15 @@
     "dev": "next dev -p 3001",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "import-cookbook": "tsx scripts/import-cookbook-recipes.ts"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.59.0",
     "bcryptjs": "^3.0.2",
     "cloudinary": "^2.8.0",
     "cors": "^2.8.5",
+    "js-yaml": "^4.1.0",
     "mongoose": "^8.19.2",
     "next": "^14.2.0",
     "next-cloudinary": "^6.16.1",
@@ -23,15 +25,18 @@
   "devDependencies": {
     "@types/bcryptjs": "^2.4.6",
     "@types/cors": "^2.8.19",
+    "@types/js-yaml": "^4.0.9",
     "@types/mongoose": "^5.11.96",
     "@types/node": "^20.14.0",
     "@types/react": "^18.3.0",
     "@types/react-dom": "^18.3.0",
     "autoprefixer": "^10.4.0",
+    "dotenv": "^17.2.3",
     "eslint": "^8.57.0",
     "eslint-config-next": "^14.2.0",
     "postcss": "^8.4.0",
     "tailwindcss": "^3.4.0",
+    "tsx": "^4.20.6",
     "typescript": "^5.4.0"
   }
 }

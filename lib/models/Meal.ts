@@ -15,6 +15,7 @@ export interface IMeal extends Document {
   description: string;
   ingredients: string[];
   tags: string[];
+  cookbookTags?: string[];  // Tags from CookBook Manager import (not displayed in UI yet)
   instructions: string;
   imgSrc: string;
   prepTime: number;
@@ -38,6 +39,10 @@ const MealSchema = new Schema<IMeal>({
   },
   ingredients: [String],
   tags: [String],
+  cookbookTags: {
+    type: [String],
+    default: []
+  },
   instructions: {
     type: String,
     default: ''

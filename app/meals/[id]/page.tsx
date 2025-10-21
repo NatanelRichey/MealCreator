@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
-import { getMeal, deleteMeal } from '@/lib/api';
+import { getMeal } from '@/lib/api';
+import { useDeleteMeal } from '@/lib/hooks/useMeals';
 import { MealForm } from '@/components/meal/MealForm';
 import { ProtectedRoute } from '@/components/auth/ProtectedRoute';
 import type { Meal } from '@/lib/types';
@@ -13,6 +14,7 @@ export const dynamic = 'force-dynamic';
 export default function EditMealPage() {
   const params = useParams();
   const router = useRouter();
+  const deleteMealMutation = useDeleteMeal();
   const [meal, setMeal] = useState<Meal | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -35,7 +37,9 @@ export default function EditMealPage() {
     }
   };
 
-  const handleSuccess = () => {
+  const handleSuccess = async () => {
+    // Small delay to ensure cache invalidation completes
+    await new Promise(resolve => setTimeout(resolve, 100));
     router.push('/meals');
   };
 
@@ -47,8 +51,10 @@ export default function EditMealPage() {
     if (!meal?._id) return;
     
     try {
-      await deleteMeal(meal._id);
-      router.push('/meals');
+      // Use React Query mutation for instant UI update
+      await deleteMealMutation.mutateAsync(meal._id);
+      // Navigate back without scrolling to top
+      router.back();
     } catch (error) {
       console.error('Failed to delete meal:', error);
       alert('Failed to delete meal. Please try again.');

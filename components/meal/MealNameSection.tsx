@@ -8,11 +8,12 @@ interface MealNameSectionProps {
   onChange: (value: string) => void;
   currentImage?: string;
   onImageChange: (file: File | null) => void;
+  onImageDelete?: () => void;
 }
 
 const DEFAULT_MEAL_IMAGE = 'https://res.cloudinary.com/meal-creator/image/upload/v1662460322/meal-images/untitled-meal.jpg';
 
-export function MealNameSection({ value, onChange, currentImage, onImageChange }: MealNameSectionProps) {
+export function MealNameSection({ value, onChange, currentImage, onImageChange, onImageDelete }: MealNameSectionProps) {
   const [imgSrc, setImgSrc] = useState(currentImage || DEFAULT_MEAL_IMAGE);
 
   // Update imgSrc when currentImage prop changes (for editing existing meals)
@@ -71,7 +72,7 @@ export function MealNameSection({ value, onChange, currentImage, onImageChange }
             className="cursor-pointer block"
           >
             {currentImage || imgSrc !== DEFAULT_MEAL_IMAGE ? (
-              <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-lg border-2 border-meal-green-light hover:border-meal-green transition-colors overflow-hidden">
+              <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-lg border-2 border-meal-green-light hover:border-meal-green transition-colors overflow-hidden group">
                 <Image 
                   src={imgSrc} 
                   alt="Meal preview"
@@ -79,6 +80,22 @@ export function MealNameSection({ value, onChange, currentImage, onImageChange }
                   className="object-cover"
                   onError={handleImageError}
                 />
+                {/* Delete Image Button */}
+                {onImageDelete && (
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      setImgSrc(DEFAULT_MEAL_IMAGE);
+                      onImageDelete();
+                    }}
+                    className="absolute top-0 right-0 w-5 h-5 bg-red-500 text-white rounded-bl-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-red-600"
+                    title="Remove image"
+                  >
+                    <span className="text-xs font-bold">✕</span>
+                  </button>
+                )}
               </div>
             ) : (
               <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gray-100 border-2 border-dashed border-meal-green-light rounded-lg flex items-center justify-center hover:border-meal-green transition-colors">

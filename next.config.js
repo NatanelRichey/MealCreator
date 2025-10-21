@@ -14,6 +14,12 @@ const nextConfig = {
         port: '',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'media.cookbookmanager.com',
+        port: '',
+        pathname: '/**',
+      },
     ],
   },
   // Enable strict mode for better error detection

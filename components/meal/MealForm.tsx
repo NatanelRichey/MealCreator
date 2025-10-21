@@ -10,6 +10,9 @@ import { ActionButtons } from './ActionButtons';
 import { createMeal, updateMeal } from '@/lib/api';
 import { FlashMessage } from '@/components/ui/FlashMessage';
 import { uploadImageToCloudinary } from '@/lib/uploadImage';
+import { useQueryClient } from '@tanstack/react-query';
+import { MEALS_QUERY_KEY } from '@/lib/hooks/useMeals';
+import type { Meal as MealType } from '@/lib/types';
 
 interface MealFormProps {
   meal?: Meal;
@@ -25,6 +28,7 @@ interface FlashMsg {
 }
 
 export function MealForm({ meal, onSuccess, onCancel, onDelete }: MealFormProps) {
+  const queryClient = useQueryClient();
   const [formData, setFormData] = useState<Partial<Meal>>(meal || DEFAULT_MEAL);
   const [currentIngredient, setCurrentIngredient] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -102,17 +106,37 @@ export function MealForm({ meal, onSuccess, onCancel, onDelete }: MealFormProps)
       if (meal?._id) {
         // Update existing meal
         console.log('📝 Updating meal...');
+        
+        // Optimistically update cache BEFORE API call
+        await queryClient.cancelQueries({ queryKey: MEALS_QUERY_KEY });
+        const previousMeals = queryClient.getQueryData<MealType[]>(MEALS_QUERY_KEY);
+        
+        if (previousMeals) {
+          queryClient.setQueryData<MealType[]>(
+            MEALS_QUERY_KEY,
+            previousMeals.map(m => m._id === meal._id ? { ...m, ...mealData } : m)
+          );
+        }
+        
         savedMeal = await updateMeal(meal._id, mealData);
         showFlash('success', 'Meal updated successfully!');
+        
+        // Refetch to ensure consistency - wait for it to complete
+        await queryClient.invalidateQueries({ queryKey: MEALS_QUERY_KEY });
+        await queryClient.refetchQueries({ queryKey: MEALS_QUERY_KEY });
       } else {
         // Create new meal
         console.log('📝 Creating new meal...');
         savedMeal = await createMeal(mealData);
         showFlash('success', 'Meal created successfully!');
+        
+        // Invalidate cache to show new meal - wait for it to complete
+        await queryClient.invalidateQueries({ queryKey: MEALS_QUERY_KEY });
+        await queryClient.refetchQueries({ queryKey: MEALS_QUERY_KEY });
       }
       
       if (onSuccess) {
-        onSuccess(savedMeal);
+        await onSuccess(savedMeal);
       }
     } catch (error) {
       console.error('Failed to save meal:', error);
@@ -161,6 +185,14 @@ export function MealForm({ meal, onSuccess, onCancel, onDelete }: MealFormProps)
     }
   };
 
+  const handleImageDelete = () => {
+    setUploadedImageFile(null);
+    setFormData({ 
+      ...formData, 
+      imgSrc: 'https://res.cloudinary.com/meal-creator/image/upload/v1662460322/meal-images/untitled-meal.jpg' 
+    });
+  };
+
   return (
     <div className="fixed top-16 bottom-0 left-0 right-0 w-full bg-meals bg-cover bg-center flex items-center justify-center p-4 sm:p-8 md:p-[1cm] overflow-hidden">
       {/* overlay - match original styling */}
@@ -188,6 +220,7 @@ export function MealForm({ meal, onSuccess, onCancel, onDelete }: MealFormProps)
                 onChange={(value) => setFormData({ ...formData, mealName: value })}
                 currentImage={formData.imgSrc}
                 onImageChange={handleImageChange}
+                onImageDelete={handleImageDelete}
               />
             </div>
 
