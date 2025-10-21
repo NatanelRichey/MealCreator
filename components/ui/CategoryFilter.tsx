@@ -33,13 +33,13 @@ export function CategoryFilter({ onFilterChange, currentFilters }: CategoryFilte
   };
 
   return (
-    <div className="bg-white/80 backdrop-blur-md rounded-lg shadow-lg p-4">
-      <div className="flex items-center justify-center gap-2 flex-wrap">
+    <div className="bg-white/80 backdrop-blur-md rounded-lg shadow-lg p-2 md:p-4">
+      <div className="flex items-center justify-center gap-1 md:gap-2 flex-wrap">
         {/* All Items Button */}
         <button
           onClick={clearAll}
           className={`
-            flex items-center gap-2 px-3 py-2 md:px-4 rounded-lg
+            flex items-center gap-1 md:gap-2 px-2 py-1 md:px-4 md:py-2 rounded-md md:rounded-lg
             font-athiti text-base transition-all duration-200
             ${currentFilters.length === 0
               ? 'bg-meal-green-light border-2 border-meal-green shadow-md'
@@ -47,7 +47,7 @@ export function CategoryFilter({ onFilterChange, currentFilters }: CategoryFilte
             }
           `}
         >
-          <span className="text-2xl">🏠</span>
+          <span className="text-lg md:text-2xl">🏠</span>
           <span className="hidden md:inline text-gray-800 font-medium">All Items</span>
         </button>
 
@@ -60,7 +60,7 @@ export function CategoryFilter({ onFilterChange, currentFilters }: CategoryFilte
               key={`${category}-${isSelected}`}
               onClick={() => toggleCategory(category)}
               className={`
-                flex items-center gap-2 px-3 py-2 md:px-4 rounded-lg
+                flex items-center gap-1 md:gap-2 px-2 py-1 md:px-4 md:py-2 rounded-md md:rounded-lg
                 font-athiti text-base transition-all duration-200
                 ${isSelected
                   ? 'bg-meal-green-light border-2 border-meal-green shadow-md scale-105'
@@ -73,7 +73,7 @@ export function CategoryFilter({ onFilterChange, currentFilters }: CategoryFilte
                 alt={getCategoryDisplayName(category)}
                 width={24}
                 height={24}
-                className="w-6 h-6"
+                className="w-4 h-4 md:w-6 md:h-6"
               />
               <span className="hidden md:inline text-gray-800 font-medium">
                 {getCategoryDisplayName(category)}
@@ -85,8 +85,8 @@ export function CategoryFilter({ onFilterChange, currentFilters }: CategoryFilte
 
       {/* Active Filters Indicator */}
       {currentFilters.length > 0 && (
-        <div className="mt-3 text-center">
-          <p className="text-sm font-athiti text-gray-600">
+        <div className="mt-2 md:mt-3 text-center">
+          <p className="text-xs md:text-sm font-athiti text-gray-600">
             Showing: <span className="font-bold text-meal-green">
               {currentFilters.map(getCategoryDisplayName).join(', ')}
             </span>
