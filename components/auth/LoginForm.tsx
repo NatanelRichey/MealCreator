@@ -57,10 +57,10 @@ export function LoginForm() {
           </h5>
         </div>
 
-        {/* Header Image */}
+        {/* Header Image - High Resolution from Cloudinary */}
         <div className="relative w-full h-[430px] overflow-hidden flex-shrink-0">
           <Image
-            src="https://images.unsplash.com/photo-1543353071-873f17a7a088?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
+            src="https://res.cloudinary.com/meal-creator/image/upload/v1761061120/meal-creator/login-background.jpg"
             alt="Food"
             fill
             className="object-cover"
