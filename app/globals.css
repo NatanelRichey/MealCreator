@@ -12,9 +12,9 @@
   /* CSS Reset & Box Sizing */
   * {
     @apply box-border p-0 m-0;
-    /* Firefox - thin scrollbar */
+    /* Firefox - thin scrollbar with light green */
     scrollbar-width: thin;
-    scrollbar-color: #6cc82a rgba(128, 128, 128, 0.2);
+    scrollbar-color: rgba(108, 200, 42, 0.4) rgba(128, 128, 128, 0.1);
   }
 
   /* HTML & Body */
@@ -105,8 +105,8 @@
 
 /* Chrome, Edge, Safari */
 *::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 10px;
+  height: 10px;
 }
 
 *::-webkit-scrollbar-track {
@@ -115,17 +115,33 @@
 }
 
 *::-webkit-scrollbar-thumb {
-  background: #6cc82a;
+  background: rgba(108, 200, 42, 0.4); /* Light green like navbar button highlight */
   border-radius: 10px;
   transition: background 0.3s ease;
 }
 
 *::-webkit-scrollbar-thumb:hover {
-  background: #5ab522;
+  background: rgba(108, 200, 42, 0.6); /* Slightly darker on hover */
 }
 
 *::-webkit-scrollbar-corner {
   background: transparent;
+}
+
+/* Remove scrollbar arrows completely */
+*::-webkit-scrollbar-button {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+*::-webkit-scrollbar-button:single-button {
+  display: none !important;
+}
+
+*::-webkit-scrollbar-button:start:decrement,
+*::-webkit-scrollbar-button:end:increment {
+  display: none !important;
 }
 
 /* ==============================================

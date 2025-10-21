@@ -78,14 +78,14 @@ export function MealsPageOptimized({
       <div className="relative z-10 p-8 pb-4 flex-shrink-0 pointer-events-auto">
         <div className="max-w-6xl mx-auto">
           {/* Header */}
-          <div className="flex justify-between items-center mb-6">
+          <div className="flex justify-between items-start mb-6">
             <h1 className="text-3xl font-athiti text-gray-800">My Meals</h1>
             <button
               onClick={onAddMeal}
               className="
                 bg-meal-green-light text-black px-6 py-2 rounded-lg
                 font-athiti text-lg hover:bg-meal-green-hover
-                transition-colors duration-200
+                transition-colors duration-200 -ml-20 mt-4
               "
             >
               Add Meal
@@ -102,8 +102,8 @@ export function MealsPageOptimized({
       </div>
 
       {/* Scrollable Content */}
-      <div ref={scrollContainerRef} className="relative z-10 flex-1 overflow-y-auto pointer-events-auto">
-        <div className="max-w-6xl mx-auto px-8 pb-8">
+      <div className="relative z-10 flex-1 flex justify-center overflow-hidden pointer-events-auto">
+        <div ref={scrollContainerRef} className="max-w-6xl w-full px-8 pb-8 overflow-y-auto h-full">
           {/* Loading State */}
           {isLoading && (
             <div className="text-center py-12">
