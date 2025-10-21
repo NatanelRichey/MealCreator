@@ -191,15 +191,16 @@ export function useMoveToPantry() {
 
       // Optimistically add to pantry cache
       if (previousPantry && movedItem) {
+        const itemCategory = movedItem.category;
         const updatedPantry = { ...previousPantry } as any;
         if (!updatedPantry.categories) {
           updatedPantry.categories = {};
         }
-        if (!updatedPantry.categories[movedItem.category]) {
-          updatedPantry.categories[movedItem.category] = [];
+        if (!updatedPantry.categories[itemCategory]) {
+          updatedPantry.categories[itemCategory] = [];
         }
-        updatedPantry.categories[movedItem.category] = [
-          ...updatedPantry.categories[movedItem.category],
+        updatedPantry.categories[itemCategory] = [
+          ...updatedPantry.categories[itemCategory],
           { ...movedItem, inStock: true }
         ];
         queryClient.setQueryData(PANTRY_QUERY_KEY, updatedPantry);

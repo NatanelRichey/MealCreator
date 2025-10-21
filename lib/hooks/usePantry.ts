@@ -325,15 +325,16 @@ export function useMoveToCart() {
 
       // Optimistically add to shopping list cache
       if (previousShoppingList && movedItem) {
+        const itemCategory = movedItem.category;
         const updatedShoppingList = { ...previousShoppingList } as any;
         if (!updatedShoppingList.categories) {
           updatedShoppingList.categories = {};
         }
-        if (!updatedShoppingList.categories[movedItem.category]) {
-          updatedShoppingList.categories[movedItem.category] = [];
+        if (!updatedShoppingList.categories[itemCategory]) {
+          updatedShoppingList.categories[itemCategory] = [];
         }
-        updatedShoppingList.categories[movedItem.category] = [
-          ...updatedShoppingList.categories[movedItem.category],
+        updatedShoppingList.categories[itemCategory] = [
+          ...updatedShoppingList.categories[itemCategory],
           movedItem
         ];
         queryClient.setQueryData(SHOPPING_LIST_QUERY_KEY, updatedShoppingList);
