@@ -12,6 +12,9 @@ if (!MONGODB_URI) {
   process.exit(1);
 }
 
+// TypeScript type assertion after validation
+const DB_URI: string = MONGODB_URI;
+
 // Define Meal schema
 const mealSchema = new mongoose.Schema({
   userId: { type: String, required: true },
@@ -33,7 +36,7 @@ async function checkUserIds() {
     console.log('═══════════════════════════════════════════\n');
 
     console.log('🔌 Connecting to database...');
-    await mongoose.connect(MONGODB_URI);
+    await mongoose.connect(DB_URI);
     console.log('✅ Connected to database\n');
 
     // Get total meal count

@@ -15,6 +15,9 @@ if (!MONGODB_URI) {
   process.exit(1);
 }
 
+// TypeScript type assertion after validation
+const DB_URI: string = MONGODB_URI;
+
 // Define schemas
 const mealSchema = new mongoose.Schema({
   userId: String,
@@ -63,7 +66,7 @@ async function completeDemoSetup() {
     console.log('═══════════════════════════════════════════\n');
 
     console.log('🔌 Connecting to database...');
-    await mongoose.connect(MONGODB_URI);
+    await mongoose.connect(DB_URI);
     console.log('✅ Connected to database\n');
 
     // ==================== FIX NULL USER IDs ====================
