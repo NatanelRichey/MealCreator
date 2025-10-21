@@ -190,8 +190,9 @@ export function useMoveToPantry() {
       }
 
       // Optimistically add to pantry cache
-      if (previousPantry && movedItem) {
-        const itemCategory = movedItem.category;
+      if (previousPantry && movedItem !== null) {
+        const item = movedItem as ShoppingListItem;
+        const itemCategory = item.category;
         const updatedPantry = { ...previousPantry } as any;
         if (!updatedPantry.categories) {
           updatedPantry.categories = {};
@@ -201,7 +202,7 @@ export function useMoveToPantry() {
         }
         updatedPantry.categories[itemCategory] = [
           ...updatedPantry.categories[itemCategory],
-          { ...movedItem, inStock: true }
+          { ...item, inStock: true }
         ];
         queryClient.setQueryData(PANTRY_QUERY_KEY, updatedPantry);
       }
