@@ -199,7 +199,7 @@ export function MealForm({ meal, onSuccess, onCancel, onDelete }: MealFormProps)
       <div className="absolute inset-0 bg-white/85 pointer-events-none"></div>
       
       {/* Flash Messages - Top Left */}
-      <div className="fixed top-20 left-4 z-50">
+      <div className="hidden lg:block fixed top-20 left-4 z-50">
         {flashMessages.map((msg) => (
           <FlashMessage
             key={msg.id}

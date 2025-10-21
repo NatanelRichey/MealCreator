@@ -59,7 +59,7 @@ export function HomePage() {
     <section className="fixed top-16 bottom-0 left-0 right-0 flex flex-col overflow-hidden">
       {/* Flash Message - Top Left */}
       {showFlash && (
-        <div className="absolute top-4 left-4 z-50">
+        <div className="hidden lg:block absolute top-4 left-4 z-50">
           <FlashMessage
             type="success"
             message={flashMessage}
