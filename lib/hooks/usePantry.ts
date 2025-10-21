@@ -283,18 +283,34 @@ export function useMoveToCart() {
     mutationFn: (itemName: string) => moveToCart(itemName),
     onMutate: async (itemName) => {
       await queryClient.cancelQueries({ queryKey: PANTRY_QUERY_KEY });
+      await queryClient.cancelQueries({ queryKey: SHOPPING_LIST_QUERY_KEY });
 
       const previousPantry = queryClient.getQueryData<PantryData>(PANTRY_QUERY_KEY);
+      const previousShoppingList = queryClient.getQueryData(SHOPPING_LIST_QUERY_KEY);
+
+      let movedItem: PantryItem | null = null;
 
       if (previousPantry) {
         const updatedCategories = { ...previousPantry.categories };
         
-        // Remove from all categories
+        // Find and remove from pantry categories
         Object.keys(updatedCategories).forEach((category) => {
+          const item = updatedCategories[category].find((i) => i.name === itemName);
+          if (item) {
+            movedItem = item;
+          }
           updatedCategories[category] = updatedCategories[category].filter(
             (item) => item.name !== itemName
           );
         });
+
+        // Check saved items too
+        if (!movedItem) {
+          const savedItem = previousPantry.savedItems.find((i) => i.name === itemName);
+          if (savedItem) {
+            movedItem = savedItem;
+          }
+        }
 
         // Remove from saved items
         const updatedSavedItems = previousPantry.savedItems.filter(
@@ -307,14 +323,30 @@ export function useMoveToCart() {
         });
       }
 
-      // Also invalidate shopping list to show the new item
-      queryClient.invalidateQueries({ queryKey: SHOPPING_LIST_QUERY_KEY });
+      // Optimistically add to shopping list cache
+      if (previousShoppingList && movedItem) {
+        const updatedShoppingList = { ...previousShoppingList } as any;
+        if (!updatedShoppingList.categories) {
+          updatedShoppingList.categories = {};
+        }
+        if (!updatedShoppingList.categories[movedItem.category]) {
+          updatedShoppingList.categories[movedItem.category] = [];
+        }
+        updatedShoppingList.categories[movedItem.category] = [
+          ...updatedShoppingList.categories[movedItem.category],
+          movedItem
+        ];
+        queryClient.setQueryData(SHOPPING_LIST_QUERY_KEY, updatedShoppingList);
+      }
 
-      return { previousPantry };
+      return { previousPantry, previousShoppingList };
     },
     onError: (_err, _itemName, context) => {
       if (context?.previousPantry) {
         queryClient.setQueryData(PANTRY_QUERY_KEY, context.previousPantry);
+      }
+      if (context?.previousShoppingList) {
+        queryClient.setQueryData(SHOPPING_LIST_QUERY_KEY, context.previousShoppingList);
       }
     },
     onSettled: () => {

@@ -126,8 +126,8 @@ export function ShoppingListOptimized({ items = [] }: ShoppingListProps) {
       {/* Overlay */}
       <div className="absolute inset-0 bg-meal-overlay pointer-events-none"></div>
       
-      {/* Flash Messages - Top Left */}
-      <div className="fixed top-20 left-4 z-50">
+      {/* Flash Messages - Top Left - Desktop Only */}
+      <div className="hidden lg:block fixed top-20 left-4 z-50">
         {flashMessages.map((msg) => (
           <FlashMessage
             key={msg.id}
@@ -150,9 +150,12 @@ export function ShoppingListOptimized({ items = [] }: ShoppingListProps) {
         </div>
       </div>
       
+      {/* 1mm gap separator */}
+      <div className="relative z-10 h-[1mm] flex-shrink-0"></div>
+      
       {/* Scrollable Content */}
-      <div className="relative z-10 flex-1 overflow-y-auto pointer-events-auto">
-        <div className="container mx-auto p-4 pt-2 space-y-6">
+      <div className="relative z-10 flex-1 overflow-y-auto pointer-events-auto bg-transparent rounded-t-lg">
+        <div className="container mx-auto p-4 pt-2 space-y-[1mm]">
         {/* Loading State */}
         {isLoading && (
           <div className="text-center py-12">
@@ -178,24 +181,24 @@ export function ShoppingListOptimized({ items = [] }: ShoppingListProps) {
           const uncheckedItems = categoryItems.filter(item => !item.checked);
           
           return (
-            <div key={category} className="bg-white/80 backdrop-blur-md rounded-lg shadow-lg p-6">
+            <div key={category} className="bg-white/80 backdrop-blur-md rounded-lg shadow-lg p-3 md:p-6">
               {/* Category Header */}
-              <div className="flex items-center justify-center gap-3 mb-4">
+              <div className="flex items-center justify-center gap-2 md:gap-3 mb-2 md:mb-4">
                 <Image
                   src={`https://res.cloudinary.com/meal-creator/image/upload/v1662276054/icons/${category.toLowerCase()}.png`}
                   alt={category}
                   width={32}
                   height={32}
-                  className="w-8 h-8"
+                  className="w-6 h-6 md:w-8 md:h-8"
                 />
-                <h2 className="text-xl font-athiti text-gray-800">
+                <h2 className="text-base md:text-xl font-athiti text-gray-800">
                   {getCategoryDisplayName(category)}
                 </h2>
               </div>
 
               {/* Add Item Form */}
-              <div className="mb-4">
-                <div className="flex gap-2">
+              <div className="mb-2 md:mb-4">
+                <div className="flex gap-1 md:gap-2">
                   <input
                     type="text"
                     placeholder="Add Item"
@@ -211,7 +214,7 @@ export function ShoppingListOptimized({ items = [] }: ShoppingListProps) {
                         }
                       }
                     }}
-                    className="flex-1 px-4 py-2 border border-gray-300 rounded font-athiti focus:ring-2 focus:ring-meal-green focus:outline-none"
+                    className="flex-1 px-2 py-1 md:px-4 md:py-2 border border-gray-300 rounded font-athiti text-sm md:text-base focus:ring-2 focus:ring-meal-green focus:outline-none"
                   />
                   <button
                     type="button"
@@ -226,14 +229,14 @@ export function ShoppingListOptimized({ items = [] }: ShoppingListProps) {
                       }
                     }}
                     disabled={addItem.isPending}
-                    className="w-12 h-10 bg-meal-green hover:bg-meal-green-dark rounded flex items-center justify-center transition-colors disabled:opacity-50"
+                    className="w-8 h-8 md:w-12 md:h-10 bg-meal-green hover:bg-meal-green-dark rounded flex items-center justify-center transition-colors disabled:opacity-50"
                   >
                     <Image
                       src="https://res.cloudinary.com/meal-creator/image/upload/v1662276052/icons/add-pantry.png"
                       alt="Add"
                       width={20}
                       height={20}
-                      className="w-5 h-5"
+                      className="w-4 h-4 md:w-5 md:h-5"
                     />
                   </button>
                 </div>
@@ -243,12 +246,12 @@ export function ShoppingListOptimized({ items = [] }: ShoppingListProps) {
               {uncheckedItems.length > 0 && (
                 <div className="space-y-2">
                   {uncheckedItems.map((item) => (
-                    <div key={item._id} className="flex items-center gap-2 p-3 bg-gray-50 rounded border">
+                    <div key={item._id} className="flex items-center gap-1 md:gap-2 p-1.5 md:p-3 bg-gray-50 rounded border">
                       {/* Move to Pantry Button */}
                       <button
                         onClick={() => handleToggleCheck(item._id!)}
                         disabled={movePantry.isPending}
-                        className="w-8 h-8 flex items-center justify-center hover:bg-meal-green-light rounded transition-colors disabled:opacity-50"
+                        className="w-6 h-6 md:w-8 md:h-8 flex items-center justify-center hover:bg-meal-green-light rounded transition-colors disabled:opacity-50"
                         title="Move to Pantry"
                       >
                         <Image
@@ -256,7 +259,7 @@ export function ShoppingListOptimized({ items = [] }: ShoppingListProps) {
                           alt="Move to Pantry"
                           width={20}
                           height={20}
-                          className="w-5 h-5"
+                          className="w-4 h-4 md:w-5 md:h-5"
                         />
                       </button>
 
@@ -275,12 +278,12 @@ export function ShoppingListOptimized({ items = [] }: ShoppingListProps) {
                                 setEditingItem(null);
                               }
                             }}
-                            className="w-full px-2 py-1 border border-gray-300 rounded focus:ring-2 focus:ring-meal-green focus:outline-none"
+                            className="w-full px-2 py-1 border border-gray-300 rounded focus:ring-2 focus:ring-meal-green focus:outline-none text-sm md:text-base"
                             autoFocus
                           />
                         ) : (
                           <span 
-                            className="text-gray-800 font-athiti cursor-pointer hover:text-meal-green"
+                            className="text-gray-800 font-athiti cursor-pointer hover:text-meal-green text-sm md:text-base"
                             onClick={() => setEditingItem(item._id!)}
                           >
                             {item.name}
@@ -292,14 +295,14 @@ export function ShoppingListOptimized({ items = [] }: ShoppingListProps) {
                       <button
                         onClick={() => handleDeleteItem(item._id!)}
                         disabled={deleteItem.isPending}
-                        className="w-8 h-8 flex items-center justify-center hover:bg-red-100 rounded transition-colors disabled:opacity-50"
+                        className="w-6 h-6 md:w-8 md:h-8 flex items-center justify-center hover:bg-red-100 rounded transition-colors disabled:opacity-50"
                       >
                         <Image
                           src="https://res.cloudinary.com/meal-creator/image/upload/v1662276054/icons/trash.png"
                           alt="Delete"
                           width={20}
                           height={20}
-                          className="w-5 h-5"
+                          className="w-4 h-4 md:w-5 md:h-5"
                         />
                       </button>
                     </div>

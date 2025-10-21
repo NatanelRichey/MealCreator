@@ -18,7 +18,10 @@ interface CategoryFilterProps {
  * - Click to add/remove from filter, click All to clear all
  */
 export function CategoryFilter({ onFilterChange, currentFilters }: CategoryFilterProps) {
-  const toggleCategory = (category: string) => {
+  const toggleCategory = (category: string, event?: React.MouseEvent<HTMLButtonElement> | React.TouchEvent<HTMLButtonElement>) => {
+    if (event) {
+      event.preventDefault();
+    }
     if (currentFilters.includes(category)) {
       // Remove category from filters
       onFilterChange(currentFilters.filter(c => c !== category));
@@ -26,10 +29,21 @@ export function CategoryFilter({ onFilterChange, currentFilters }: CategoryFilte
       // Add category to filters
       onFilterChange([...currentFilters, category]);
     }
+    // Remove focus from button to prevent stuck hover state on mobile
+    if (event && 'currentTarget' in event) {
+      event.currentTarget.blur();
+    }
   };
 
-  const clearAll = () => {
+  const clearAll = (event?: React.MouseEvent<HTMLButtonElement> | React.TouchEvent<HTMLButtonElement>) => {
+    if (event) {
+      event.preventDefault();
+    }
     onFilterChange([]);
+    // Remove focus from button to prevent stuck hover state on mobile
+    if (event && 'currentTarget' in event) {
+      event.currentTarget.blur();
+    }
   };
 
   return (
@@ -38,12 +52,14 @@ export function CategoryFilter({ onFilterChange, currentFilters }: CategoryFilte
         {/* All Items Button */}
         <button
           onClick={clearAll}
+          onTouchStart={(e) => e.preventDefault()}
+          style={{ WebkitTapHighlightColor: 'transparent' }}
           className={`
             flex items-center gap-1 md:gap-2 px-3 py-2 md:px-4 md:py-2 rounded-lg
-            font-athiti text-base transition-all duration-200
+            font-athiti text-base md:transition-all md:duration-200 focus:outline-none touch-manipulation
             ${currentFilters.length === 0
               ? 'bg-meal-green-light border-2 border-meal-green shadow-md'
-              : 'bg-white border-2 border-gray-200 hover:border-meal-green-light hover:bg-meal-green-light/30'
+              : 'bg-white border-2 border-gray-200 md:hover:border-meal-green-light md:hover:bg-meal-green-light/30'
             }
           `}
         >
@@ -57,14 +73,16 @@ export function CategoryFilter({ onFilterChange, currentFilters }: CategoryFilte
           
           return (
             <button
-              key={`${category}-${isSelected}`}
-              onClick={() => toggleCategory(category)}
+              key={category}
+              onClick={(e) => toggleCategory(category, e)}
+              onTouchStart={(e) => e.preventDefault()}
+              style={{ WebkitTapHighlightColor: 'transparent' }}
               className={`
                 flex items-center gap-1 md:gap-2 px-3 py-2 md:px-4 md:py-2 rounded-lg
-                font-athiti text-base transition-all duration-200
+                font-athiti text-base md:transition-all md:duration-200 focus:outline-none touch-manipulation
                 ${isSelected
-                  ? 'bg-meal-green-light border-2 border-meal-green shadow-md scale-105'
-                  : 'bg-white border-2 border-gray-200 hover:border-meal-green-light hover:bg-meal-green-light/30'
+                  ? 'bg-meal-green-light border-2 border-meal-green shadow-md md:scale-105'
+                  : 'bg-white border-2 border-gray-200 md:hover:border-meal-green-light md:hover:bg-meal-green-light/30'
                 }
               `}
             >

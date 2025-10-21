@@ -163,14 +163,22 @@ export function useMoveToPantry() {
     mutationFn: (itemName: string) => moveToPantry(itemName),
     onMutate: async (itemName) => {
       await queryClient.cancelQueries({ queryKey: SHOPPING_LIST_QUERY_KEY });
+      await queryClient.cancelQueries({ queryKey: PANTRY_QUERY_KEY });
 
       const previousList = queryClient.getQueryData<ShoppingListData>(SHOPPING_LIST_QUERY_KEY);
+      const previousPantry = queryClient.getQueryData(PANTRY_QUERY_KEY);
+
+      let movedItem: ShoppingListItem | null = null;
 
       if (previousList) {
         const updatedCategories = { ...previousList.categories };
         
-        // Remove from all categories
+        // Find and remove from shopping list
         Object.keys(updatedCategories).forEach((category) => {
+          const item = updatedCategories[category].find((i) => i.name === itemName);
+          if (item) {
+            movedItem = item;
+          }
           updatedCategories[category] = updatedCategories[category].filter(
             (item) => item.name !== itemName
           );
@@ -181,14 +189,30 @@ export function useMoveToPantry() {
         });
       }
 
-      // Also invalidate pantry to show the new item
-      queryClient.invalidateQueries({ queryKey: PANTRY_QUERY_KEY });
+      // Optimistically add to pantry cache
+      if (previousPantry && movedItem) {
+        const updatedPantry = { ...previousPantry } as any;
+        if (!updatedPantry.categories) {
+          updatedPantry.categories = {};
+        }
+        if (!updatedPantry.categories[movedItem.category]) {
+          updatedPantry.categories[movedItem.category] = [];
+        }
+        updatedPantry.categories[movedItem.category] = [
+          ...updatedPantry.categories[movedItem.category],
+          { ...movedItem, inStock: true }
+        ];
+        queryClient.setQueryData(PANTRY_QUERY_KEY, updatedPantry);
+      }
 
-      return { previousList };
+      return { previousList, previousPantry };
     },
     onError: (_err, _itemName, context) => {
       if (context?.previousList) {
         queryClient.setQueryData(SHOPPING_LIST_QUERY_KEY, context.previousList);
+      }
+      if (context?.previousPantry) {
+        queryClient.setQueryData(PANTRY_QUERY_KEY, context.previousPantry);
       }
     },
     onSettled: () => {
