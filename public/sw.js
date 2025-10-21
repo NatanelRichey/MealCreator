@@ -1,7 +1,7 @@
 // MealCreator Service Worker - Enables offline functionality and fast loading
-const CACHE_NAME = 'mealcreator-v1';
-const STATIC_CACHE = 'mealcreator-static-v1';
-const DYNAMIC_CACHE = 'mealcreator-dynamic-v1';
+const CACHE_NAME = 'mealcreator-v3';
+const STATIC_CACHE = 'mealcreator-static-v3';
+const DYNAMIC_CACHE = 'mealcreator-dynamic-v3';
 
 // Files to cache immediately on install
 const STATIC_ASSETS = [

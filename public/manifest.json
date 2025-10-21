@@ -2,7 +2,7 @@
   "name": "MealCreator - Meal Planning & Pantry Management",
   "short_name": "MealCreator",
   "description": "Plan your meals, manage your pantry, and organize your recipes with MealCreator",
-  "start_url": "/",
+  "start_url": "/?v=3",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#10b981",

@@ -81,8 +81,8 @@ export const metadata: Metadata = {
     viewport: {
       width: 'device-width',
       initialScale: 1,
-      maximumScale: 1,
-      userScalable: false,  // Prevents zoom on mobile (your old line 9)
+      maximumScale: 5,
+      userScalable: true,
     },
     
     keywords: ['meal planning', 'pantry management', 'recipe organization', 'cooking'],
