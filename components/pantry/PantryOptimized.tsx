@@ -266,7 +266,7 @@ export function PantryOptimized({ items = [] }: PantryProps) {
                       }
                     }}
                     disabled={addItem.isPending}
-                    className="w-12 h-10 bg-meal-green-light hover:bg-meal-green-hover rounded flex items-center justify-center transition-colors disabled:opacity-50"
+                    className="w-12 h-10 bg-meal-green hover:bg-meal-green-dark rounded flex items-center justify-center transition-colors disabled:opacity-50"
                   >
                     <Image
                       src="https://res.cloudinary.com/meal-creator/image/upload/v1662276052/icons/add-pantry.png"
