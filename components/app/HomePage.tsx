@@ -56,7 +56,7 @@ export function HomePage() {
   };
 
   return (
-    <section className="fixed top-16 bottom-0 left-0 right-0 flex flex-col overflow-auto">
+    <section className="fixed top-16 bottom-0 left-0 right-0 flex flex-col overflow-hidden">
       {/* Flash Message - Top Left */}
       {showFlash && (
         <div className="absolute top-4 left-4 z-50">
@@ -68,32 +68,33 @@ export function HomePage() {
         </div>
       )}
 
-      {/* Welcome Message - Compact on short screens */}
-      <div className="flex flex-col items-center justify-center pt-4 pb-2 px-4 flex-shrink-0">
-        <h1 className="text-2xl md:text-4xl lg:text-5xl font-athiti text-gray-800 text-center mb-1">
+      {/* Welcome Message - Very compact on short screens */}
+      <div className="flex flex-col items-center justify-center pt-2 pb-1 px-4 flex-shrink-0">
+        <h1 className="text-xl sm:text-2xl md:text-4xl lg:text-5xl font-athiti text-gray-800 text-center mb-0.5">
           Welcome to MealCreator
         </h1>
-        <p className="text-sm md:text-lg text-gray-600 font-athiti text-center max-w-2xl">
+        <p className="text-xs sm:text-sm md:text-base lg:text-lg text-gray-600 font-athiti text-center max-w-2xl line-clamp-2">
           Plan your meals, manage your pantry, and never forget what to buy. 
           Start by exploring your meals or organizing your pantry!
         </p>
       </div>
 
-      {/* Cards - Always Centered Vertically and Horizontally */}
-      <div className="flex items-center justify-center flex-1 w-full px-4 sm:px-8 py-4">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
+      {/* Cards - Fit to available space */}
+      <div className="flex items-center justify-center flex-1 w-full px-2 sm:px-4 md:px-8 pb-2 min-h-0">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3 md:gap-4 lg:gap-6 w-full max-w-7xl h-full items-center">
         {HOME_CARDS.map((card) => (
           <button
             key={card.title}
             onClick={() => handleCardClick(card.href)}
             className="
-              relative overflow-hidden rounded-2xl shadow-md
+              relative overflow-hidden rounded-lg sm:rounded-xl md:rounded-2xl shadow-md
               border-2 border-transparent
               transition-colors duration-200 cursor-pointer
               hover:border-gray-300
-              w-full aspect-[4/5]
-              max-w-64 max-h-80
+              w-full h-full
+              max-h-[45vh] lg:max-h-[60vh]
             "
+            style={{ aspectRatio: '4/5' }}
           >
             <CldImage
               src={card.publicId}
@@ -109,8 +110,8 @@ export function HomePage() {
             {/* Light overlay to brighten dark images */}
             <div className="absolute inset-0 bg-white/5"></div>
             {/* Blur effect bar like pantry with black text */}
-            <div className="absolute -bottom-1 left-0 right-0 h-12 md:h-14 bg-white/80 backdrop-blur-md flex items-center justify-center transition-none z-10">
-              <span className="text-black text-lg md:text-xl font-athiti text-center">
+            <div className="absolute -bottom-1 left-0 right-0 h-10 sm:h-12 md:h-14 bg-white/80 backdrop-blur-md flex items-center justify-center transition-none z-10">
+              <span className="text-black text-base sm:text-lg md:text-xl font-athiti text-center">
                 {card.title}
               </span>
             </div>
