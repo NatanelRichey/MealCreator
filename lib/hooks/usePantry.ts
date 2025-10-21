@@ -23,7 +23,8 @@ export function usePantry() {
   return useQuery({
     queryKey: PANTRY_QUERY_KEY,
     queryFn: getPantry,
-    staleTime: 1000 * 60 * 2, // Cache for 2 minutes (pantry changes frequently)
+    staleTime: 1000 * 60 * 10, // Cache for 10 minutes (mobile-friendly)
+    gcTime: 1000 * 60 * 30, // Keep in memory for 30 minutes
   });
 }
 

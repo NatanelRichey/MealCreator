@@ -21,6 +21,8 @@ const nextConfig = {
         pathname: '/**',
       },
     ],
+    // Cache optimized images for 1 year on iOS/mobile
+    minimumCacheTTL: 31536000,
   },
   // Enable strict mode for better error detection
   reactStrictMode: true,

@@ -19,7 +19,8 @@ export function useMeals() {
   return useQuery({
     queryKey: MEALS_QUERY_KEY,
     queryFn: getMeals,
-    staleTime: 1000 * 60 * 5, // Cache for 5 minutes
+    staleTime: 1000 * 60 * 10, // Cache for 10 minutes (mobile-friendly)
+    gcTime: 1000 * 60 * 30, // Keep in memory for 30 minutes
   });
 }
 
