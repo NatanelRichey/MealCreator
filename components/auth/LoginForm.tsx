@@ -84,10 +84,10 @@ export function LoginForm() {
                 type="submit"
                 disabled={loginMutation.isPending}
                 className="
-                  bg-[#28a745] text-white border-none px-6 md:px-10 text-base md:text-lg rounded-lg
+                  bg-meal-green-light text-white border-none px-6 md:px-10 text-base md:text-lg rounded-lg
                   cursor-pointer transition-colors duration-300 font-athiti
                   h-10 md:h-12 min-w-[100px] md:min-w-[140px] flex items-center justify-center
-                  hover:bg-[#218838] shadow-md
+                  hover:bg-meal-green-hover shadow-md
                   disabled:opacity-50 disabled:cursor-not-allowed
                 "
               >
@@ -100,10 +100,10 @@ export function LoginForm() {
               onClick={handleDemoLogin}
               disabled={loginMutation.isPending}
               className="
-                bg-[#28a745] text-white border-none px-6 md:px-8 text-base md:text-lg rounded-lg
+                bg-meal-green-light text-white border-none px-6 md:px-8 text-base md:text-lg rounded-lg
                 cursor-pointer transition-colors duration-300 font-athiti
                 whitespace-nowrap h-10 md:h-12 min-w-[140px] md:min-w-[170px] flex items-center justify-center
-                hover:bg-[#218838] shadow-md
+                hover:bg-meal-green-hover shadow-md
                 disabled:opacity-50 disabled:cursor-not-allowed
               "
             >
