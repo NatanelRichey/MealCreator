@@ -58,7 +58,7 @@ export function LoginForm() {
         </div>
 
         {/* Header Image - High Resolution from Cloudinary */}
-        <div className="relative w-full h-48 sm:h-64 md:h-80 lg:h-[430px] overflow-hidden flex-shrink-0">
+        <div className="relative w-full flex-1 overflow-hidden">
           <Image
             src="https://res.cloudinary.com/meal-creator/image/upload/v1761061120/meal-creator/login-background.jpg"
             alt="Food"
@@ -68,8 +68,8 @@ export function LoginForm() {
           />
         </div>
 
-        {/* Body */}
-        <div className="bg-white flex-1 flex flex-col justify-center items-center py-6 px-4 min-h-[140px]">
+        {/* Body - Small area for buttons */}
+        <div className="bg-white flex-shrink-0 flex flex-col justify-center items-center py-3 px-4 min-h-[2cm]">
           {/* Error Message */}
           {error && (
             <div className="p-3 mb-4 bg-red-50 border border-red-200 rounded-lg text-center max-w-md">
