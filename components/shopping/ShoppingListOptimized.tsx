@@ -12,6 +12,7 @@ import {
   useMoveToPantry,
 } from '@/lib/hooks/useShoppingList';
 import { FlashMessage } from '@/components/ui/FlashMessage';
+import { CategoryFilter } from '@/components/ui/CategoryFilter';
 
 interface ShoppingListProps {
   items?: ShoppingListItem[];
@@ -26,6 +27,7 @@ interface FlashMsg {
 export function ShoppingListOptimized({ items = [] }: ShoppingListProps) {
   const [editingItem, setEditingItem] = useState<string | null>(null);
   const [flashMessages, setFlashMessages] = useState<FlashMsg[]>([]);
+  const [categoryFilter, setCategoryFilter] = useState<string | null>(null);
 
   // React Query hooks - with caching and optimistic updates
   const { data: shoppingListData, isLoading, error: queryError } = useShoppingList();
@@ -155,8 +157,18 @@ export function ShoppingListOptimized({ items = [] }: ShoppingListProps) {
           </div>
         )}
 
+        {/* Category Filter */}
+        {!isLoading && !queryError && (
+          <CategoryFilter 
+            currentFilter={categoryFilter}
+            onFilterChange={setCategoryFilter}
+          />
+        )}
+
         {/* Render each category */}
-        {!isLoading && !queryError && PANTRY_CATEGORIES.map((category) => {
+        {!isLoading && !queryError && PANTRY_CATEGORIES
+          .filter(cat => !categoryFilter || cat === categoryFilter)
+          .map((category) => {
           const categoryItems = itemsByCategory[category] || [];
           const uncheckedItems = categoryItems.filter(item => !item.checked);
           

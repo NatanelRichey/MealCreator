@@ -14,6 +14,7 @@ import {
   useMoveToCart,
 } from '@/lib/hooks/usePantry';
 import { FlashMessage } from '@/components/ui/FlashMessage';
+import { CategoryFilter } from '@/components/ui/CategoryFilter';
 
 interface PantryProps {
   items?: PantryItem[];
@@ -28,6 +29,7 @@ interface FlashMsg {
 export function PantryOptimized({ items = [] }: PantryProps) {
   const [editingItem, setEditingItem] = useState<string | null>(null);
   const [flashMessages, setFlashMessages] = useState<FlashMsg[]>([]);
+  const [categoryFilter, setCategoryFilter] = useState<string | null>(null);
 
   // React Query hooks - with caching and optimistic updates
   const { data: pantryData, isLoading, error: queryError } = usePantry();
@@ -195,8 +197,16 @@ export function PantryOptimized({ items = [] }: PantryProps) {
 
         {!isLoading && !queryError && (
           <>
+        {/* Category Filter */}
+        <CategoryFilter 
+          currentFilter={categoryFilter}
+          onFilterChange={setCategoryFilter}
+        />
+
         {/* Regular Categories - Only show in-stock items */}
-        {PANTRY_CATEGORIES.filter(cat => cat !== 'Saved Items').map((category) => {
+        {PANTRY_CATEGORIES.filter(cat => cat !== 'Saved Items')
+          .filter(cat => !categoryFilter || cat === categoryFilter)
+          .map((category) => {
           const categoryItems = itemsByCategory[category] || [];
           const inStockItems = categoryItems.filter(item => item.inStock);
           
