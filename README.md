@@ -1,68 +1,39 @@
-# 🍳 MealCreator
+# MealCreator - Next.js Edition
 
-A comprehensive full-stack web application for meal planning, recipe management, and grocery list organization. Built with Express.js, MongoDB, and EJS templating.
+A modern meal planning and pantry management application built with Next.js, React, TypeScript, and MongoDB.
 
-[![Live Demo](https://img.shields.io/badge/demo-online-green.svg)](https://mealcreator.onrender.com/)
-[![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)](https://opensource.org/licenses/ISC)
+## 🚀 Features
 
-## 📋 Features
-
-- **🔐 User Authentication**: Secure user registration and login with Passport.js
-- **🍽️ Meal Management**: Create, edit, and organize your favorite recipes
-- **🥕 Pantry System**: Keep track of ingredients you have on hand
-- **📝 Shopping Lists**: Generate and manage grocery lists from your recipes
-- **☁️ Image Upload**: Store recipe images using Cloudinary integration
-- **📱 Responsive Design**: Mobile-friendly interface with Bootstrap 5
-- **💾 Session Management**: Persistent user sessions with MongoDB store
-
-## 🚀 Live Demo
-
-Check out the live application: [https://mealcreator.onrender.com/](https://mealcreator.onrender.com/)
+- **Meal Management** - Create, edit, and organize your recipes
+- **Smart Pantry** - Track ingredients and what's in stock
+- **Shopping List** - Automatically generate shopping lists
+- **Meal Selector** - Find meals based on available ingredients
+- **Image Upload** - Upload meal photos via Cloudinary
+- **Instant UI Updates** - React Query for lightning-fast performance
 
 ## 🛠️ Tech Stack
 
-### Backend
-- **Node.js** - Runtime environment
-- **Express.js** - Web application framework
-- **MongoDB** - NoSQL database
-- **Mongoose** - MongoDB object modeling
+- **Frontend**: Next.js 14, React 18, TypeScript, Tailwind CSS
+- **Backend**: Next.js API Routes
+- **Database**: MongoDB (Mongoose)
+- **Image Storage**: Cloudinary
+- **Performance**: React Query (TanStack Query) for caching and optimistic updates
+- **Deployment**: Vercel
 
-### Authentication & Security
-- **Passport.js** - Authentication middleware
-- **passport-local-mongoose** - Simplified passport/Mongoose integration
-- **express-session** - Session management
-- **connect-mongo** - MongoDB session store
-
-### Frontend
-- **EJS** - Templating engine
-- **ejs-mate** - Layout support for EJS
-- **Bootstrap 5** - CSS framework
-- **jQuery** - JavaScript library
-
-### File Upload & Storage
-- **Multer** - File upload handling
-- **Cloudinary** - Cloud-based image storage
-
-### Validation & Utils
-- **Joi** - Schema validation
-- **method-override** - HTTP verb support (PUT, DELETE)
-- **connect-flash** - Flash messages
-- **dotenv** - Environment variable management
-
-## 📦 Installation
+## 📦 Getting Started
 
 ### Prerequisites
 
-- Node.js (v14 or higher)
-- MongoDB account (local or MongoDB Atlas)
-- Cloudinary account (for image uploads)
+- Node.js 18+ 
+- MongoDB database (MongoDB Atlas recommended)
+- Cloudinary account for image uploads
 
-### Setup Instructions
+### Installation
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/NatanelRichey/MealCreator.git
-   cd MealCreator
+   git clone https://github.com/yourusername/mealcreator.git
+   cd mealcreator
    ```
 
 2. **Install dependencies**
@@ -70,144 +41,166 @@ Check out the live application: [https://mealcreator.onrender.com/](https://meal
    npm install
    ```
 
-3. **Environment Variables**
+3. **Set up environment variables**
    
-   Create a `.env` file in the root directory with the following variables:
+   Create a `.env.local` file in the root directory:
    ```env
+   # MongoDB Connection
    DB_URL=your_mongodb_connection_string
-   CLOUDINARY_CLOUD_NAME=your_cloudinary_cloud_name
-   CLOUDINARY_KEY=your_cloudinary_api_key
-   CLOUDINARY_SECRET=your_cloudinary_api_secret
-   SESSION_SECRET=your_session_secret
-   PORT=3000
-   ```
-
-4. **Database Setup**
    
-   Make sure your MongoDB instance is running and accessible with the connection string in your `.env` file.
-
-5. **Start the application**
-   ```bash
-   npm start
-   ```
-
-   For development with auto-restart:
-   ```bash
-   nodemon index.js
-   ```
-
-6. **Access the application**
+   # Cloudinary Configuration
+   CLOUDINARY_CLOUD_NAME=your_cloud_name
+   CLOUDINARY_KEY=your_api_key
+   CLOUDINARY_SECRET=your_api_secret
    
-   Open your browser and navigate to `http://localhost:3000`
+   # Next.js (optional)
+   NEXT_PUBLIC_API_URL=
+   ```
+
+4. **Run the development server**
+   ```bash
+   npm run dev
+   ```
+
+5. **Open your browser**
+   Navigate to [http://localhost:3001](http://localhost:3001)
+
+## 📝 Environment Variables
+
+| Variable | Description | Required |
+|----------|-------------|----------|
+| `DB_URL` | MongoDB connection string | Yes |
+| `CLOUDINARY_CLOUD_NAME` | Cloudinary cloud name | Yes |
+| `CLOUDINARY_KEY` | Cloudinary API key | Yes |
+| `CLOUDINARY_SECRET` | Cloudinary API secret | Yes |
+| `NEXT_PUBLIC_API_URL` | Base URL for API calls (optional) | No |
+
+**Note**: Never commit `.env.local` to git! It's already in `.gitignore`.
+
+## 🚀 Deployment to Vercel
+
+1. **Push your code to GitHub**
+   ```bash
+   git add .
+   git commit -m "Ready for deployment"
+   git push origin main
+   ```
+
+2. **Deploy to Vercel**
+   - Go to [vercel.com](https://vercel.com)
+   - Import your GitHub repository
+   - Add environment variables in Vercel dashboard
+   - Deploy!
+
+3. **Add environment variables in Vercel**
+   - Go to Project Settings → Environment Variables
+   - Add all variables from your `.env.local` file
+   - Deploy again to apply changes
 
 ## 📁 Project Structure
 
 ```
-meal-creator/
-├── cloudinary/          # Cloudinary configuration
-├── controllers/         # Route controllers
-├── models/             # Mongoose models (User, Meal, Pantry, etc.)
-├── public/             # Static assets (CSS, JS, images)
-├── routes/             # Express routes
-│   ├── app.js          # Main application routes
-│   ├── meals.js        # Meal-related routes
-│   ├── pantry.js       # Pantry management routes
-│   ├── list.js         # Shopping list routes
-│   └── users.js        # User authentication routes
-├── views/              # EJS templates
-├── index.js            # Application entry point
-├── middleware.js       # Custom middleware
-├── schemas.js          # Joi validation schemas
-├── package.json        # Dependencies and scripts
-└── .env               # Environment variables (not tracked)
+mealcreator/
+├── app/                    # Next.js app directory
+│   ├── api/               # API routes
+│   ├── meals/             # Meals pages
+│   ├── pantry/            # Pantry page
+│   ├── shopping-list/     # Shopping list page
+│   └── login/             # Authentication
+├── components/            # React components
+│   ├── meal/             # Meal-related components
+│   ├── pantry/           # Pantry components
+│   ├── shopping/         # Shopping list components
+│   ├── auth/             # Authentication components
+│   └── ui/               # Reusable UI components
+├── lib/                   # Utilities and libraries
+│   ├── hooks/            # Custom React hooks (React Query)
+│   ├── models/           # Mongoose models
+│   ├── api.ts            # API client functions
+│   ├── db.ts             # Database connection
+│   └── types.ts          # TypeScript types
+├── public/               # Static assets
+└── old-express-backup/   # Legacy Express.js code (archived)
 ```
 
-## 🔧 Configuration
+## ⚡ Performance Optimizations
 
-### MongoDB
+This app uses **React Query** for:
+- **Smart Caching** - Data cached for 5 minutes, instant page loads
+- **Optimistic Updates** - UI updates immediately, no waiting
+- **Automatic Rollback** - Reverts changes if server fails
+- **Background Sync** - Server updates happen in background
 
-The application uses MongoDB for data storage. You can use either:
-- **MongoDB Atlas** (cloud): Sign up at [mongodb.com/cloud/atlas](https://www.mongodb.com/cloud/atlas)
-- **Local MongoDB**: Install and run MongoDB locally
+See [PERFORMANCE_OPTIMIZATIONS.md](PERFORMANCE_OPTIMIZATIONS.md) for details.
 
-### Cloudinary
+## 🔧 Available Scripts
 
-For image uploads, you'll need a Cloudinary account:
-1. Sign up at [cloudinary.com](https://cloudinary.com/)
-2. Get your cloud name, API key, and API secret from the dashboard
-3. Add these credentials to your `.env` file
+```bash
+npm run dev      # Start development server (port 3001)
+npm run build    # Build for production
+npm run start    # Start production server
+npm run lint     # Run ESLint
+```
 
-## 📝 Available Scripts
+## 📚 Documentation
 
-- `npm start` - Start the production server
-- `npm test` - Run tests (not yet implemented)
+- [Performance Optimizations](PERFORMANCE_OPTIMIZATIONS.md)
+- [React Modernization Guide](REACT_MODERNIZATION_GUIDE.md)
+- [Development Order](DEVELOPMENT_ORDER.md)
+- [Testing Guide](TESTING_GUIDE.md)
 
-## 🌟 Usage
+## 🎯 Features in Detail
 
-### Creating a Meal
-1. Register for an account or log in
-2. Navigate to "Create Meal"
-3. Add meal details, ingredients, and instructions
-4. Upload an optional image
-5. Save your meal
+### Meal Management
+- Create and edit recipes with ingredients, instructions, and images
+- Tag meals with categories (healthy, comfort food, quick meals, etc.)
+- Search and filter meals
+- Upload meal photos to Cloudinary
 
-### Managing Your Pantry
-1. Go to "My Pantry"
-2. Add ingredients you currently have
-3. The system will suggest meals you can make with available ingredients
+### Smart Pantry
+- Track ingredients by category
+- Mark items as in stock or save for later
+- Move items to shopping list
+- Instant updates with optimistic UI
 
-### Shopping Lists
-1. Select meals you want to prepare
-2. Generate a shopping list
-3. The app will compare with your pantry and show what you need to buy
+### Shopping List
+- Organized by food categories
+- Move items directly to pantry when purchased
+- Add/edit/delete items instantly
+
+### Meal Selector
+- Find meals based on available ingredients
+- Filter by meal type and preferences
+- "Surprise Me" feature for random meal suggestions
+
+## 🐛 Troubleshooting
+
+### Server won't start
+- Ensure `.env.local` exists with all required variables
+- Check MongoDB connection string is correct
+- Try deleting `.next` folder and rebuilding: `rm -rf .next && npm run dev`
+
+### Database connection errors
+- Verify MongoDB connection string
+- Ensure your IP is whitelisted in MongoDB Atlas
+- Check MongoDB cluster is running
+
+### Images not uploading
+- Verify Cloudinary credentials in `.env.local`
+- Check Cloudinary account has sufficient storage
 
 ## 🤝 Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-## 🐛 Known Issues
-
-- [ ] React modernization in progress (see `REACT_MODERNIZATION_GUIDE.md`)
-- [ ] Need to implement comprehensive test suite
-
-## 🔮 Future Enhancements
-
-- [ ] Meal planning calendar
-- [ ] Nutritional information tracking
-- [ ] Recipe sharing between users
-- [ ] Recipe import from URLs
-- [ ] Mobile app version
-- [ ] AI-powered meal suggestions
-- [ ] Dietary restriction filters
-- [ ] Meal prep scheduling
+This is a personal project, but suggestions and feedback are welcome!
 
 ## 📄 License
 
-This project is licensed under the ISC License.
+MIT License - feel free to use this project for learning or personal use.
 
-## 👤 Author
+## 👨‍💻 Author
 
-**Natanel Richey**
-
-- GitHub: [@NatanelRichey](https://github.com/NatanelRichey)
-- LinkedIn: [Natanel Richey](https://www.linkedin.com/in/natanelrichey/)
-- Email: natanelrichey@gmail.com
-
-## 🙏 Acknowledgments
-
-- Bootstrap for the responsive design framework
-- Cloudinary for image hosting
-- MongoDB Atlas for database hosting
-- Render for application hosting
+Built with ❤️ by Natanel Richey
 
 ---
 
-⭐ Star this repo if you find it helpful!
-
-
+**Note**: The old Express.js version of this app is archived in `old-express-backup.zip`.
