@@ -57,6 +57,7 @@ export function Navbar() {
 
           {/* Desktop Navigation - Hidden on mobile/medium, visible on large+ screens */}
           <div className="hidden lg:flex items-center gap-1">
+            <NavLink href="/home">Home</NavLink>
             <NavLink href="/find-meal">Find Meal!</NavLink>
             <NavLink href="/pantry">Pantry</NavLink>
             <NavLink href="/shopping-list">Shopping List</NavLink>
@@ -84,6 +85,13 @@ export function Navbar() {
         {isMenuOpen && (
           <div className="lg:hidden fixed top-16 left-0 right-0 bg-white shadow-lg border-t" style={{ zIndex: 9999 }}>
             <div className="flex flex-col">
+              <Link 
+                href="/home"
+                onClick={() => setIsMenuOpen(false)}
+                className="font-athiti text-lg px-4 py-3 hover:bg-meal-green-hover transition-colors border-b"
+              >
+                Home
+              </Link>
               <Link 
                 href="/find-meal"
                 onClick={() => setIsMenuOpen(false)}
