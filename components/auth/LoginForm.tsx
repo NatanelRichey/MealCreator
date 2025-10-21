@@ -48,17 +48,17 @@ export function LoginForm() {
   };
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center p-[2cm] bg-gray-50">
-      <div className="w-full h-full bg-white rounded-lg shadow-lg overflow-hidden flex flex-col">
+    <div className="fixed inset-0 flex items-center justify-center p-4 sm:p-8 md:p-[2cm] bg-gray-50">
+      <div className="w-full h-full max-h-screen bg-white rounded-lg shadow-lg overflow-auto flex flex-col">
         {/* Header */}
-        <div className="bg-white px-4 py-3 border-b">
+        <div className="bg-white px-4 py-3 border-b flex-shrink-0">
           <h5 className="text-lg font-athiti text-gray-800">
             Welcome to Meal Creator! - Login
           </h5>
         </div>
 
         {/* Header Image - High Resolution from Cloudinary */}
-        <div className="relative w-full h-[430px] overflow-hidden flex-shrink-0">
+        <div className="relative w-full h-48 sm:h-64 md:h-80 lg:h-[430px] overflow-hidden flex-shrink-0">
           <Image
             src="https://res.cloudinary.com/meal-creator/image/upload/v1761061120/meal-creator/login-background.jpg"
             alt="Food"
@@ -69,10 +69,10 @@ export function LoginForm() {
         </div>
 
         {/* Body */}
-        <div className="bg-white flex-1 flex flex-col justify-center items-center">
+        <div className="bg-white flex-1 flex flex-col justify-center items-center py-6 px-4 min-h-[140px]">
           {/* Error Message */}
           {error && (
-            <div className="p-3 mb-4 bg-red-50 border border-red-200 rounded-lg text-center">
+            <div className="p-3 mb-4 bg-red-50 border border-red-200 rounded-lg text-center max-w-md">
               <p className="text-red-600 font-athiti">{error}</p>
             </div>
           )}
