@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Script from 'next/script'
 import { Athiti, Indie_Flower, Kalam, Nothing_You_Could_Do } from 'next/font/google'
 import './globals.css'
 import { ConditionalNavbar } from '@/components/layout/ConditionalNavbar'
@@ -42,7 +43,7 @@ const athiti = Athiti({
   })
 
 // ==============================================
-// METADATA (SEO)
+// METADATA (SEO & PWA)
 // ==============================================
 // This appears in browser tabs, search results, and social media shares
 // Customize these values for your app
@@ -55,12 +56,27 @@ export const metadata: Metadata = {
       apple: '/images/meal-creator-logo.png',  // For iOS home screen
     },
     
+    // PWA-specific metadata
+    applicationName: 'MealCreator',
+    
+    // Additional iOS PWA support
+    other: {
+      'mobile-web-app-capable': 'yes',
+      'apple-mobile-web-app-title': 'MealCreator',
+    },
+    
+    // PWA Manifest - enables "Install App" functionality
+    manifest: '/manifest.json',
+    
     // These make your app feel native on mobile (from your old header.ejs lines 6-9)
     appleWebApp: {
       capable: true,
-      statusBarStyle: 'default',
+      statusBarStyle: 'black-translucent',
       title: 'MealCreator',
     },
+    
+    // PWA theme colors
+    themeColor: '#10b981',
     
     viewport: {
       width: 'device-width',
@@ -94,6 +110,24 @@ export default function RootLayout({
           <ConditionalNavbar />
           {children}
         </QueryProvider>
+        
+        {/* PWA Service Worker Registration */}
+        <Script id="register-sw" strategy="afterInteractive">
+          {`
+            if ('serviceWorker' in navigator) {
+              window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/sw.js').then(
+                  function(registration) {
+                    console.log('ServiceWorker registration successful:', registration.scope);
+                  },
+                  function(err) {
+                    console.log('ServiceWorker registration failed:', err);
+                  }
+                );
+              });
+            }
+          `}
+        </Script>
       </body>
     </html>
   )
