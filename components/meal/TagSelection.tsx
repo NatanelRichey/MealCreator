@@ -59,7 +59,7 @@ export function TagSelection({ selectedTags, onTagToggle }: TagSelectionProps) {
                       className={`w-6 h-6 sm:w-8 sm:h-8 mx-auto ${!isSelected ? 'grayscale opacity-60' : ''}`}
                     />
                   </button>
-                  <span className="text-[10px] sm:text-xs font-athiti text-gray-700 mt-1 capitalize text-center">
+                  <span className="hidden md:inline text-[10px] sm:text-xs font-athiti text-gray-700 mt-1 capitalize text-center">
                     {tag}
                   </span>
                 </div>

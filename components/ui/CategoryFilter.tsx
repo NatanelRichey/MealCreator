@@ -39,7 +39,7 @@ export function CategoryFilter({ onFilterChange, currentFilters }: CategoryFilte
         <button
           onClick={clearAll}
           className={`
-            flex items-center gap-2 px-4 py-2 rounded-lg
+            flex items-center gap-2 px-3 py-2 md:px-4 rounded-lg
             font-athiti text-base transition-all duration-200
             ${currentFilters.length === 0
               ? 'bg-meal-green-light border-2 border-meal-green shadow-md'
@@ -48,7 +48,7 @@ export function CategoryFilter({ onFilterChange, currentFilters }: CategoryFilte
           `}
         >
           <span className="text-2xl">🏠</span>
-          <span className="text-gray-800 font-medium">All Items</span>
+          <span className="hidden md:inline text-gray-800 font-medium">All Items</span>
         </button>
 
         {/* Category Buttons */}
@@ -57,10 +57,10 @@ export function CategoryFilter({ onFilterChange, currentFilters }: CategoryFilte
           
           return (
             <button
-              key={category}
+              key={`${category}-${isSelected}`}
               onClick={() => toggleCategory(category)}
               className={`
-                flex items-center gap-2 px-4 py-2 rounded-lg
+                flex items-center gap-2 px-3 py-2 md:px-4 rounded-lg
                 font-athiti text-base transition-all duration-200
                 ${isSelected
                   ? 'bg-meal-green-light border-2 border-meal-green shadow-md scale-105'
@@ -70,12 +70,12 @@ export function CategoryFilter({ onFilterChange, currentFilters }: CategoryFilte
             >
               <Image
                 src={`https://res.cloudinary.com/meal-creator/image/upload/v1662276054/icons/${category.toLowerCase()}.png`}
-                alt={category}
+                alt={getCategoryDisplayName(category)}
                 width={24}
                 height={24}
                 className="w-6 h-6"
               />
-              <span className="text-gray-800 font-medium">
+              <span className="hidden md:inline text-gray-800 font-medium">
                 {getCategoryDisplayName(category)}
               </span>
             </button>
